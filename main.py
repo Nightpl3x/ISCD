@@ -54,5 +54,3 @@ default_image(image_copy)
 hsv_color_space(image_copy)
 cut_out(image_copy_HSV)
 
-#test branch
-#currently working on edge detection to create a region of interest(abb.: roi)
