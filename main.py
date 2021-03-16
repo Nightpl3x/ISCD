@@ -4,7 +4,7 @@ import numpy as np
 
 # image processing variables
 # read images via the image path (Important: Only use the pah of your current device and comment the other out!)
-image = cv2.imread('images\S1_Kovacs_100Z.jpeg') # :Workplace relative path
+image = cv2.imread('images/0H_10000Z.jpeg') # :Workplace relative path
 #image = cv2.imread('C:/Users/skyli/Documents/VisualStudio/Python/Python Projects/ColiChecker/images/S2_Kovacs_10000Z.jpeg') # :Homeplace absolute path
 image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) #convert to rgb just to be safe later on
 image_copy = np.copy(image) #copying the image so we dont alter the original
@@ -55,3 +55,4 @@ hsv_color_space(image_copy)
 cut_out(image_copy_HSV)
 
 #test branch
+#currently working on edge detection to create a region of interest(abb.: roi)
