@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 '''
 image selection
 '''
-image = cv2.imread('images\S1_Kovacs_100Z.jpeg') # :Workplace relative path
+image = cv2.imread('images/20H_10000Z.jpeg') # :Workplace relative path
 
 '''
 image processing variables

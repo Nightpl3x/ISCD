@@ -48,13 +48,13 @@ def edges_grayed():# just a grayed version of image_edges for testing
 def edges_lined():# for an explanation of the Hough transform check https://docs.opencv.org/3.4/d9/db0/tutorial_hough_lines.html
 	rho = 1
 	theta = np.pi/180
-	threshold = 50
+	threshold = 60
 	min_line_length = 100
-	max_line_gap = 10
+	max_line_gap = 25
 
-	lines = cv2.HoughLinesP(v.image_edges, rho, theta, threshold, np.array([]), min_line_length, max_line_gap)
+	lines = cv2.HoughLinesP(v.image_edges, rho, theta, threshold, np.array([]), min_line_length, max_line_gap)# creates the lines according to the Hough transform
 
-	lined_image = np.copy(v.image_edges)
+	lined_image = np.copy(v.image) #change to v.image_edges for grayed version
 
 	for line in lines:
 		for x1, y1, x2, y2 in line:
@@ -68,10 +68,10 @@ def edges_lined():# for an explanation of the Hough transform check https://docs
 # maybe create seperate function or file to run the functions below
 '''
 
-default_image()
-hsv_color_space()
-cut_out()
-edges_grayed()
+#default_image()
+#hsv_color_space()
+#cut_out()
+#edges_grayed()
 edges_lined()
 
 #Test Branch:
