@@ -33,4 +33,3 @@ image_blur_gray = cv2.filter2D(image_gray, -1, sharpen_kernel) # enhance image_g
 image_HSV = cv2.cvtColor(image_copy, cv2.COLOR_RGB2HSV) #create a copy to test hsv
 
 image_edges = cv2.Canny(image_copy, low_threshold, high_threshold, None, 3)
-    

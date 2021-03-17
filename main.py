@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import variables as v
 
 def show_image(): #shows the desired image for testing purposes
-    plt.imshow(v.image_blur)
+    plt.imshow(v.image_HSV)
     plt.show()
 
 def hsv_color_space(): #splitting channels up in HSV color space
