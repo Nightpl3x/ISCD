@@ -18,7 +18,7 @@ image_copy_HSV = cv2.cvtColor(image_copy, cv2.COLOR_RGB2HSV) #create a copy to t
 '''
 Edge detection specific variables
 '''
-low_threshold = 50
-high_threshold = 200
+low_threshold = 100
+high_threshold = 150
 image_edges = cv2.Canny(image_copy, low_threshold, high_threshold, None, 3)
     
