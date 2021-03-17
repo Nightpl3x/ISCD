@@ -48,6 +48,4 @@ default_image()
 hsv_color_space()
 cut_out()
 
-#Test Branch:
-#Currently working on 'Edge Detection' and 'Region of Interest'(abb.: RoI)
 
