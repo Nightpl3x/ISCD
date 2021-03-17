@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 '''
 image selection
 '''
-image = cv2.imread('images\S2_Kovacs_10000Z.jpeg') # :Workplace relative path
+image = cv2.imread('images\S1_Kovacs_100Z.jpeg') # :Workplace relative path
 
 '''
 image processing variables
@@ -18,7 +18,7 @@ image_copy_HSV = cv2.cvtColor(image_copy, cv2.COLOR_RGB2HSV) #create a copy to t
 '''
 Edge detection specific variables
 '''
-low_threshold = 80
-high_threshold = 140
-image_edges = cv2.Canny(image_copy, low_threshold, high_threshold)
+low_threshold = 50
+high_threshold = 200
+image_edges = cv2.Canny(image_copy, low_threshold, high_threshold, None, 3)
     
