@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import variables as v
 
 def show_image(): #shows the desired image for testing purposes
-    plt.imshow(v.image_HSV)
+    plt.imshow(v.image_sharp)
     plt.show()
 
 def hsv_color_space(): #splitting channels up in HSV color space
@@ -54,7 +54,7 @@ def edges_lined():# for an explanation of the Hough transform check https://docs
 
 	lines = cv2.HoughLinesP(v.image_edges, rho, theta, threshold, np.array([]), min_line_length, max_line_gap)# creates the lines according to the Hough transform
 
-	lined_image = np.copy(v.image) #change to v.image_edges for grayed version
+	lined_image = np.copy(v.image) #change here to view other image variants with lines
 
 	for line in lines:
 		for x1, y1, x2, y2 in line:

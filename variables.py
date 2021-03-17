@@ -10,10 +10,12 @@ image = cv2.imread('images/20H_10000Z.jpeg') # :Workplace relative path
 '''
 num variables
 '''
-sharpen_kernel = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]]) # to sharpen image
+# more kernels here: https://en.wikipedia.org/wiki/Kernel_(image_processing)
+kernel_sharp = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]]) 
 
-low_threshold = 100 # for image edge detection
-high_threshold = 150 # for image edge detection
+# for image edge detection
+low_threshold = 100
+high_threshold = 150
 
 '''
 image processing variables
@@ -26,9 +28,7 @@ image_copy = np.copy(image) #copying the image so we dont alter the original
 
 image_gray = cv2.cvtColor(image_copy, cv2.COLOR_RGB2GRAY)
 
-image_blur = cv2.filter2D(image_copy, -1, sharpen_kernel) # enhance image https://stackoverflow.com/questions/58231849/how-to-remove-blurriness-from-an-image-using-opencv-python-c
-
-image_blur_gray = cv2.filter2D(image_gray, -1, sharpen_kernel) # enhance image_gray
+image_sharp = cv2.filter2D(image_copy, -1, kernel_sharp) # 'enhance' image, doesnt work well with color schemes
 
 image_HSV = cv2.cvtColor(image_copy, cv2.COLOR_RGB2HSV) #create a copy to test hsv
 
