@@ -3,6 +3,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import variables as v
 
+'''
+Functions:
+'''
+
 def show_image(): #shows the desired image for testing purposes
     plt.imshow(v.image_sharp)
     plt.show()
@@ -64,8 +68,8 @@ def edges_lined():# for an explanation of the Hough transform check https://docs
 	plt.show()
 
 '''
-# Call Functions
-# maybe create seperate function or file to run the functions below
+Call Functions:
+Maybe create seperate function or file to run the functions below
 '''
 
 show_image()

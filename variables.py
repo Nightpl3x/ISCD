@@ -3,12 +3,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 '''
-image selection
+Image selection:
 '''
 image = cv2.imread('images/20H_10000Z.jpeg') # :Workplace relative path
 
 '''
-num variables
+Num variables:
 '''
 # more kernels here: https://en.wikipedia.org/wiki/Kernel_(image_processing)
 kernel_sharp = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]]) 
@@ -18,9 +18,8 @@ low_threshold = 100
 high_threshold = 150
 
 '''
-image processing variables
+Image processing variables:
 '''
-# read images via the image path (Important: Only use the pah of your current device and comment the other out!)
 
 image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) #convert to rgb just to be safe later on
 
