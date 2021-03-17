@@ -8,8 +8,13 @@ Functions:
 '''
 
 def show_image(): #shows the desired image for testing purposes
-    plt.imshow(v.image_sharp)
+    plt.imshow(v.image_gray)
     plt.show()
+
+def show_image_gray():# just a grayed version of images for testing
+
+	plt.imshow(v.image_gray, cmap='gray')
+	plt.show()
 
 def hsv_color_space(): #splitting channels up in HSV color space
 
@@ -44,11 +49,6 @@ def cut_out(): # Cutting out/Black out image ! needs improving, too much whitesp
     plt.imshow(v.image_HSV)
     plt.show()
 
-def edges_grayed():# just a grayed version of image_edges for testing
-
-	plt.imshow(v.image_edges, cmap='gray')
-	plt.show()
-
 def edges_lined():# for an explanation of the Hough transform check https://docs.opencv.org/3.4/d9/db0/tutorial_hough_lines.html
 	rho = 1
 	theta = np.pi/180
@@ -73,9 +73,9 @@ Maybe create seperate function or file to run the functions below
 '''
 
 show_image()
+show_image_gray()
 #hsv_color_space()
 #cut_out()
-#edges_grayed()
 #edges_lined()
 
 #Test Branch:
