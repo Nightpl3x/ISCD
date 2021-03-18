@@ -1,11 +1,10 @@
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
 
 '''
 Image selection:
 '''
-image = cv2.imread('images/20H_10000Z.jpeg') # :Workplace relative path
+image = cv2.imread('images/44H_10000Z.jpeg') # :Workplace relative path
 
 '''
 Num variables:

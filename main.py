@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+from PIL import Image, ImageEnhance 
 import variables as v
 
 '''
@@ -8,12 +9,12 @@ Functions:
 '''
 
 def show_image(): #shows the desired image for testing purposes
-    plt.imshow(v.image_edges)
+    plt.imshow(v.image)
     plt.show()
 
 def show_image_gray():# just a grayed version of images for testing, often better for edge detection
 
-	plt.imshow(v.image_edges, cmap='gray')
+	plt.imshow(v.image, cmap='gray')
 	plt.show()
 
 def hsv_color_space(): #splitting channels up in HSV color space
@@ -67,16 +68,33 @@ def edges_lined():# for an explanation of the Hough transform check https://docs
 	plt.imshow(lined_image)
 	plt.show()
 
+def color_enhance(): # trying to enhance the coloration of the images via CLAHE (Contrast Limited Adaptive Histogram Equalization)
+
+    clahe = cv2.createCLAHE(clipLimit=3., tileGridSize=(8,8))
+
+    image_lab = cv2.cvtColor(v.image_copy, cv2.COLOR_RGB2LAB)  # convert from RGB to LAB color space
+    
+    l, a, b = cv2.split(image_lab)  # split on 3 different channels
+
+    l2 = clahe.apply(l)  # apply CLAHE to the L-channel
+
+    image_lab = cv2.merge((l2,a,b))  # merge channels
+    imgage_enhance = cv2.cvtColor(image_lab, cv2.COLOR_LAB2RGB)  # convert from LAB to RGB
+
+    plt.imshow(imgage_enhance) # show
+    plt.show()
+
 '''
 Call Functions:
 Maybe create seperate function or file to run the functions below
 '''
 
 show_image()
-show_image_gray()
+#show_image_gray()
 #hsv_color_space()
 #cut_out()
 #edges_lined()
+color_enhance()
 
 #Test Branch: Enhance
 #Currently working on 'Edge Detection' and 'Region of Interest'(abb.: RoI)
