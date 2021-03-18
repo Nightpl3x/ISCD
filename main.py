@@ -8,12 +8,12 @@ Functions:
 '''
 
 def show_image(): #shows the desired image for testing purposes
-    plt.imshow(v.image_gray)
+    plt.imshow(v.image_edges)
     plt.show()
 
-def show_image_gray():# just a grayed version of images for testing
+def show_image_gray():# just a grayed version of images for testing, often better for edge detection
 
-	plt.imshow(v.image_gray, cmap='gray')
+	plt.imshow(v.image_edges, cmap='gray')
 	plt.show()
 
 def hsv_color_space(): #splitting channels up in HSV color space

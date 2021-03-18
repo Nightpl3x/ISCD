@@ -21,14 +21,14 @@ high_threshold = 150
 Image processing variables:
 '''
 
-image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) #convert to rgb just to be safe later on
+image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) # convert to rgb
 
-image_copy = np.copy(image) #copying the image so we dont alter the original
+image_copy = np.copy(image) # copying the image so we dont alter the original
 
-image_gray = cv2.cvtColor(image_copy, cv2.COLOR_RGB2GRAY)
+image_gray = cv2.cvtColor(image_copy, cv2.COLOR_RGB2GRAY) # turn rgb image into a grayed version 
 
 image_sharp = cv2.filter2D(image_copy, -1, kernel_sharp) # 'enhance' image, doesnt work well with color schemes
 
-image_HSV = cv2.cvtColor(image_copy, cv2.COLOR_RGB2HSV) #create a copy to test hsv
+image_HSV = cv2.cvtColor(image_copy, cv2.COLOR_RGB2HSV) # create image in hsv for the color schemes extraction
 
-image_edges = cv2.Canny(image_copy, low_threshold, high_threshold, None, 3)
+image_edges = cv2.Canny(image_copy, low_threshold, high_threshold, None, 3) # makes edges more visbible and is used for the Hough transform
