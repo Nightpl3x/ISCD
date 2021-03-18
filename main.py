@@ -78,6 +78,6 @@ show_image_gray()
 #cut_out()
 #edges_lined()
 
-#Test Branch:
+#Test Branch: Enhance
 #Currently working on 'Edge Detection' and 'Region of Interest'(abb.: RoI)
 
