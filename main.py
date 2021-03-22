@@ -9,7 +9,7 @@ import variables as v
 '''
 Functions:
 '''
-img = v.image_edges # only for the show_image() and show_image_gray()
+img = v.image_blur # only for the show_image() and show_image_gray()
 
 def show_image(): # shows the desired image for testing purposes (variables: all )
     plt.imshow(img)
@@ -66,7 +66,7 @@ def edges_lined(): # find lines via Hough transform: https://docs.opencv.org/3.4
 
 	for line in lines:
 		for x1, y1, x2, y2 in line:
-			cv2.line(lined_image, (x1,y1),(x2,y2), (255,0,0), 3, cv2.LINE_AA)
+			cv2.line(lined_image, (x1,y1),(x2,y2), (255,0,0), 1, cv2.LINE_AA)
 
 	plt.imshow(lined_image)
 	plt.show()
@@ -93,7 +93,7 @@ Maybe create seperate function or file to run the functions below
 '''
 
 show_image()
-#show_image_gray()
+show_image_gray()
 #hsv_filter()
 #black_out()
 #edges_lined()
