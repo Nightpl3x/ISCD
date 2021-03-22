@@ -9,7 +9,7 @@ import variables as v
 '''
 Functions:
 '''
-img = v.image_blur # only for the show_image() and show_image_gray()
+img = v.image_copy # only for functions show_image() and show_image_gray()
 
 def show_image(): # shows the desired image for testing purposes (variables: all )
     plt.imshow(img)
@@ -53,7 +53,10 @@ def black_out(): # remove white space via HSV (variables: image_HSV, all )
     plt.imshow(v.image_HSV)
     plt.show()
 
-def edges_lined(): # find lines via Hough transform: https://docs.opencv.org/3.4/d9/db0/tutorial_hough_lines.html (variables: image_edges, all )
+def edges_lined(): # find lines via Hough transform (variables: image_edges, all )
+
+    # https://docs.opencv.org/3.4/d9/db0/tutorial_hough_lines.html
+
 	rho = 1
 	theta = np.pi/180
 	threshold = 60
@@ -73,6 +76,8 @@ def edges_lined(): # find lines via Hough transform: https://docs.opencv.org/3.4
 
 def image_enhance(): # enhance the coloration of the images via CLAHE (Contrast Limited Adaptive Histogram Equalization) (variables: all )
 
+    # https://stackoverflow.com/questions/25008458/how-to-apply-clahe-on-rgb-color-images
+
     clahe = cv2.createCLAHE(clipLimit=3., tileGridSize=(8,8)) # determine CLAHE paramters (values based on recommendations)
 
     image_lab = cv2.cvtColor(v.image_copy, cv2.COLOR_RGB2LAB)  # convert from RGB to LAB, change v.image_copy here to view other images
@@ -87,11 +92,11 @@ def image_enhance(): # enhance the coloration of the images via CLAHE (Contrast 
     plt.imshow(image_enhanced) # show
     plt.show()
 
+
 '''
 Call Functions:
 Maybe create seperate function or file to run the functions below
 '''
-
 show_image()
 show_image_gray()
 #hsv_filter()
