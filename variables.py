@@ -4,7 +4,7 @@ import numpy as np
 '''
 Image selection:
 '''
-image = cv2.imread('images/S2_Kovacs_10000Z.jpeg') # :Workplace relative path
+image = cv2.imread('images/0H_10000Z.jpeg') # :Workplace relative path
 
 '''
 Num variables:

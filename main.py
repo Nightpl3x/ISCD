@@ -1,4 +1,4 @@
-# Branch: Main
+# Branch: Test
 # Currently working on 'Edge Detection' and 'Region of Interest'(abb.: RoI)
 
 import cv2
@@ -9,7 +9,7 @@ import variables as v
 '''
 Functions:
 '''
-img = v.image_edges
+img = v.image_edges # only for the show_image() and show_image_gray()
 
 def show_image(): # shows the desired image for testing purposes (variables: all )
     plt.imshow(img)
@@ -92,11 +92,11 @@ Call Functions:
 Maybe create seperate function or file to run the functions below
 '''
 
-show_image()
-#show_image_gray()
+#show_image()
+show_image_gray()
 #hsv_filter()
 #black_out()
-#edges_lined()
-#image_enhance()
+edges_lined()
+image_enhance()
 
 
