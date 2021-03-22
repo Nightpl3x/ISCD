@@ -4,7 +4,7 @@ import numpy as np
 '''
 Image selection:
 '''
-image = cv2.imread('images/44H_10000Z.jpeg') # :Workplace relative path
+image = cv2.imread('images/S2_Kovacs_10000Z.jpeg') # :Workplace relative path
 
 '''
 Num variables:
@@ -30,4 +30,4 @@ image_sharp = cv2.filter2D(image_copy, -1, kernel_sharp) # 'enhance' image, does
 
 image_HSV = cv2.cvtColor(image_copy, cv2.COLOR_RGB2HSV) # create image in hsv for the color schemes extraction
 
-image_edges = cv2.Canny(image_copy, low_threshold, high_threshold, None, 3) # makes edges more visbible and is used for the Hough transform
+image_edges = cv2.Canny(image_copy, low_threshold, high_threshold) # makes edges more visbible and is used for the Hough transform in edges_lined()

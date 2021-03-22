@@ -1,3 +1,6 @@
+#Test Branch: Enhance
+#Currently working on 'Edge Detection' and 'Region of Interest'(abb.: RoI)
+
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -6,17 +9,18 @@ import variables as v
 '''
 Functions:
 '''
+img = v.image_HSV
 
 def show_image(): #shows the desired image for testing purposes
-    plt.imshow(v.image)
+    plt.imshow(img)
     plt.show()
 
-def show_image_gray():# just a grayed version of images for testing, often better for edge detection
+def show_image_gray():#only works with image_gray just a grayed version of images for testing, often better for edge detection
 
-	plt.imshow(v.image, cmap='gray')
+	plt.imshow(img, cmap='gray')
 	plt.show()
 
-def hsv_color_space(): #splitting channels up in HSV color space
+def hsv_filter(): #splitting channels up in HSV color space
 
     #h = v.image_HSV[:,:,0] #represents the 'Hue Image Analysis' which didnt quite get us the desired results
     s = v.image_HSV[:,:,1] #represents the 'Saturation Image Analysis' which did get close to the desired results
@@ -67,20 +71,20 @@ def edges_lined():# for an explanation of the Hough transform check https://docs
 	plt.imshow(lined_image)
 	plt.show()
 
-def color_enhance(): # trying to enhance the coloration of the images via CLAHE (Contrast Limited Adaptive Histogram Equalization)
+def image_enhance(): # trying to enhance the coloration of the images via CLAHE (Contrast Limited Adaptive Histogram Equalization)
 
-    clahe = cv2.createCLAHE(clipLimit=3., tileGridSize=(8,8))
+    clahe = cv2.createCLAHE(clipLimit=3., tileGridSize=(8,8)) # determine CLAHE paramters (values based on recommendations)
 
-    image_lab = cv2.cvtColor(v.image_copy, cv2.COLOR_RGB2LAB)  # convert from RGB to LAB color space
+    image_lab = cv2.cvtColor(v.image_copy, cv2.COLOR_RGB2LAB)  # convert from RGB to LAB, change v.image_copy here to view other images
     
     l, a, b = cv2.split(image_lab)  # split on 3 different channels
 
     l2 = clahe.apply(l)  # apply CLAHE to the L-channel
 
-    image_lab = cv2.merge((l2,a,b))  # merge channels
-    imgage_enhance = cv2.cvtColor(image_lab, cv2.COLOR_LAB2RGB)  # convert from LAB to RGB
+    image_lab = cv2.merge((l2,a,b))  # merge channels with the altered 'l' version
+    image_enhanced = cv2.cvtColor(image_lab, cv2.COLOR_LAB2RGB)  # convert from LAB back to RGB
 
-    plt.imshow(imgage_enhance) # show
+    plt.imshow(image_enhanced) # show
     plt.show()
 
 '''
@@ -90,11 +94,9 @@ Maybe create seperate function or file to run the functions below
 
 show_image()
 #show_image_gray()
-#hsv_color_space()
+#hsv_filter()
 #cut_out()
-#edges_lined()
-color_enhance()
+edges_lined()
+#image_enhance()
 
-#Test Branch: Enhance
-#Currently working on 'Edge Detection' and 'Region of Interest'(abb.: RoI)
 
