@@ -1,5 +1,5 @@
-#Test Branch: Enhance
-#Currently working on 'Edge Detection' and 'Region of Interest'(abb.: RoI)
+# Test Branch: Enhance
+# Currently working on 'Edge Detection' and 'Region of Interest'(abb.: RoI)
 
 import cv2
 import numpy as np
@@ -9,18 +9,18 @@ import variables as v
 '''
 Functions:
 '''
-img = v.image_HSV
+img = v.image_edges
 
-def show_image(): #shows the desired image for testing purposes
+def show_image(): # shows the desired image for testing purposes (variables: all )
     plt.imshow(img)
     plt.show()
 
-def show_image_gray():#only works with image_gray just a grayed version of images for testing, often better for edge detection
+def show_image_gray():# main use is for better edge detection (variables: image_gray, image_edges)
 
 	plt.imshow(img, cmap='gray')
 	plt.show()
 
-def hsv_filter(): #splitting channels up in HSV color space
+def hsv_filter(): # splitting the HSV color channels up (variables: image_HSV )
 
     #h = v.image_HSV[:,:,0] #represents the 'Hue Image Analysis' which didnt quite get us the desired results
     s = v.image_HSV[:,:,1] #represents the 'Saturation Image Analysis' which did get close to the desired results
@@ -39,21 +39,21 @@ def hsv_filter(): #splitting channels up in HSV color space
 
     plt.show()
 
-def cut_out(): # Cutting out/Black out image ! needs improving, too much whitespace left
+def black_out(): # remove white space via HSV (variables: image_HSV, all )
 
     lower_Hue = np.array([160,0,0])
     high_Hue = np.array([180,255,255])
 
     mask_HSV = cv2.inRange(v.image_HSV, lower_Hue, high_Hue)
 
-    v.image_HSV = np.copy(v.image_copy)
+    v.image_HSV = np.copy(v.image_copy) # change here for other images
 
     v.image_HSV[mask_HSV == 0] = [0,0,0]
 
     plt.imshow(v.image_HSV)
     plt.show()
 
-def edges_lined():# for an explanation of the Hough transform check https://docs.opencv.org/3.4/d9/db0/tutorial_hough_lines.html
+def edges_lined(): # find lines via Hough transform: https://docs.opencv.org/3.4/d9/db0/tutorial_hough_lines.html (variables: image_edges, all )
 	rho = 1
 	theta = np.pi/180
 	threshold = 60
@@ -62,7 +62,7 @@ def edges_lined():# for an explanation of the Hough transform check https://docs
 
 	lines = cv2.HoughLinesP(v.image_edges, rho, theta, threshold, np.array([]), min_line_length, max_line_gap)# creates the lines according to the Hough transform
 
-	lined_image = np.copy(v.image) #change here to view other image variants with lines
+	lined_image = np.copy(v.image) # change here to view other image variants with lines
 
 	for line in lines:
 		for x1, y1, x2, y2 in line:
@@ -71,7 +71,7 @@ def edges_lined():# for an explanation of the Hough transform check https://docs
 	plt.imshow(lined_image)
 	plt.show()
 
-def image_enhance(): # trying to enhance the coloration of the images via CLAHE (Contrast Limited Adaptive Histogram Equalization)
+def image_enhance(): # enhance the coloration of the images via CLAHE (Contrast Limited Adaptive Histogram Equalization) (variables: all )
 
     clahe = cv2.createCLAHE(clipLimit=3., tileGridSize=(8,8)) # determine CLAHE paramters (values based on recommendations)
 
@@ -95,8 +95,8 @@ Maybe create seperate function or file to run the functions below
 show_image()
 #show_image_gray()
 #hsv_filter()
-#cut_out()
-edges_lined()
+#black_out()
+#edges_lined()
 #image_enhance()
 
 

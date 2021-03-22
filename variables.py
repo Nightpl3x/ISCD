@@ -30,4 +30,4 @@ image_sharp = cv2.filter2D(image_copy, -1, kernel_sharp) # 'enhance' image, does
 
 image_HSV = cv2.cvtColor(image_copy, cv2.COLOR_RGB2HSV) # create image in hsv for the color schemes extraction
 
-image_edges = cv2.Canny(image_copy, low_threshold, high_threshold) # makes edges more visbible and is used for the Hough transform in edges_lined()
+image_edges = cv2.Canny(image_copy, low_threshold, high_threshold) # makes edges more visible, used for the Hough transform in edges_lined()
