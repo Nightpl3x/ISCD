@@ -4,7 +4,7 @@ import numpy as np
 '''
 Image selection:
 '''
-image = cv2.imread('images/0H_10000Z.jpeg', cv2.IMREAD_COLOR) # :Workplace relative path
+image = cv2.imread('images/S2_Kovacs_10000Z.jpeg', cv2.IMREAD_COLOR) # :Workplace relative path
 image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) # convert to rgb
 
 '''

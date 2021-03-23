@@ -9,7 +9,7 @@ import variables as v
 '''
 Functions:
 '''
-img = v.image_copy # only for functions show_image() and show_image_gray()
+img = v.image_edges # only for functions show_image() and show_image_gray()
 
 def show_image(): # show desired image (variables: all )
     plt.imshow(img)
@@ -92,7 +92,7 @@ def edge_detection(): # detect lines via Hough transform (variables: image_edges
 	plt.imshow(lined_image)
 	plt.show()
 
-def circle_detection(): #  detect circles via Hough transform (variables: image_edges, all )
+def circle_detection(): # detect circles via Hough transform (variables: image_edges, all )
 
     # https://learnopencv.com/hough-transform-with-opencv-c-python/amp/
 
@@ -114,7 +114,7 @@ def circle_detection(): #  detect circles via Hough transform (variables: image_
 Call Functions:
 Maybe create seperate function or file to run the functions below
 '''
-#show_image()
+show_image()
 #show_image_gray()
 #image_enhance()
 #hsv_filter()
