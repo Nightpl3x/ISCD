@@ -11,16 +11,18 @@ Functions:
 '''
 img = v.image_copy # only for functions show_image() and show_image_gray()
 
-def show_image(): # shows the desired image for testing purposes (variables: all )
+def show_image(): # show desired image (variables: all )
     plt.imshow(img)
     plt.show()
 
-def show_image_gray():# main use is for better edge detection (variables: image_gray, image_edges)
+def show_image_gray(): # show desired image in gray (mostly for edge detection) (variables: image_gray, image_edges)
 
 	plt.imshow(img, cmap='gray')
 	plt.show()
 
-def hsv_filter(): # splitting the HSV color channels up (variables: image_HSV )
+def image_enhance(): # enhance coloration via CLAHE (variables: all )
+
+def hsv_filter(): # split HSV color channels (variables: image_HSV )
 
     #h = v.image_HSV[:,:,0] #represents the 'Hue Image Analysis' which didnt quite get us the desired results
     s = v.image_HSV[:,:,1] #represents the 'Saturation Image Analysis' which did get close to the desired results
@@ -53,7 +55,7 @@ def black_out(): # remove white space via HSV (variables: image_HSV, all )
     plt.imshow(v.image_HSV)
     plt.show()
 
-def edges_lined(): # find lines via Hough transform (variables: image_edges, all )
+def edge_detection(): # detect lines via Hough transform (variables: image_edges, all )
 
     # https://docs.opencv.org/3.4/d9/db0/tutorial_hough_lines.html
 
@@ -74,7 +76,24 @@ def edges_lined(): # find lines via Hough transform (variables: image_edges, all
 	plt.imshow(lined_image)
 	plt.show()
 
-def image_enhance(): # enhance the coloration of the images via CLAHE (Contrast Limited Adaptive Histogram Equalization) (variables: all )
+def circle_detection(): #  detect circles via Hough transform (variables: image_edges, all )
+
+    # https://learnopencv.com/hough-transform-with-opencv-c-python/amp/
+
+    image_circles = cv2.HoughCircles(v.image_edges, cv2.HOUGH_GRADIENT, 1, 20, param1=20, param2=10, minRadius=25, maxRadius=35) # Apply Hough transform on the image
+
+    if image_circles is not None: # Draw detected circles
+        image_circles = np.uint16(np.around(image_circles))
+        for i in image_circles[0, :]:
+            
+            cv2.circle(v.image_copy, (i[0], i[1]), i[2], (0, 0, 255), 1) # Draw outer circle
+        
+            cv2.circle(v.image_copy, (i[0], i[1]), 2, (255, 0, 0), 1) # Draw inner circle
+
+    plt.imshow(v.image_copy)
+    plt.show()
+
+
 
     # https://stackoverflow.com/questions/25008458/how-to-apply-clahe-on-rgb-color-images
 
@@ -99,9 +118,11 @@ Maybe create seperate function or file to run the functions below
 '''
 #show_image()
 #show_image_gray()
+#image_enhance()
 #hsv_filter()
 #black_out()
-edges_lined()
-#image_enhance()
+#edge_detection()
+#circle_detection()
+
 
 
