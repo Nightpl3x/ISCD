@@ -97,11 +97,11 @@ def image_enhance(): # enhance the coloration of the images via CLAHE (Contrast 
 Call Functions:
 Maybe create seperate function or file to run the functions below
 '''
-show_image()
-show_image_gray()
+#show_image()
+#show_image_gray()
 #hsv_filter()
 #black_out()
-#edges_lined()
+edges_lined()
 #image_enhance()
 
 
