@@ -1,5 +1,10 @@
 import cv2
 import numpy as np
+'''
+Virtual Environment:
+'''
+#.\env\Scripts\activate
+#deactivate
 
 '''
 Image selection:
