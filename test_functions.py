@@ -1,5 +1,6 @@
-#----------------------------------Branch: Color---------------------------------------
-
+'''
+Imports:
+'''
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -20,8 +21,6 @@ def show_image_gray(): # show desired image in gray (mostly for edge detection) 
 	plt.show()
 
 def image_enhance(): # enhance coloration via CLAHE (variables: all )
-
-    # https://stackoverflow.com/questions/25008458/how-to-apply-clahe-on-rgb-color-images
 
     clahe = cv2.createCLAHE(clipLimit=3., tileGridSize=(8,8)) # determine CLAHE paramters (values based on recommendations)
 
@@ -44,7 +43,7 @@ def hsv_filter(): # split HSV color channels (variables: image_HSV )
     #v = v.image_HSV[:,:,2] #represents the 'Value Image Analysis' which didnt quite get us the desired results
 
     fig, (( ax1 ), ( ax2 )) = plt.subplots(2,1, figsize=(20,10)) #2 displays rows, 1 displays columns; 
-    # check https://matplotlib.org/stable/tutorials/introductory/usage.html#sphx-glr-tutorials-introductory-usage-py for more information
+    # check info.py for further information
 
     # Titles
     ax1.set_title('Saturation')
@@ -72,8 +71,6 @@ def black_out(): # remove white space via HSV (variables: image_HSV, all )
 
 def edge_detection(): # detect lines via Hough transform (variables: image_edges, all )
 
-    # https://docs.opencv.org/3.4/d9/db0/tutorial_hough_lines.html
-
 	rho = 1
 	theta = np.pi/180
 	threshold = 60
@@ -93,8 +90,6 @@ def edge_detection(): # detect lines via Hough transform (variables: image_edges
 
 def circle_detection(): # detect circles via Hough transform (variables: image_edges, all )
 
-    # https://learnopencv.com/hough-transform-with-opencv-c-python/amp/
-
     image_circles = cv2.HoughCircles(v.image_edges, cv2.HOUGH_GRADIENT, 1, 20, param1=20, param2=10, minRadius=25, maxRadius=35) # Apply Hough transform on the image
 
     if image_circles is not None: # Draw detected circles
@@ -111,7 +106,6 @@ def circle_detection(): # detect circles via Hough transform (variables: image_e
 
 '''
 Call Functions:
-Maybe create seperate function or file to run the functions below
 '''
 show_image()
 #show_image_gray()

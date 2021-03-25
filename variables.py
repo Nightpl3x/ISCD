@@ -3,8 +3,8 @@ import numpy as np
 '''
 Virtual Environment:
 '''
-#.\env\Scripts\activate
-#deactivate
+#   .\env\Scripts\activate
+#   deactivate
 
 '''
 Image selection:
