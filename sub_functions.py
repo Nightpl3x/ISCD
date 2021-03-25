@@ -1,5 +1,4 @@
-# Branch: Test
-# Currently working on 'Edge Detection' and 'Region of Interest'(abb.: RoI)
+#----------------------------------Branch: Test---------------------------------------
 
 import cv2
 import numpy as np
@@ -116,7 +115,7 @@ Maybe create seperate function or file to run the functions below
 '''
 show_image()
 #show_image_gray()
-image_enhance()
+#image_enhance()
 #hsv_filter()
 #black_out()
 #edge_detection()
