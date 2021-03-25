@@ -10,8 +10,8 @@ import variables as v
 '''
 Setup:
 '''
-#img = v.image_sharp
-img = cv2.imread("images/_rainbow.jpeg") # read test image
+img = v.image_copy
+#img = cv2.imread("images_testing/rainbow.jpeg") # read test image
 
 index=["color", "color_name", "hex", "R", "G", "B"] # index colors
 csv = pd.read_csv('colors.csv', names=index, header=None) # and read csv file

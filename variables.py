@@ -9,12 +9,18 @@ Virtual Environment:
 '''
 Image selection:
 '''
-image = cv2.imread('images/28H_10000Z.jpeg', cv2.IMREAD_COLOR) # :Workplace relative path
+image = cv2.imread('images/S2_Kovacs_10000Z.jpeg', cv2.IMREAD_COLOR) # :Workplace relative path
 image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) # convert to rgb
 
 '''
 Num variables:
 '''
+# opencv blue color code
+blue_light = (130,30,255) # HSV Color Model
+blue_dark = (130,100,255) # HSV Color Model
+purple_light = (140,50,150) # HSV Color Model
+purple_dark = (160,200,50) # HSV Color Model
+
 # more kernels here: https://en.wikipedia.org/wiki/Kernel_(image_processing)
 kernel_sharp = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]]) 
 

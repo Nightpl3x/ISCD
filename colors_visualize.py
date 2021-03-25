@@ -42,7 +42,9 @@ def hsv_visualize():
     '''
     Setup:
     '''
-    img = var.image_HSV
+    img = var.image_HSV # for better color detection
+    img2 = var.image_copy # to alter the Graphic from the HSV Model back to the original RGB Color Model
+
     h, s, v = cv2.split(img)
     fig = plt.figure()
     axis = fig.add_subplot(1, 1, 1, projection="3d")
@@ -50,7 +52,7 @@ def hsv_visualize():
     '''
     Create Graphic:
     '''
-    pixel_colors = img.reshape((np.shape(img)[0]*np.shape(img)[1], 3))
+    pixel_colors = img2.reshape((np.shape(img2)[0]*np.shape(img2)[1], 3))
     norm = colors.Normalize(vmin=-1.,vmax=1.)
     norm.autoscale(pixel_colors)
     pixel_colors = norm(pixel_colors).tolist()
@@ -66,3 +68,4 @@ Call Functions:
 '''
 #rgb_visualize()
 hsv_visualize()
+

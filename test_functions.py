@@ -9,7 +9,7 @@ import variables as v
 '''
 Functions:
 '''
-img = v.image_sharp # only for functions show_image() and show_image_gray()
+img = v.image_HSV # only for functions show_image() and show_image_gray()
 
 def show_image(): # show desired image (variables: all )
     plt.imshow(img)
@@ -55,7 +55,7 @@ def hsv_filter(): # split HSV color channels (variables: image_HSV )
 
     plt.show()
 
-def black_out(): # remove white space via HSV (variables: image_HSV, all )
+def mask_black(): # remove white space via HSV (variables: image_HSV, all )
 
     lower_Hue = np.array([160,0,0])
     high_Hue = np.array([180,255,255])
@@ -111,7 +111,7 @@ show_image()
 #show_image_gray()
 #image_enhance()
 #hsv_filter()
-#black_out()
+#mask_black()
 #edge_detection()
 #circle_detection()
 
