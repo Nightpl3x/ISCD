@@ -9,7 +9,7 @@ import variables as v
 '''
 Functions:
 '''
-img = v.image_edges # only for functions show_image() and show_image_gray()
+img = v.image_copy # only for functions show_image() and show_image_gray()
 
 def show_image(): # show desired image (variables: all )
     plt.imshow(img)
@@ -116,7 +116,7 @@ Maybe create seperate function or file to run the functions below
 '''
 show_image()
 #show_image_gray()
-#image_enhance()
+image_enhance()
 #hsv_filter()
 #black_out()
 #edge_detection()
