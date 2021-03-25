@@ -1,4 +1,4 @@
-#----------------------------------Branch: Test---------------------------------------
+#----------------------------------Branch: Color---------------------------------------
 
 import cv2
 import numpy as np
@@ -8,7 +8,7 @@ import variables as v
 '''
 Functions:
 '''
-img = v.image_copy # only for functions show_image() and show_image_gray()
+img = v.image_sharp # only for functions show_image() and show_image_gray()
 
 def show_image(): # show desired image (variables: all )
     plt.imshow(img)
