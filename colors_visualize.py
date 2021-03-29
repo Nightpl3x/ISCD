@@ -66,6 +66,6 @@ def hsv_visualize():
 '''
 Call Functions:
 '''
-#rgb_visualize()
+rgb_visualize()
 hsv_visualize()
 

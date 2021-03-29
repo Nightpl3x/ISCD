@@ -22,9 +22,8 @@ Variables:
 #light_color = light_white = (0, 0, 200) # for images_testing
 #dark_color = dark_white = (145, 60, 255) # for images_testing
 
-light_color = var.purple_light
-dark_color = var.purple_dark
-
+light_color = var.blue_light
+dark_color = var.blue_dark
 
 '''
 Functions:
