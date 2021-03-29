@@ -22,8 +22,8 @@ Variables:
 #light_color = light_white = (0, 0, 200) # for images_testing
 #dark_color = dark_white = (145, 60, 255) # for images_testing
 
-light_color = var.blue_light
-dark_color = var.blue_dark
+light_color = var.white_light
+dark_color = var.white_dark
 
 '''
 Functions:
@@ -56,4 +56,4 @@ def mask_black(): # altered copy from test_functions.py
 Call Functions:
 '''
 show_threshold()
-mask_black()
+#mask_black()

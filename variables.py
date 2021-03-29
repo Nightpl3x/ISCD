@@ -15,11 +15,13 @@ image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) # convert to rgb
 '''
 Num variables:
 '''
-# opencv blue color code
+# opencv color codes
 blue_light = (130,30,255) # HSV Color Model
 blue_dark = (130,100,255) # HSV Color Model
 purple_light = (140,50,150) # HSV Color Model
 purple_dark = (160,200,50) # HSV Color Model
+white_light = (0, 50, 200) # for images_testing
+white_dark = (145, 60, 255) # for images_testing
 
 # more kernels here: https://en.wikipedia.org/wiki/Kernel_(image_processing)
 kernel_sharp = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]]) 
