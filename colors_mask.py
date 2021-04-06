@@ -27,7 +27,7 @@ light_color = var.white_light
 dark_color = var.white_dark
 
 '''
-Functions:
+Functions: put black overlay over everything that doesnt match color treshold
 '''
 
 def show_threshold(): # remove white space via HSV (variables: image_HSV, all )

@@ -14,6 +14,9 @@ from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 from matplotlib import colors
 
+'''
+Functions: to visualize colors via HSV Color Mode
+'''
 def rgb_visualize():
     '''
     Setup:

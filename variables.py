@@ -9,19 +9,12 @@ Virtual Environment:
 '''
 Image selection:
 '''
-image = cv2.imread('images/R_Kovacs_50Z.jpeg', cv2.IMREAD_COLOR) # :Workplace relative path
+image = cv2.imread('images/S2_Kovacs_10000Z.jpeg', cv2.IMREAD_COLOR) # :Workplace relative path
 image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) # convert to rgb
 
 '''
 Num variables:
 '''
-# opencv color codes
-blue_light = (130,30,255) # HSV Color Model
-blue_dark = (130,100,255) # HSV Color Model
-purple_light = (140,50,150) # HSV Color Model
-purple_dark = (160,200,50) # HSV Color Model
-white_light = (0, 50, 200) # for images_testing
-white_dark = (145, 60, 255) # for images_testing
 
 # more kernels here: https://en.wikipedia.org/wiki/Kernel_(image_processing)
 kernel_sharp = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]]) 
@@ -48,3 +41,15 @@ image_blur = cv2.medianBlur(image_copy, 5) # Blur image to reduce noise(5 indica
 
 image_sharp = cv2.filter2D(image_copy, -1, kernel_sharp) # 'enhance' image, doesnt work well with color schemes
 
+image_resized = cv2.resize(image, (1200, 600)) # function to resize image, if ever needed
+
+'''
+temp variables for colors_mask.py:
+'''
+# opencv color codes
+blue_light = (130,30,255) # HSV Color Model
+blue_dark = (130,100,255) # HSV Color Model
+purple_light = (140,50,150) # HSV Color Model
+purple_dark = (160,200,50) # HSV Color Model
+white_light = (0, 50, 200) # for images_testing
+white_dark = (145, 60, 255) # for images_testing

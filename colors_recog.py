@@ -23,7 +23,7 @@ clicked = False
 r = g = b = xpos = ypos = 0
 
 '''
-Function:
+Function: returns RGB Color Code
 '''
 def recognize_color(R,G,B):
     minimum = 10000
