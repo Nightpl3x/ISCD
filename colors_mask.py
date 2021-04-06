@@ -1,3 +1,4 @@
+#--------------------------------Code is dependent on colors_visualize.py for finding the tresholds----------------------------------------------
 '''
 Imports:
 '''
