@@ -46,11 +46,12 @@ def get_colors(image, number_of_colors, show_chart):
     if (show_chart):
         plt.figure(figsize = (8, 6))
         plt.pie(counts.values(), labels = hex_colors, colors = hex_colors)
-    
+        plt.show()
+
     return rgb_colors
 
 '''
 Call Functions:
 '''
-get_colors(image, 3, True)
+get_colors(image, 6, True)
 
