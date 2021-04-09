@@ -43,15 +43,15 @@ cv2.imshow('Erode + Dilate + Open',img_open2)
 cv2.imshow('Erode + Dilate + Close + Open',img_open3) 
  
 
-'''
-cv2.imwrite('Input.png', img)
-cv2.imwrite('Close.png', img_close)
-cv2.imwrite('Open.png', img_open)
-cv2.imwrite('ErodeDilate.png', img_dilate)
-cv2.imwrite('ErodeDilateClose.png',img_close2)
-cv2.imwrite('ErodeDilateOpen.png',img_open2)
-cv2.imwrite('ErodeDilateCloseOpen.png', img_open3) 
-'''
+
+#cv2.imwrite('Input.png', img)
+#cv2.imwrite('Close.png', img_close)
+#cv2.imwrite('Open.png', img_open)
+#cv2.imwrite('ErodeDilate.png', img_dilate)
+#cv2.imwrite('ErodeDilateClose.png',img_close2)
+#cv2.imwrite('ErodeDilateOpen.png',img_open2)
+#cv2.imwrite('ErodeDilateCloseOpen.png', img_open3) 
+
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
