@@ -3,36 +3,28 @@ import numpy as np
 import variables as v
 
 img = v.image_copy
-'''
-Kernels:
-'''
-kernel = np.ones((5,5), np.uint8) # 5x5 Einheitsmatrix
-kernel2 = np.ones((7,7), np.uint8) # 7x7 Einheitsmatrix
-kernel3 = np.array(([0, 1, 0],
-					[1, 1, 1],
-					[0, 1, 0]),dtype='uint8') # Wikipedia Test Matrix
 
 '''
 Basic modification:
 '''
-img_open = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
-img_close = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
+img_open = cv2.morphologyEx(img, cv2.MORPH_OPEN, v.kernel)
+img_close = cv2.morphologyEx(img, cv2.MORPH_CLOSE, v.kernel)
 
-img_openXclose = cv2.morphologyEx(img_open, cv2.MORPH_CLOSE, kernel)
+img_openXclose = cv2.morphologyEx(img_open, cv2.MORPH_CLOSE, v.kernel)
 
 '''
 Advanced modification:
 '''
-img_erode = cv2.erode(img, kernel3, iterations=1)
-img_dilate = cv2.dilate(img_erode, kernel3, iterations=1)
+img_erode = cv2.erode(img, v.kernel3, iterations=1)
+img_dilate = cv2.dilate(img_erode, v.kernel3, iterations=1)
 
-img_close2 = cv2.morphologyEx(img_dilate, cv2.MORPH_CLOSE, kernel2)
+img_close2 = cv2.morphologyEx(img_dilate, cv2.MORPH_CLOSE, v.kernel2)
 
-img_open2 = cv2.morphologyEx(img_dilate, cv2.MORPH_OPEN, kernel2)
-img_open3 = cv2.morphologyEx(img_close2, cv2.MORPH_OPEN, kernel3)
+img_open2 = cv2.morphologyEx(img_dilate, cv2.MORPH_OPEN, v.kernel2)
+img_open3 = cv2.morphologyEx(img_close2, cv2.MORPH_OPEN, v.kernel3)
 
 '''
-Show:
+Show: maybe use images stacked from colors_ttrl.py
 '''
 # Basics:
 cv2.imshow('Input', img) 
