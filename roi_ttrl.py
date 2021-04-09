@@ -66,7 +66,8 @@ def get_contours(img):
 '''
 File specific variables:
 '''
-path_shapes = "images_testing/shapes.jpeg"
+#path_shapes = "images_testing/shapes.png"
+path_shapes = "images/28H_10000Z.jpeg"
 
 img = cv2.imread(path_shapes)
 #img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB) # convert to rgb
