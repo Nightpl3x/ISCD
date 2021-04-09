@@ -1,12 +1,6 @@
-<<<<<<< HEAD:main.py
-# Branch: Main
-# Currently working on 'Edge Detection' and 'Region of Interest'(abb.: RoI)
-
-=======
 '''
 Imports:
 '''
->>>>>>> color:test_functions.py
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
