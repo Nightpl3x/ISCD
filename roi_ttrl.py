@@ -42,10 +42,10 @@ def get_contours(img):
         area = cv2.contourArea(cnt)
         # print(area) # maybe use values to cut to edges?
         
-        if area > 500: # adjust for needed object size
+        if 60 > area > 15: # adjust for needed object size
             cv2.drawContours(img_contour, cnt, -1, (255,0,0), 3)
             peri = cv2.arcLength(cnt, True) # get contour parameter
-            approx = cv2.approxPolyDP(cnt, 0.02*peri, True) #adjust here for image
+            approx = cv2.approxPolyDP(cnt, 0.01*peri, True) #adjust here for image
             objCor = len(approx)
             x, y, w, h = cv2.boundingRect(approx)
 
@@ -67,7 +67,7 @@ def get_contours(img):
 File specific variables:
 '''
 #path_shapes = "images_testing/shapes.png"
-path_shapes = "images/28H_10000Z.jpeg"
+path_shapes = "images_testing\ErodeDilateOpen.png"
 
 img = cv2.imread(path_shapes)
 #img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB) # convert to rgb
