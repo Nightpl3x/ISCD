@@ -1,6 +1,12 @@
+<<<<<<< HEAD:main.py
 # Branch: Main
 # Currently working on 'Edge Detection' and 'Region of Interest'(abb.: RoI)
 
+=======
+'''
+Imports:
+'''
+>>>>>>> color:test_functions.py
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -9,7 +15,7 @@ import variables as v
 '''
 Functions:
 '''
-img = v.image_copy # only for functions show_image() and show_image_gray()
+img = v.image_HSV # only for functions show_image() and show_image_gray()
 
 def show_image(): # show desired image (variables: all )
     plt.imshow(img)
@@ -21,8 +27,6 @@ def show_image_gray(): # show desired image in gray (mostly for edge detection) 
 	plt.show()
 
 def image_enhance(): # enhance coloration via CLAHE (variables: all )
-
-    # https://stackoverflow.com/questions/25008458/how-to-apply-clahe-on-rgb-color-images
 
     clahe = cv2.createCLAHE(clipLimit=3., tileGridSize=(8,8)) # determine CLAHE paramters (values based on recommendations)
 
@@ -45,7 +49,7 @@ def hsv_filter(): # split HSV color channels (variables: image_HSV )
     #v = v.image_HSV[:,:,2] #represents the 'Value Image Analysis' which didnt quite get us the desired results
 
     fig, (( ax1 ), ( ax2 )) = plt.subplots(2,1, figsize=(20,10)) #2 displays rows, 1 displays columns; 
-    # check https://matplotlib.org/stable/tutorials/introductory/usage.html#sphx-glr-tutorials-introductory-usage-py for more information
+    # check info.py for further information
 
     # Titles
     ax1.set_title('Saturation')
@@ -57,7 +61,7 @@ def hsv_filter(): # split HSV color channels (variables: image_HSV )
 
     plt.show()
 
-def black_out(): # remove white space via HSV (variables: image_HSV, all )
+def mask_black(): # remove white space via HSV (variables: image_HSV, all )
 
     lower_Hue = np.array([160,0,0])
     high_Hue = np.array([180,255,255])
@@ -72,8 +76,6 @@ def black_out(): # remove white space via HSV (variables: image_HSV, all )
     plt.show()
 
 def edge_detection(): # detect lines via Hough transform (variables: image_edges, all )
-
-    # https://docs.opencv.org/3.4/d9/db0/tutorial_hough_lines.html
 
 	rho = 1
 	theta = np.pi/180
@@ -92,9 +94,7 @@ def edge_detection(): # detect lines via Hough transform (variables: image_edges
 	plt.imshow(lined_image)
 	plt.show()
 
-def circle_detection(): #  detect circles via Hough transform (variables: image_edges, all )
-
-    # https://learnopencv.com/hough-transform-with-opencv-c-python/amp/
+def circle_detection(): # detect circles via Hough transform (variables: image_edges, all )
 
     image_circles = cv2.HoughCircles(v.image_edges, cv2.HOUGH_GRADIENT, 1, 20, param1=20, param2=10, minRadius=25, maxRadius=35) # Apply Hough transform on the image
 
@@ -112,13 +112,12 @@ def circle_detection(): #  detect circles via Hough transform (variables: image_
 
 '''
 Call Functions:
-Maybe create seperate function or file to run the functions below
 '''
-#show_image()
+show_image()
 #show_image_gray()
 #image_enhance()
 #hsv_filter()
-#black_out()
+#mask_black()
 #edge_detection()
 #circle_detection()
 
