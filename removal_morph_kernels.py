@@ -52,14 +52,13 @@ cv2.imshow('Erode + Dilate + Close + Open',img_open3)
  
 
 '''
-cv2.imwrite('Input.png', img) 
-cv2.imwrite('Opening.png', img_open)
-cv2.imwrite('Closing.png', img_close)
-cv2.imwrite('ErosionPlusDilation.png', img_dilate)
+cv2.imwrite('Input.png', img)
+cv2.imwrite('Close.png', img_close)
+cv2.imwrite('Open.png', img_open)
+cv2.imwrite('ErodeDilate.png', img_dilate)
 cv2.imwrite('ErodeDilateClose.png',img_close2)
-cv2.imwrite('Processed.png',img_close2)
-cv2.imwrite('Final-ComparisionImage.png', img2) 
-cv2.imwrite('Improved.png', close) 
+cv2.imwrite('ErodeDilateOpen.png',img_open2)
+cv2.imwrite('ErodeDilateCloseOpen.png', img_open3) 
 '''
 
 cv2.waitKey(0)
