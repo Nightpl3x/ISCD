@@ -95,5 +95,5 @@ def show_selected_images(images, color, threshold, colors_to_match):
 Call Functions:
 '''
 get_colors(image, 6, True)
-show_selected_images(images, COLORS['BLUE'], 60, 5)
+#show_selected_images(images, COLORS['BLUE'], 60, 5)
 
