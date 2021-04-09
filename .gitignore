@@ -1,6 +1,10 @@
 __pycache__
 .vscode
 env
+<<<<<<< HEAD
 
 ~index.py
 
+=======
+~index.py
+>>>>>>> flawless
