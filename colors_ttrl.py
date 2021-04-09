@@ -8,7 +8,6 @@ import variables as v
 '''
 Functions:
 '''
-
 def empty(a):
     pass
 
