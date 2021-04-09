@@ -1,6 +1,13 @@
+'''
+Imports:
+'''
 import cv2
 import numpy as np
 import variables as v
+
+'''
+Functions:
+'''
 
 def empty(a):
     pass
@@ -36,6 +43,9 @@ def stackImages(scale,imgArray): # copy paste function to stack images
         ver = hor
     return ver
 
+'''
+Setup Trackbars:
+'''
 cv2.namedWindow("Trackbars")
 cv2.resizeWindow("Trackbars",640,240)
 
