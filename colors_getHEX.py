@@ -1,3 +1,4 @@
+# State: working, check for optimal color for 'images'
 '''
 Imports:
 '''
@@ -17,21 +18,35 @@ from skimage.color import rgb2lab, deltaE_cie76
 '''
 Setup:
 '''
-image = v.image_copy
+IMAGE_DIRECTORY = 'images' # images path
 
-IMAGE_DIRECTORY = 'images'
-
-COLORS = {
-        'GREEN': [0, 128, 0],
-        'BLUE': [0, 0, 128],
-        'YELLOW': [255, 255, 0]
+COLORS = { # Source: http://www.workwithcolor.com/cyan-color-hue-range-01.htm
+        'Test': [200,213,48],
+        'Bubbles': [231,254,255],
+        'Cyan': [0,255,255],
+        'Columbia Blue': [155,221,255],
+        'Bright Turquoise': [8,232,222],
+        'Baby Blue': [137,207,240],
+        'Sky Blue': [135,206,235],
+        'Pastel Blue': [174,198,207],
+        'Turquoise': [48,213,200],
+        'Dark Cyan': [0,139,139],
+        'Cerulean': [0,123,167],
+        'Teal': [0,128,128],
+        'Pine Green': [1,121,111],
+        'Dark Slate Gray': [47,79,79],					
          }
 
 images = []
 
+def get_image(image_path):
+    image = cv2.imread(image_path)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    return image
+
 for file in os.listdir(IMAGE_DIRECTORY):
     if not file.startswith('.'):
-        images.append(image)
+        images.append(get_image(os.path.join(IMAGE_DIRECTORY, file)))
 
 '''
 Functions: returns colors Hex Code
@@ -49,10 +64,10 @@ def get_colors(image, number_of_colors, show_chart):
     
     counts = Counter(labels)
     # sort to ensure correct color percentage
-    counts = dict(sorted(counts.items()))
+    counts = dict(sorted(counts.items())) 
     
     center_colors = clf.cluster_centers_
-    # We get ordered colors by iterating through the keys
+    # get ordered colors by iterating through the keys
     ordered_colors = [center_colors[i] for i in counts.keys()]
     hex_colors = [RGB2HEX(ordered_colors[i]) for i in counts.keys()]
     rgb_colors = [ordered_colors[i] for i in counts.keys()]
@@ -62,7 +77,7 @@ def get_colors(image, number_of_colors, show_chart):
         plt.pie(counts.values(), labels = hex_colors, colors = hex_colors)
         plt.show()
 
-    #return rgb_colors
+    return rgb_colors
 
 def match_image_by_color(image, color, threshold = 60, number_of_colors = 10): 
     
@@ -76,7 +91,7 @@ def match_image_by_color(image, color, threshold = 60, number_of_colors = 10):
         if (diff < threshold):
             select_image = True
     
-    #return select_image
+    return select_image
 
 def show_selected_images(images, color, threshold, colors_to_match):
     index = 1
@@ -87,13 +102,16 @@ def show_selected_images(images, color, threshold, colors_to_match):
                                         threshold,
                                         colors_to_match)
         if (selected):
-            plt.subplot(1, 5, index)
-            plt.imshow(images[i])
+            images[i] = cv2.cvtColor(images[i],cv2.COLOR_BGR2RGB) # convert again to RGB Color Model because OpenCV uses BGR as Default Model
+            cv2.imshow("out",images[i],)
+            cv2.waitKey(0)
             index += 1
+        else:
+            print("None")
 
 '''
 Call Functions:
 '''
-get_colors(image, 6, True)
-#show_selected_images(images, COLORS['BLUE'], 60, 5)
+#get_colors(image, 6, True) # uncomment for pie chart
+show_selected_images(images, COLORS['Cyan'], 45, 5)
 

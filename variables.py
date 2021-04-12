@@ -9,7 +9,7 @@ Virtual Environment:
 '''
 Image selection:
 '''
-image = cv2.imread('images/28H_10000Z.jpeg', cv2.IMREAD_COLOR) # :Workplace relative path
+image = cv2.imread('images_testing/blue.png', cv2.IMREAD_COLOR) # :Workplace relative path
 image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) # convert to rgb
 
 
