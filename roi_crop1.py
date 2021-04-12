@@ -1,3 +1,4 @@
+#State: works only on squares/rectangles
 '''
 Imports:
 '''
