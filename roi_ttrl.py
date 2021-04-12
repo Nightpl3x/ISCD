@@ -17,7 +17,7 @@ def get_contours(img):
         #print(area) # maybe use values to cut to edges?
         
         if 60 > area > 15: # adjust for needed object size
-            cv2.drawContours(img_contour, cnt, -1, (255,0,0), 3)
+            cv2.drawContours(img_contour, cnt, -1, (255,0,0), 3) # <---------------------------------------------- need to change cnt for true contour index
             peri = cv2.arcLength(cnt, True) # get contour parameter
             #print(peri)
             approx = cv2.approxPolyDP(cnt, 0.01*peri, True) # adjust here for image
