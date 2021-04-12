@@ -1,3 +1,7 @@
+#State: works
+''' 
+Imports:
+'''
 import cv2
 import numpy as np
 import variables as v

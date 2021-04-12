@@ -1,4 +1,4 @@
-
+#State: terminal message: "measure is not definded" (?)
 import cv2
 import numpy as np
 import variables as v
