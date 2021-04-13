@@ -56,7 +56,7 @@ get_contours(img_canny)
 
 img_blank = np.zeros_like(img)
 
-img_stacked = v.stackImages(0.8, ([img, img_gray, img_blur],
+img_stacked = v.stackImages(0.8,([img, img_gray, img_blur],
                                 [img_canny, img_contour, img_blank]))
 
 cv2.imshow("Stacked", img_stacked)
