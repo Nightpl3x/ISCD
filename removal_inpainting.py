@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 import variables as v
 
-image = v.image_copy
+image = v.image_int
 
 def create_mask(image):
     gray = cv2.cvtColor( image, cv2.COLOR_BGR2GRAY )

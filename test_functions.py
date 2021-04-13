@@ -9,14 +9,13 @@ import variables as v
 '''
 Functions:
 '''
-img = v.image_HSV # only for functions show_image() and show_image_gray()
+img = v.image_ext # only for functions show_image() and show_image_gray()
 
 def show_image(): # show desired image (variables: all )
     plt.imshow(img)
     plt.show()
 
 def show_image_gray(): # show desired image in gray (mostly for edge detection) (variables: image_gray, image_edges)
-
 	plt.imshow(img, cmap='gray')
 	plt.show()
 
@@ -24,7 +23,7 @@ def image_enhance(): # enhance coloration via CLAHE (variables: all )
 
     clahe = cv2.createCLAHE(clipLimit=3., tileGridSize=(8,8)) # determine CLAHE paramters (values based on recommendations)
 
-    image_lab = cv2.cvtColor(v.image_copy, cv2.COLOR_RGB2LAB)  # convert from RGB to LAB, change v.image_copy here to view other images
+    image_lab = cv2.cvtColor(v.image_ext, cv2.COLOR_RGB2LAB)  # convert from RGB to LAB, change v.image_ext here to view other images
     
     l, a, b = cv2.split(image_lab)  # split on 3 different channels
 
@@ -62,7 +61,7 @@ def mask_black(): # remove white space via HSV (variables: image_HSV, all )
 
     mask_HSV = cv2.inRange(v.image_HSV, lower_Hue, high_Hue)
 
-    v.image_HSV = np.copy(v.image_copy) # change here for other images
+    v.image_HSV = np.copy(v.image_ext) # change here for other images
 
     v.image_HSV[mask_HSV == 0] = [0,0,0]
 
@@ -96,11 +95,11 @@ def circle_detection(): # detect circles via Hough transform (variables: image_e
         image_circles = np.uint16(np.around(image_circles))
         for i in image_circles[0, :]:
             
-            cv2.circle(v.image_copy, (i[0], i[1]), i[2], (0, 0, 255), 1) # Draw outer circle
+            cv2.circle(v.image_ext, (i[0], i[1]), i[2], (0, 0, 255), 1) # Draw outer circle
         
-            cv2.circle(v.image_copy, (i[0], i[1]), 2, (255, 0, 0), 1) # Draw inner circle
+            cv2.circle(v.image_ext, (i[0], i[1]), 2, (255, 0, 0), 1) # Draw inner circle
 
-    plt.imshow(v.image_copy)
+    plt.imshow(v.image_ext)
     plt.show()
 
 

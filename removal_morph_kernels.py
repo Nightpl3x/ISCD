@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 import variables as v
 
-img = v.image_copy
+img = v.image_int
 
 '''
 Basic modification:
@@ -28,7 +28,7 @@ img_open2 = cv2.morphologyEx(img_dilate, cv2.MORPH_OPEN, v.kernel2)
 img_open3 = cv2.morphologyEx(img_close2, cv2.MORPH_OPEN, v.kernel3)
 
 '''
-Show: maybe use images stacked from colors_ttrl.py
+Show: maybe use imagesStacked()
 '''
 # Basics:
 cv2.imshow('Input', img) 
