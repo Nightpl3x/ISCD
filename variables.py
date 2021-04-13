@@ -9,7 +9,7 @@ Virtual Environment:
 '''
 Image selection:
 '''
-image = cv2.imread('images/28H_10000Z.jpeg', cv2.IMREAD_COLOR) # :Workplace relative path
+image = cv2.imread('images/S2_Kovacs_10000Z.jpeg', cv2.IMREAD_COLOR) # :Workplace relative path
 image_int = np.copy(image) # copying the image so we dont alter the original
 image_ext = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) # convert to rgb for other modules as opencv uses bgr by default but doesnt show it to the user
 
@@ -42,7 +42,7 @@ Unused image processing variables:
 '''
 image_blur = cv2.medianBlur(image_int, 5) # Blur image to reduce noise(5 indicates the level of blurring)
 
-image_resized = cv2.resize(image, (1200, 600)) # function to resize image, if ever needed
+image_resized = cv2.resize(image_int, (1200, 600)) # function to resize image, if ever needed
 
 '''
 General Functions:

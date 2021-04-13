@@ -11,9 +11,7 @@ import time
 '''
 Code:
 '''
-
-imgname = "images_testing\shapes.png"
-img = cv2.imread(imgname)
+img = v.image_int
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 ## medianBlur, threshold and morph-close-op
