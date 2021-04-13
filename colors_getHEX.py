@@ -18,7 +18,7 @@ from skimage.color import rgb2lab, deltaE_cie76
 '''
 Setup:
 '''
-IMAGE_DIRECTORY = 'images' # images path
+IMAGE_DIRECTORY = 'images_testing' # images path
 
 COLORS = { # Source: http://www.workwithcolor.com/cyan-color-hue-range-01.htm
         'Test': [200,213,48],
@@ -79,7 +79,7 @@ def get_colors(image, number_of_colors, show_chart):
 
     return rgb_colors
 
-def match_image_by_color(image, color, threshold = 60, number_of_colors = 10): 
+def match_image_by_color(image, color, threshold, number_of_colors ): 
     
     image_colors = get_colors(image, number_of_colors, False)
     selected_color = rgb2lab(np.uint8(np.asarray([[color]])))
@@ -107,11 +107,11 @@ def show_selected_images(images, color, threshold, colors_to_match):
             cv2.waitKey(0)
             index += 1
         else:
-            print("None")
+            print("Image number {} is clear" .format(i))
 
 '''
 Call Functions:
 '''
-#get_colors(image, 6, True) # uncomment for pie chart
-show_selected_images(images, COLORS['Cyan'], 45, 5)
+#get_colors(v.image_ext, 6, True) # uncomment for pie chart
+show_selected_images(images, COLORS['Cyan'], 55, 15)
 

@@ -9,7 +9,7 @@ Virtual Environment:
 '''
 Image selection:
 '''
-image = cv2.imread('images/28H_10000Z.jpeg', cv2.IMREAD_COLOR) # :Workplace relative path
+image = cv2.imread('images_testing/nemo.jpeg', cv2.IMREAD_COLOR) # :Workplace relative path
 image_int = np.copy(image) # copying the image so we dont alter the original
 image_ext = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) # convert to rgb for other modules as opencv uses bgr by default but doesnt show it to the user
 

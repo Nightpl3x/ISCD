@@ -18,11 +18,10 @@ from matplotlib import colors
 '''
 Functions: to visualize colors via HSV Color Mode
 '''
-def rgb_visualize():
+def rgb_visualize(img):
     '''
     Setup:
     '''
-    img = var.image_copy
     r, g, b = cv2.split(img)
     fig = plt.figure()
     axis = fig.add_subplot(1, 1, 1, projection="3d")
@@ -41,13 +40,12 @@ def rgb_visualize():
     axis.set_zlabel("Blue")
     plt.show()
 
-def hsv_visualize():
+def hsv_visualize(img):
 
     '''
     Setup:
     '''
-    img = var.image_HSV # for better color detection
-    img2 = var.image_copy # to alter the Graphic from the HSV Model back to the original RGB Color Model
+    colors_origin = var.image_ext # to alter the Graphic from the HSV Model back to the original RGB Color Model
 
     h, s, v = cv2.split(img)
     fig = plt.figure()
@@ -56,7 +54,7 @@ def hsv_visualize():
     '''
     Create Graphic:
     '''
-    pixel_colors = img2.reshape((np.shape(img2)[0]*np.shape(img2)[1], 3))
+    pixel_colors = colors_origin.reshape((np.shape(colors_origin)[0]*np.shape(colors_origin)[1], 3))
     norm = colors.Normalize(vmin=-1.,vmax=1.)
     norm.autoscale(pixel_colors)
     pixel_colors = norm(pixel_colors).tolist()
@@ -70,6 +68,6 @@ def hsv_visualize():
 '''
 Call Functions:
 '''
-rgb_visualize()
-hsv_visualize()
+rgb_visualize(var.image_ext)
+hsv_visualize(var.image_HSV)
 

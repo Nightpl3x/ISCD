@@ -11,8 +11,8 @@ import variables as v
 '''
 Setup:
 '''
-#img = v.image_copy
-img = cv2.imread("images_testing/blue.png") # read test image
+img = v.image_int
+#img = cv2.imread("images_testing/blue.png") # read test image
 
 index=["color", "color_name", "hex", "R", "G", "B"] # index colors
 csv = pd.read_csv('colors.csv', names=index, header=None) # and read csv file
