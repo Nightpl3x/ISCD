@@ -1,10 +1,14 @@
 #State: terminal message: "measure is not definded" (?)
+''' 
+Imports:
+'''
 import cv2
 import numpy as np
 import variables as v
 
-image = v.image_int
-
+''' 
+Code:
+'''
 def create_mask(image):
     gray = cv2.cvtColor( image, cv2.COLOR_BGR2GRAY )
     blurred = cv2.GaussianBlur( gray, (9,9), 0 )
@@ -35,4 +39,4 @@ def create_mask(image):
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
-create_mask(image)
+create_mask(v.image_int)

@@ -106,13 +106,11 @@ def circle_detection(): # detect circles via Hough transform (variables: image_e
 '''
 Call Functions:
 '''
-show_image()
+#show_image()
 #show_image_gray()
 #image_enhance()
 #hsv_filter()
 #mask_black()
 #edge_detection()
 #circle_detection()
-
-
 
