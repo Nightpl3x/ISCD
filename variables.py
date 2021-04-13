@@ -9,21 +9,19 @@ Virtual Environment:
 '''
 Image selection:
 '''
-image = cv2.imread('images_testing/blue.png', cv2.IMREAD_COLOR) # :Workplace relative path
-image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) # convert to rgb
-
+image = cv2.imread('images/28H_10000Z.jpeg', cv2.IMREAD_COLOR) # :Workplace relative path
+image_int = np.copy(image) # copying the image so we dont alter the original
+image_ext = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) # convert to rgb for other modules as opencv uses bgr by default but doesnt show it to the user
 
 '''
 Image processing variables:
 '''
-image_copy = np.copy(image) # copying the image so we dont alter the original
+image_gray = cv2.cvtColor(image_int, cv2.COLOR_RGB2GRAY) # turn rgb image into a grayed version 
 
-image_gray = cv2.cvtColor(image_copy, cv2.COLOR_RGB2GRAY) # turn rgb image into a grayed version 
-
-image_HSV = cv2.cvtColor(image_copy, cv2.COLOR_RGB2HSV) # create image in hsv for the color schemes extraction
+image_HSV = cv2.cvtColor(image_int, cv2.COLOR_RGB2HSV) # create image in hsv for the color schemes extraction
                                     
-#                                   low , high threshold 
-image_edges = cv2.Canny(image_copy, 100 , 150) # makes edges more visible, used for the Hough transform in edges_lined()
+#                                  low , high threshold 
+image_edges = cv2.Canny(image_int, 100 , 150) # makes edges more visible, used for the Hough transform in edges_lined()
 
 '''
 Kernels: https://en.wikipedia.org/wiki/Kernel_(image_processing)
@@ -37,18 +35,25 @@ kernel3 = np.array(([0, 1, 0],
 
 kernel_sharp = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]]) 
 
-image_kernel = cv2.filter2D(image_copy, -1, kernel) # 'enhance' image via kernels (image variable is for testing only)
+image_kernel = cv2.filter2D(image_int, -1, kernel) # 'enhance' image via kernels (image variable is for testing only)
 
 '''
 Unused image processing variables:
 '''
-image_blur = cv2.medianBlur(image_copy, 5) # Blur image to reduce noise(5 indicates the level of blurring)
+image_blur = cv2.medianBlur(image_int, 5) # Blur image to reduce noise(5 indicates the level of blurring)
 
 image_resized = cv2.resize(image, (1200, 600)) # function to resize image, if ever needed
 
 '''
 General Functions:
 '''
+def rgbtobgr(image):
+    image_int = cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
+    return image_int
+
+def bgrtorgb(image):
+    image_int = cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
+    return image_int
 
 def stackImages(scale,imgArray):
     rows = len(imgArray)
