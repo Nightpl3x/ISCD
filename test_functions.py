@@ -9,7 +9,7 @@ import variables as v
 '''
 Functions:
 '''
-img = v.image_HSV # only for functions show_image() and show_image_gray()
+img = v.image_HSV
 
 def show_image(): # show desired image (variables: all )
     plt.imshow(img)
