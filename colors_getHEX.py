@@ -1,4 +1,5 @@
-# State: working, check for optimal color for 'images'
+# State: working
+# ToDo: need to check for optimal color for 'images' and code clean up
 '''
 Imports:
 '''

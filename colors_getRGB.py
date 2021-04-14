@@ -1,4 +1,5 @@
-#Status: check if RGB model values are BGR model values
+# State: working
+# ToDo: check if RGB model values are BGR model values
 '''
 Imports:
 '''
@@ -12,7 +13,6 @@ import variables as v
 Setup:
 '''
 img = v.image_int
-#img = cv2.imread("images_testing/blue.png") # read test image
 
 index=["color", "color_name", "hex", "R", "G", "B"] # index colors
 csv = pd.read_csv('colors.csv', names=index, header=None) # and read csv file

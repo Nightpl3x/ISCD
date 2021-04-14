@@ -1,4 +1,5 @@
-#Status: works
+# State: works
+# ToDo: *empty*
 '''
 Imports:
 '''
@@ -69,5 +70,5 @@ def hsv_visualize(img):
 Call Functions:
 '''
 rgb_visualize(var.image_ext)
-hsv_visualize(var.image_HSV)
+hsv_visualize(var.image_HSV2)
 
