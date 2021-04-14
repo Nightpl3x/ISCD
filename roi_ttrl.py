@@ -9,7 +9,7 @@ import variables as v
 '''
 Code:
 '''
-def get_contours(img, drawContour, gray, blur, canny): # img only takes canny images originating from gray color model
+def get_contours(img, drawContour, gray, blur, canny): # img only takes canny images originating from gray color model, additionaly only uses the latest 4 arguments for showcasing
     
     contours, hierarchy = cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     
