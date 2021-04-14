@@ -9,9 +9,9 @@ Virtual Environment:
 '''
 Image selection:
 '''
-image = cv2.imread('images/S2_Kovacs_10000Z.jpeg', cv2.IMREAD_COLOR) # images path
+#image = cv2.imread('images/S2_Kovacs_10000Z.jpeg', cv2.IMREAD_COLOR) # images path
 #image = cv2.imread('images_postprocessing/S2_Kovacs_10000Z_Black.png', cv2.IMREAD_COLOR) # images postprocessing path
-#image = cv2.imread('images_testing/shapes.jpeg', cv2.IMREAD_COLOR) # images testing path
+image = cv2.imread('images_testing/1.jpeg', cv2.IMREAD_COLOR) # images testing path
 
 image_int = np.copy(image) # copying the image so we dont alter the original
 image_cp1 = np.copy(image_int) # copying the image for comparision purposes
@@ -53,6 +53,12 @@ kernel2 = np.ones((7,7), np.uint8) # 7x7 Einheitsmatrix go with this most of the
 kernel3 = np.array(([0, 1, 0], [1, 1, 1], [0, 1, 0]),dtype='uint8') # Wikipedia Test Matrix
 
 kernel_sharp = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]]) 
+
+#kernel_sobel_horizontal = np.array([[1, 2, 1],[0, 0, 0],[-1, -2, -1]]) 
+#kernel_sobel_vertical = np.array([[-1, 0, 1],[-2, 0, 2],[-1, 0, 1]])
+
+kernel_laplacian = np.array([[1, 1, 1],[1, -8, 1],[1, 1, 1]]) # basically a merge of the previous two
+
 
 # Kernel test variables
 image_kerne1 = cv2.filter2D(image_int, -1, kernel2) # alter image via kernels
