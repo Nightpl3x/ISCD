@@ -9,40 +9,60 @@ Virtual Environment:
 '''
 Image selection:
 '''
-image = cv2.imread('images/28H_10000Z.jpeg', cv2.IMREAD_COLOR) # :Workplace relative path
+image = cv2.imread('images/S2_Kovacs_10000Z.jpeg', cv2.IMREAD_COLOR) # images path
+#image = cv2.imread('images_postprocessing/S2_Kovacs_10000Z_Black.png', cv2.IMREAD_COLOR) # images postprocessing path
+#image = cv2.imread('images_testing/shapes.jpeg', cv2.IMREAD_COLOR) # images testing path
+
 image_int = np.copy(image) # copying the image so we dont alter the original
+image_cp1 = np.copy(image_int) # copying the image for comparision purposes
+
 image_ext = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) # convert to rgb for other modules as opencv uses bgr by default but doesnt show it to the user
+image_cp2= np.copy(image_ext) # copying the image for comparision purposes
+
+image_blank = np.zeros_like(image) # just a blank image
 
 '''
 Image processing variables:
 '''
-image_gray = cv2.cvtColor(image_int, cv2.COLOR_RGB2GRAY) # turn rgb image into a grayed version 
+# Change Color Model
+image_gray1 = cv2.cvtColor(image_int, cv2.COLOR_BGR2GRAY) # turn rgb image into a grayed version
+image_gray2 = cv2.cvtColor(image_ext, cv2.COLOR_RGB2GRAY) # turn rgb image into a grayed version
 
-image_HSV = cv2.cvtColor(image_int, cv2.COLOR_RGB2HSV) # create image in hsv for the color schemes extraction
-                                    
-#                                  low , high threshold 
-image_edges = cv2.Canny(image_int, 100 , 150) # makes edges more visible, used for the Hough transform in edges_lined()
+image_HSV1 = cv2.cvtColor(image_int, cv2.COLOR_BGR2HSV) # create image in hsv model
+image_HSV2 = cv2.cvtColor(image_ext, cv2.COLOR_RGB2HSV) # create image in hsv model
+
+# Blurring methods
+image_median1 = cv2.medianBlur(image_gray1, ksize = 7) # Blur image to reduce noise(7 indicates the level of blurring)
+image_median2 = cv2.medianBlur(image_gray2, ksize = 7) # Blur image to reduce noise(7 indicates the level of blurring)
+
+image_gaussian1 = cv2.GaussianBlur(image_gray1,(7,7),1) 
+image_gaussian2 = cv2.GaussianBlur(image_gray2,(7,7),1)
+
+# Edge Detection
+image_canny1 = cv2.Canny(image_gaussian1, threshold1 = 50, threshold2 = 50) # uses Hough transform to make edges more visible
+image_canny2 = cv2.Canny(image_gaussian2, threshold1 = 50, threshold2 = 50) # uses Hough transform to make edges more visible
 
 '''
 Kernels: https://en.wikipedia.org/wiki/Kernel_(image_processing)
 '''
-kernel = np.ones((5,5), np.uint8) # 5x5 Einheitsmatrix
-kernel2 = np.ones((7,7), np.uint8) # 7x7 Einheitsmatrix
+# Basic Kernels
+kernel = np.ones((5,5), np.uint8) # 5x5 Einheitsmatrix mostly suffiecient
+kernel2 = np.ones((7,7), np.uint8) # 7x7 Einheitsmatrix go with this most of the time
 
-kernel3 = np.array(([0, 1, 0],
-					[1, 1, 1],
-					[0, 1, 0]),dtype='uint8') # Wikipedia Test Matrix
+# Custom kernels
+kernel3 = np.array(([0, 1, 0], [1, 1, 1], [0, 1, 0]),dtype='uint8') # Wikipedia Test Matrix
 
 kernel_sharp = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]]) 
 
-image_kernel = cv2.filter2D(image_int, -1, kernel) # 'enhance' image via kernels (image variable is for testing only)
+# Kernel test variables
+image_kerne1 = cv2.filter2D(image_int, -1, kernel2) # alter image via kernels
+image_kernel2 = cv2.filter2D(image_ext, -1, kernel2) # alter image via kernels
 
 '''
 Unused image processing variables:
 '''
-image_blur = cv2.medianBlur(image_int, 5) # Blur image to reduce noise(5 indicates the level of blurring)
-
-image_resized = cv2.resize(image, (1200, 600)) # function to resize image, if ever needed
+image_resized1 = cv2.resize(image_int, (600, 400)) # function to resize image
+image_resized2 = cv2.resize(image_ext, (600, 400)) # function to resize image
 
 '''
 General Functions:

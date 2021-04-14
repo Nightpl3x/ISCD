@@ -1,4 +1,5 @@
-#State: terminal message: "measure is not definded" (?)
+# State: not working
+# ToDo: terminal message: "measure is not definded" (?)
 ''' 
 Imports:
 '''
@@ -9,8 +10,8 @@ import variables as v
 ''' 
 Code:
 '''
-def create_mask(image):
-    gray = cv2.cvtColor( image, cv2.COLOR_BGR2GRAY )
+def create_mask(img):
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY )
     blurred = cv2.GaussianBlur( gray, (9,9), 0 )
     _,thresh_img = cv2.threshold( blurred, 180, 255, cv2.THRESH_BINARY)
     thresh_img = cv2.erode( thresh_img, None, iterations=2 )
@@ -34,7 +35,7 @@ def create_mask(image):
         if numPixels > 300:
             mask = cv2.add( mask, labelMask )
 
-        dst = cv2.inpaint(image, mask, 3, cv2.INPAINT_TELEA)
+        dst = cv2.inpaint(img, mask, 3, cv2.INPAINT_TELEA)
         cv2.imshow('dst', dst)
         cv2.waitKey(0)
         cv2.destroyAllWindows()

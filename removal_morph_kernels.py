@@ -1,4 +1,5 @@
-#State: works
+# State: works
+# ToDo: *empty*
 ''' 
 Imports:
 '''
@@ -9,7 +10,6 @@ import variables as v
 ''' 
 Code:
 '''
-
 def kernel_variants(img):
     '''
     Basic modification:
