@@ -2,5 +2,7 @@ __pycache__
 .vscode
 env
 
+Mask_RCNN
+
 ~index.py
 

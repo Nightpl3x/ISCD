@@ -61,7 +61,7 @@ kernel_laplacian = np.array([[1, 1, 1],[1, -8, 1],[1, 1, 1]]) # basically a merg
 
 
 # Kernel test variables
-image_kerne1 = cv2.filter2D(image_int, -1, kernel2) # alter image via kernels
+image_kernel1 = cv2.filter2D(image_int, -1, kernel2) # alter image via kernels
 image_kernel2 = cv2.filter2D(image_ext, -1, kernel2) # alter image via kernels
 
 '''

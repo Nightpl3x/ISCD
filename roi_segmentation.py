@@ -44,7 +44,6 @@ def edge_segmentation(image):
     plt.imshow(out_l, cmap='gray')
     plt.show()
 
-
 def cluster_segmentation(path):
 
     pic = plt.imread(path)/255  # divide by 255 to set pixel values between 0 and 1
