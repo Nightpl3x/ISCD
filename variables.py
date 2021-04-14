@@ -55,7 +55,7 @@ kernel3 = np.array(([0, 1, 0], [1, 1, 1], [0, 1, 0]),dtype='uint8') # Wikipedia 
 kernel_sharp = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]]) 
 
 # Kernel test variables
-image_kerne1 = cv2.filter2D(image_int, -1, kernel2) # alter image via kernels
+image_kernel1 = cv2.filter2D(image_int, -1, kernel2) # alter image via kernels
 image_kernel2 = cv2.filter2D(image_ext, -1, kernel2) # alter image via kernels
 
 '''
