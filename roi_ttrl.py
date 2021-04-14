@@ -1,4 +1,5 @@
-#State: works but needs adjustment for 'images'
+# State: works 
+# ToDo: needs adjustment for 'images'
 '''
 Imports:
 '''

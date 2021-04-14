@@ -1,4 +1,5 @@
-#State: works only on squares/rectangles
+# State: works
+# ToDo: works only on squares/rectangles
 '''
 Imports:
 '''
