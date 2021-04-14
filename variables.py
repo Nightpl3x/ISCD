@@ -68,12 +68,12 @@ image_resized2 = cv2.resize(image_ext, (600, 400)) # function to resize image
 General Functions:
 '''
 def rgbtobgr(image):
-    image_int = cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
-    return image_int
+    image = cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
+    return image
 
 def bgrtorgb(image):
-    image_int = cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
-    return image_int
+    image = cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
+    return image
 
 def stackImages(scale,imgArray):
     rows = len(imgArray)
