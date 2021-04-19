@@ -9,14 +9,21 @@ Virtual Environment:
 '''
 Image selection:
 '''
-#image = cv2.imread('images/S2_Kovacs_10000Z.jpeg', cv2.IMREAD_COLOR) # images path
-#image = cv2.imread('images_postprocessing/S2_Kovacs_10000Z_Black.png', cv2.IMREAD_COLOR) # images postprocessing path
-image = cv2.imread('images_testing/1.jpeg', cv2.IMREAD_COLOR) # images testing path
+path_folder = 'images'
+
+path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/S2_Kovacs_10000Z.jpeg' # some modules need the absolute path
+
+path_image = 'images/S2_Kovacs_10000Z.jpeg'
+#path_image = 'images_postprocessing/S2_Kovacs_10000Z/S2_Kovacs_10000Z_Black.png'
+#path_image = 'images_testing/Blau Gradient.jpeg'
+
+
+image = cv2.imread(path_image, cv2.IMREAD_COLOR) # images testing path
 
 image_int = np.copy(image) # copying the image so we dont alter the original
 image_cp1 = np.copy(image_int) # copying the image for comparision purposes
 
-image_ext = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) # convert to rgb for other modules as opencv uses bgr by default but doesnt show it to the user
+image_ext = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # convert to rgb for other modules as opencv uses bgr by default but doesnt show it to the user
 image_cp2= np.copy(image_ext) # copying the image for comparision purposes
 
 image_blank = np.zeros_like(image) # just a blank image
