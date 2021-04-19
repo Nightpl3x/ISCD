@@ -21,6 +21,7 @@ Setup: (accordingly to the MS Coco Demo with some slight tweaks to match my purp
 # Root directory of the project
 ROOT_DIR = os.path.abspath("../")
 
+#Surpress some warnings
 import warnings
 warnings.filterwarnings("ignore")
 
