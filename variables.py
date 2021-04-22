@@ -11,9 +11,9 @@ Image selection:
 '''
 path_folder = 'images'
 
-path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/S2_Kovacs_10000Z.jpeg' # some modules need the absolute path
+path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/44H_10000Z.jpeg' # some modules need the absolute path
 
-path_image = 'images/S2_Kovacs_10000Z.jpeg'
+path_image = 'images/44H_10000Z.jpeg'
 #path_image = 'images_postprocessing/S2_Kovacs_10000Z/S2_Kovacs_10000Z_Black.png'
 #path_image = 'images_testing/Blau Gradient.jpeg'
 
