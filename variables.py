@@ -9,14 +9,21 @@ Virtual Environment:
 '''
 Image selection:
 '''
-image = cv2.imread('images/S2_Kovacs_10000Z.jpeg', cv2.IMREAD_COLOR) # images path
-#image = cv2.imread('images_postprocessing/S2_Kovacs_10000Z_Black.png', cv2.IMREAD_COLOR) # images postprocessing path
-#image = cv2.imread('images_testing/shapes.jpeg', cv2.IMREAD_COLOR) # images testing path
+path_folder = 'images'
+
+path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/44H_10000Z.jpeg' # some modules need the absolute path
+
+path_image = 'images/44H_10000Z.jpeg'
+#path_image = 'images_postprocessing/S2_Kovacs_10000Z/S2_Kovacs_10000Z_Black.png'
+#path_image = 'images_testing/Blau Gradient.jpeg'
+
+
+image = cv2.imread(path_image, cv2.IMREAD_COLOR) # images testing path
 
 image_int = np.copy(image) # copying the image so we dont alter the original
 image_cp1 = np.copy(image_int) # copying the image for comparision purposes
 
-image_ext = cv2.cvtColor(image,cv2.COLOR_BGR2RGB) # convert to rgb for other modules as opencv uses bgr by default but doesnt show it to the user
+image_ext = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # convert to rgb for other modules as opencv uses bgr by default but doesnt show it to the user
 image_cp2= np.copy(image_ext) # copying the image for comparision purposes
 
 image_blank = np.zeros_like(image) # just a blank image
@@ -39,8 +46,8 @@ image_gaussian1 = cv2.GaussianBlur(image_gray1,(7,7),1)
 image_gaussian2 = cv2.GaussianBlur(image_gray2,(7,7),1)
 
 # Edge Detection
-image_canny1 = cv2.Canny(image_gaussian1, threshold1 = 50, threshold2 = 50) # uses Hough transform to make edges more visible
-image_canny2 = cv2.Canny(image_gaussian2, threshold1 = 50, threshold2 = 50) # uses Hough transform to make edges more visible
+image_canny1 = cv2.Canny(image_gaussian1, threshold1 = 40, threshold2 = 50) # uses Hough transform to make edges more visible
+image_canny2 = cv2.Canny(image_gaussian2, threshold1 = 40, threshold2 = 50) # uses Hough transform to make edges more visible
 
 '''
 Kernels: https://en.wikipedia.org/wiki/Kernel_(image_processing)
@@ -53,6 +60,12 @@ kernel2 = np.ones((7,7), np.uint8) # 7x7 Einheitsmatrix go with this most of the
 kernel3 = np.array(([0, 1, 0], [1, 1, 1], [0, 1, 0]),dtype='uint8') # Wikipedia Test Matrix
 
 kernel_sharp = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]]) 
+
+#kernel_sobel_horizontal = np.array([[1, 2, 1],[0, 0, 0],[-1, -2, -1]]) 
+#kernel_sobel_vertical = np.array([[-1, 0, 1],[-2, 0, 2],[-1, 0, 1]])
+
+kernel_laplacian = np.array([[1, 1, 1],[1, -8, 1],[1, 1, 1]]) # basically a merge of the previous two
+
 
 # Kernel test variables
 image_kernel1 = cv2.filter2D(image_int, -1, kernel2) # alter image via kernels
@@ -68,12 +81,12 @@ image_resized2 = cv2.resize(image_ext, (600, 400)) # function to resize image
 General Functions:
 '''
 def rgbtobgr(image):
-    image_int = cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
-    return image_int
+    image = cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
+    return image
 
 def bgrtorgb(image):
-    image_int = cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
-    return image_int
+    image = cv2.cvtColor(image,cv2.COLOR_RGB2BGR)
+    return image
 
 def stackImages(scale,imgArray):
     rows = len(imgArray)

@@ -1,12 +1,12 @@
 # State: works
-# ToDo: works only on squares/rectangles
+# ToDo: works only on squares/rectangles and specific sizes atm
 '''
 Imports:
 '''
 import cv2
 import numpy as np
 import variables as v
-from matplotlib import pyplot as plte
+from matplotlib import pyplot as plt
 
 '''
 Code:
