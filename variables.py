@@ -46,8 +46,8 @@ image_gaussian1 = cv2.GaussianBlur(image_gray1,(7,7),1)
 image_gaussian2 = cv2.GaussianBlur(image_gray2,(7,7),1)
 
 # Edge Detection
-image_canny1 = cv2.Canny(image_gaussian1, threshold1 = 50, threshold2 = 50) # uses Hough transform to make edges more visible
-image_canny2 = cv2.Canny(image_gaussian2, threshold1 = 50, threshold2 = 50) # uses Hough transform to make edges more visible
+image_canny1 = cv2.Canny(image_gaussian1, threshold1 = 40, threshold2 = 50) # uses Hough transform to make edges more visible
+image_canny2 = cv2.Canny(image_gaussian2, threshold1 = 40, threshold2 = 50) # uses Hough transform to make edges more visible
 
 '''
 Kernels: https://en.wikipedia.org/wiki/Kernel_(image_processing)
