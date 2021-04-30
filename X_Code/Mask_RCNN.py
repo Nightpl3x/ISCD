@@ -10,9 +10,6 @@ import skimage.io
 import matplotlib
 import matplotlib.pyplot as plt
 
-'''
-Importing own module:
-'''
 import variables as v
 
 ''' 
@@ -34,7 +31,6 @@ from mrcnn import visualize
 # Import COCO config
 sys.path.append(os.path.join(ROOT_DIR, "Mask_RCNN/samples/coco/"))  # To find local coco configs version
 from coco import coco # before: import coco
-
 
 # Directory to save logs and trained model
 MODEL_DIR = os.path.join(ROOT_DIR, "logs")
@@ -98,10 +94,10 @@ def detectNmask(folder_path, abs_image_path):
     '''
     Run Object Detection:
     '''
-    # Load a random image from the images folder
     # Directory of images to run detection on
+    #IMAGE_DIR = os.path.join(ROOT_DIR, folder_path) # relative folder path
 
-    IMAGE_DIR = os.path.join(ROOT_DIR, folder_path) # relative folder path
+    # Load a random image from the images folder
     #file_names = next(os.walk(IMAGE_DIR))[2]
     #image = skimage.io.imread(os.path.join(IMAGE_DIR, random.choice(file_names)))
 
