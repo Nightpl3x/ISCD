@@ -9,15 +9,15 @@ Virtual Environment:
 '''
 Image selection:
 '''
-path_folder = 'images'
+path_folder = 'images_testing'
+path_folder_abs = 'D:\Christian_Ohlhäuser\Bildauswertung\ColiChecker\images_testing' 
 
-path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/44H_10000Z.jpeg' # some modules need the absolute path
+path_image = 'images_testing/44H_10000Z.jpeg'
+path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images_testing/44H_10000Z.jpeg' # some modules need the absolute path
 
-path_image = 'images/44H_10000Z.jpeg'
-#path_image = 'images_postprocessing/S2_Kovacs_10000Z/S2_Kovacs_10000Z_Black.png'
-#path_image = 'images_testing/Blau Gradient.jpeg'
-
-
+'''
+Fork Images:
+'''
 image = cv2.imread(path_image, cv2.IMREAD_COLOR) # images testing path
 
 image_int = np.copy(image) # copying the image so we dont alter the original
