@@ -12,7 +12,7 @@ Image selection:
 path_folder_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/images_cropped' 
 path_folder = path_folder_abs[50 :]
 
-path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/images_cropped/4H_10000Z4.jpeg'
+path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/images_cropped/44H_10000Z5.jpeg'
 path_image = path_image_abs[50 :]
 
 
