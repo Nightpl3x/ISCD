@@ -9,11 +9,12 @@ Virtual Environment:
 '''
 Image selection:
 '''
-path_folder = 'images_testing'
-path_folder_abs = 'D:\Christian_Ohlhäuser\Bildauswertung\ColiChecker\images_testing' 
+path_folder_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/images_cropped' 
+path_folder = path_folder_abs[50 :]
 
-path_image = 'images_testing/44H_10000Z.jpeg'
-path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images_testing/44H_10000Z.jpeg' # some modules need the absolute path
+path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/images_cropped/4H_10000Z4.jpeg'
+path_image = path_image_abs[50 :]
+
 
 '''
 Fork Images:
