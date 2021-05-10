@@ -5,7 +5,7 @@ Imports:
 '''
 import cv2
 import numpy as np
-import variables as v
+import utils as xct
 
 ''' 
 Code:
@@ -40,4 +40,4 @@ def create_mask(img):
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
-create_mask(v.image_int)
+create_mask(xct.image_int)
