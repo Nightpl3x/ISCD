@@ -7,7 +7,7 @@ import cv2
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import variables as var
+import utils as xct
 
 '''
 Additional imports:
@@ -46,7 +46,7 @@ def hsv_visualize(img):
     '''
     Setup:
     '''
-    colors_origin = var.image_ext # to alter the Graphic from the HSV Model back to the original RGB Color Model
+    colors_origin = xct.image_ext # to alter the Graphic from the HSV Model back to the original RGB Color Model
 
     h, s, v = cv2.split(img)
     fig = plt.figure()
@@ -69,6 +69,6 @@ def hsv_visualize(img):
 '''
 Call Functions:
 '''
-rgb_visualize(var.image_ext)
-hsv_visualize(var.image_HSV2)
+rgb_visualize(xct.image_ext)
+hsv_visualize(xct.image_HSV2)
 

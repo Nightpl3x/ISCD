@@ -6,7 +6,7 @@ Imports:
 '''
 import cv2
 import numpy as np
-import variables as v
+import utils as xct
 
 '''
 Functions:
@@ -39,11 +39,11 @@ while True:
     lower = np.array([h_min, s_min, v_min])
     upper = np.array([h_max, s_max, v_max])
 
-    image_mask = cv2.inRange(v.image_int, lower, upper)
-    image_result = cv2.bitwise_and(v.image_int, v.image_int, mask = image_mask)
+    image_mask = cv2.inRange(xct.image_int, lower, upper)
+    image_result = cv2.bitwise_and(xct.image_int, xct.image_int, mask = image_mask)
 
     # Show images stacked
-    images_stacked = v.stackImages(0.6, ([v.image_int, v.image_HSV1], [image_mask, image_result]))
+    images_stacked = xct.stackImages(0.6, ([xct.image_int, xct.image_HSV1], [image_mask, image_result]))
     cv2.imshow("Stacked Images", images_stacked)
 
     cv2.waitKey(1)
