@@ -5,7 +5,8 @@ env
 
 Mask_RCNN
 
+xcode/test_functions.py
+xcode/utils.py
+
 ~index.py
 
-Mask_RCNN_training.ipynb
-Mask_RCNN_utilised.ipynb

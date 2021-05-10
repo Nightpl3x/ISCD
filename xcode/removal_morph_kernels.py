@@ -5,7 +5,7 @@ Imports:
 '''
 import cv2
 import numpy as np
-import variables as v
+import utils as xct xct.
 
 ''' 
 Code:
@@ -14,27 +14,27 @@ def kernel_variants(img):
     '''
     Basic modification:
     '''
-    img_open = cv2.morphologyEx(img, cv2.MORPH_OPEN, v.kernel)
-    img_close = cv2.morphologyEx(img, cv2.MORPH_CLOSE, v.kernel)
+    img_open = cv2.morphologyEx(img, cv2.MORPH_OPEN, xct.kernel)
+    img_close = cv2.morphologyEx(img, cv2.MORPH_CLOSE, xct.kernel)
 
-    img_openXclose = cv2.morphologyEx(img_open, cv2.MORPH_CLOSE, v.kernel)
+    img_openXclose = cv2.morphologyEx(img_open, cv2.MORPH_CLOSE, xct.kernel)
 
     '''
     Advanced modification:
     '''
-    img_erode = cv2.erode(img, v.kernel3, iterations=1)
-    img_dilate = cv2.dilate(img_erode, v.kernel3, iterations=1)
+    img_erode = cv2.erode(img, xct.kernel3, iterations=1)
+    img_dilate = cv2.dilate(img_erode, xct.kernel3, iterations=1)
 
-    img_close2 = cv2.morphologyEx(img_dilate, cv2.MORPH_CLOSE, v.kernel2)
+    img_close2 = cv2.morphologyEx(img_dilate, cv2.MORPH_CLOSE, xct.kernel2)
 
-    img_open2 = cv2.morphologyEx(img_dilate, cv2.MORPH_OPEN, v.kernel2)
-    img_open3 = cv2.morphologyEx(img_close2, cv2.MORPH_OPEN, v.kernel3)
+    img_open2 = cv2.morphologyEx(img_dilate, cv2.MORPH_OPEN, xct.kernel2)
+    img_open3 = cv2.morphologyEx(img_close2, cv2.MORPH_OPEN, xct.kernel3)
 
     '''
     Show: maybe use imagesStacked():
     '''
     # Stacked:
-    images_stacked = v.stackImages(0.6, ([img, img_open, img_close],# Basics
+    images_stacked = xct.stackImages(0.6, ([img, img_open, img_close],# Basics
                                          [img_openXclose, img_erode, img_dilate], # Advanced
                                          [img_close2, img_open2, img_open3]))
     
@@ -65,4 +65,4 @@ def kernel_variants(img):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-kernel_variants(v.image_int)
+kernel_variants(xct.image_int)
