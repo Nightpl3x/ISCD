@@ -7,12 +7,12 @@ import cv2
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import variables as v
+import utils as xct
 
 '''
 Setup:
 '''
-img = v.image_int
+img = xct.image_int
 
 index=["color", "color_name", "hex", "R", "G", "B"] # index colors
 csv = pd.read_csv('colors.csv', names=index, header=None) # and read csv file

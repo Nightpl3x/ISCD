@@ -6,7 +6,7 @@ Imports:
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-import variables as v
+import utils as xct
 
 '''
 Additional Imports:
@@ -19,8 +19,6 @@ from skimage.color import rgb2lab, deltaE_cie76
 '''
 Setup:
 '''
-IMAGE_DIRECTORY = 'images_testing' # images path
-
 COLORS = { # Source: http://www.workwithcolor.com/cyan-color-hue-range-01.htm
         'Test': [200,213,48],
         'Bubbles': [231,254,255],
@@ -38,6 +36,7 @@ COLORS = { # Source: http://www.workwithcolor.com/cyan-color-hue-range-01.htm
         'Dark Slate Gray': [47,79,79],					
          }
 
+IMAGE_DIRECTORY = xct.path_folder # images path
 images = []
 
 def get_image(image_path):
@@ -113,6 +112,6 @@ def show_selected_images(images, color, threshold, colors_to_match):
 '''
 Call Functions:
 '''
-#get_colors(v.image_ext, 6, True) # uncomment for pie chart
+#get_colors(xct.image_ext, 6, True) # uncomment for pie chart
 show_selected_images(images, COLORS['Cyan'], 55, 15)
 
