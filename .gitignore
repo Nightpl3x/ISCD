@@ -5,6 +5,9 @@ env
 
 Mask_RCNN
 
+xcode/test_functions.py
+xcode/utils.py
+
 ~index.py
 
 Mask_RCNN_Demo.ipynb
