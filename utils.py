@@ -10,18 +10,18 @@ Virtual Environment:
 '''
 Image selection:
 '''
-path_folder_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/_original2' 
+path_folder_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/testing2' 
 path_folder = path_folder_abs[50 :]
 
-path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/_original/44H_10000Z.jpeg'
+path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/testing2/blue.jpeg'
 path_image = path_image_abs[50 :]
 
 
 '''
 Fork Images:
 '''
-image = io.imread(path_image_abs)
-#image = cv2.imread(path_image_abs, cv2.IMREAD_COLOR) # doesnt work amymore, maybe will have to change the ext and int image names
+#image = io.imread(path_image_abs)
+image = cv2.imread(path_image, cv2.IMREAD_COLOR) # doesnt work amymore, maybe will have to change the ext and int image names
 
 image_int = np.copy(image) # copying the image so we dont alter the original
 image_cp1 = np.copy(image_int) # copying the image for comparision purposes

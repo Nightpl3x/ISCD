@@ -114,4 +114,3 @@ Call Functions:
 '''
 #get_colors(xct.image_ext, 6, True) # uncomment for pie chart
 show_selected_images(images, COLORS['Cyan'], 55, 15)
-
