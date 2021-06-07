@@ -57,8 +57,8 @@ BALLON_WEIGHTS_PATH = os.path.join('', "D:/Christian_Ohlhäuser/Bildauswertung/C
 # ==========================================================================================================================================================
 #                                                             Configurations
 #
-# We'll be using a model trained on the Balloon dataset. The configurations of this model are in the ```CocoConfig``` class in ```coco.py```.
-# For inferencing, the configurations were modified a bit to fit the task. To do so, I sub-classed the ```CocoConfig``` class and overrode the attributes I needed to change.
+# We'll be using a model trained on the Balloon dataset. The configurations of this model are in the ```BalloonConfig``` class in ```balloon.py```.
+# For inferencing, the configurations were modified a bit to fit the task. To do so, I sub-classed the ```BalloonConfig``` class and overrode the attributes I needed to change.
 # ==========================================================================================================================================================
 config = balloon.BalloonConfig()
 BALLOON_DIR = os.path.join(ROOT_DIR, "D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/Mask_RCNN/samples/balloon") # path inside Mask_RCNN folder
