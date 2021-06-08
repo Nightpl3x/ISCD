@@ -1,8 +1,12 @@
+# ==========================================================================================================================================================#
+#                                                   colors_getHEX.py - file for analysing images for a certain color
+# ==========================================================================================================================================================#
 # State: working
-# ToDo: need to check for optimal color for 'images' and code clean up
-'''
-Imports:
-'''
+# TODO: need to check for optimal color for 'images' and code clean up
+
+# ==========================================================================
+#   Imports
+# ==========================================================================
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -12,13 +16,15 @@ import utils as xct
 Additional Imports:
 '''
 import os
+import glob
+from PIL import Image
 from collections import Counter
 from sklearn.cluster import KMeans
 from skimage.color import rgb2lab, deltaE_cie76
 
-'''
-Setup:
-'''
+# ==========================================================================
+#   Setup
+# ==========================================================================
 COLORS = { # Source: http://www.workwithcolor.com/cyan-color-hue-range-01.htm
         'Test': [200,213,48],
         'Bubbles': [231,254,255],
@@ -36,21 +42,15 @@ COLORS = { # Source: http://www.workwithcolor.com/cyan-color-hue-range-01.htm
         'Dark Slate Gray': [47,79,79],					
          }
 
-IMAGE_DIRECTORY = xct.path_folder # images folder path
-images = []
+e = xct.path_folder+"/*.jpeg" 
+IMAGE_DIRECTORY = glob.glob(e) # create list based on image names --> strings
+IMAGE_DIRECTORY.sort()         # sort list
+images = [cv2.imread(img) for img in IMAGE_DIRECTORY] # create additional list for storing images --> ndarrays
+images = [cv2.cvtColor(img, cv2.COLOR_BGR2RGB) for img in images] # convert from bgr back to rgb
 
-def get_image(image_path):
-    image = cv2.imread(image_path)
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    return image
-
-for file in os.listdir(IMAGE_DIRECTORY):
-    if not file.startswith('.'):
-        images.append(get_image(os.path.join(IMAGE_DIRECTORY, file)))
-
-'''
-Functions: returns colors Hex Code
-'''
+# ==========================================================================
+#   Main
+# ==========================================================================
 def RGB2HEX(color):
     return "#{:02x}{:02x}{:02x}".format(int(color[0]), int(color[1]), int(color[2]))
 
@@ -94,7 +94,6 @@ def match_image_by_color(image, color, threshold, number_of_colors ):
     return select_image
 
 def show_selected_images(images, color, threshold, colors_to_match):
-    index = 1
     
     for i in range(len(images)):
         selected = match_image_by_color(images[i],
@@ -102,15 +101,30 @@ def show_selected_images(images, color, threshold, colors_to_match):
                                         threshold,
                                         colors_to_match)
         if (selected):
-            images[i] = cv2.cvtColor(images[i],cv2.COLOR_BGR2RGB) # convert again to RGB Color Model because OpenCV uses BGR as Default Model
-            cv2.imshow("out",images[i],)
-            cv2.waitKey(0)
-            index += 1
-        else:
-            print("Image number {} is clear" .format(i))
+            # ============================
+            #   Get and Print Image Name
+            # ============================
+            img = Image.open(IMAGE_DIRECTORY[i])
+            print("Sample: {}\n Result: EXPOSED\n" .format(img.filename))
 
-'''
-Call Functions:
-'''
-#get_colors(xct.image_ext, 6, True) # uncomment for pie chart
+            # ============================
+            #   Output Exposed Image
+            # ============================
+            images[i] = cv2.cvtColor(images[i],cv2.COLOR_BGR2RGB) # convert again to RGB Color Model because OpenCV uses BGR as Default Model
+            cv2.imshow("Exposed Sample: ",images[i])
+            cv2.waitKey(0)
+
+        else:
+            # ============================
+            #   Get and Print Image Name
+            # ============================
+            img = Image.open(IMAGE_DIRECTORY[i])
+            print("Sample: {}\n Result: CLEAN\n" .format(img.filename))
+
+            
+# ==========================================================================
+#   Call Functions:
+# ==========================================================================
+
+#get_colors(xct.image_ext, 6, False) # set True for pie chart
 show_selected_images(images, COLORS['Cyan'], 55, 15)

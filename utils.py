@@ -3,7 +3,7 @@
 # ==========================================================================================================================================================#
 
 # =============================================================================
-# Imports + Env
+#   Imports + Env
 # =============================================================================
 import cv2
 from skimage import io
@@ -14,6 +14,9 @@ Virtual Environment:
 #   .\env\Scripts\activate
 #   deactivate
 
+# =============================================================================
+#   Images
+# =============================================================================
 '''
 Image selection:
 '''
@@ -87,9 +90,9 @@ Unused image processing variables:
 image_resized1 = cv2.resize(image_int, (600, 400)) # function to resize image
 image_resized2 = cv2.resize(image_ext, (600, 400)) # function to resize image
 
-'''
-General Functions:
-'''
+# =============================================================================
+#   General Functions
+# =============================================================================
 def stackImages(scale,imgArray):
     rows = len(imgArray)
     cols = len(imgArray[0])
