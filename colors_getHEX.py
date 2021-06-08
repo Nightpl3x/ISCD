@@ -36,7 +36,7 @@ COLORS = { # Source: http://www.workwithcolor.com/cyan-color-hue-range-01.htm
         'Dark Slate Gray': [47,79,79],					
          }
 
-IMAGE_DIRECTORY = xct.path_folder # images path
+IMAGE_DIRECTORY = xct.path_folder # images folder path
 images = []
 
 def get_image(image_path):
