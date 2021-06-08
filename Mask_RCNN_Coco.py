@@ -168,7 +168,10 @@ for i in range(mask.shape[2]):
     plt.figure(figsize=(8,8))
     plt.imshow(temp)
 
-    image_name = xct.path_folder_res+"/"+xct.path_image_abs[67:-5]+"{}".format(i)+".jpeg" # image name for saving, defintely needs other name template
+    last_slash = xct.path_image_abs.rfind("/") # find the last occurring slash in the absolut path to get to the image name
+
+#   ---------------target folder-----"/"----image name in target folder--------index-------file format
+    image_name = xct.path_folder_res+"/"+xct.path_image_abs[last_slash:-5]+"{}".format(i)+".jpeg" # image name for saving, defintely needs other name template
     plt.savefig(image_name, bbox_inches='tight') # save images to new folder
     #plt.show()
 

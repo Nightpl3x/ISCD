@@ -28,6 +28,7 @@ path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/_ori
 path_image = path_image_abs[50 :]
 
 
+
 '''
 Fork Images:
 '''

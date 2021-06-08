@@ -43,6 +43,7 @@ COLORS = { # Source: http://www.workwithcolor.com/cyan-color-hue-range-01.htm
          }
 
 e = xct.path_folder_res+"/*.jpeg" # check ROI result folder for images
+
 IMAGE_DIRECTORY = glob.glob(e) # create list based on image names --> strings
 IMAGE_DIRECTORY.sort()         # sort list
 images = [cv2.imread(img) for img in IMAGE_DIRECTORY] # create additional list for storing images --> ndarrays
