@@ -14,12 +14,15 @@ from PIL import Image
 import utils as xct
 from utils import VariableConfig as vxct
 
+from extras import test_functions
+
 def show_image(img): # show desired image (variables: all )
 
     plt.imshow(img)
     plt.show()
 
-show_image(vxct.image_ext)
+#show_image(vxct.image_ext)
+#test_functions.show_image(vxct.image_ext)
 
 '''
 # ==============================================================
