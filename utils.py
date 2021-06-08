@@ -33,68 +33,77 @@ path_folder = path_image_abs[third_last_slash+1:last_slash] # relative path to i
 
 path_folder_res = 'images/images_rasp' # relative path to ROI result images folder
 
-'''
-Fork Images:
-'''
-#image = io.imread(path_image_abs)
-image = cv2.imread(path_image, cv2.IMREAD_COLOR) # doesnt work amymore, maybe will have to change the ext and int image names
+# =============================================================================
+#   General Variables
+# =============================================================================
+class VariableConfig(object):
+    """
+    Base variables class. For more customized variables, create a
+    sub-class that inherits from this one and override properties
+    that need to be changed.
+    """
+    '''
+    Fork Images:
+    '''
+    #image = io.imread(path_image_abs)
+    image = cv2.imread(path_image, cv2.IMREAD_COLOR) # doesnt work amymore, maybe will have to change the ext and int image names
 
-image_int = np.copy(image) # copying the image so we dont alter the original
-image_cp1 = np.copy(image_int) # copying the image for comparision purposes
+    image_int = np.copy(image) # copying the image so we dont alter the original
+    image_cp1 = np.copy(image_int) # copying the image for comparision purposes
 
-image_ext = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # convert to rgb for other modules as opencv uses bgr by default but doesnt show it to the user
-image_cp2= np.copy(image_ext) # copying the image for comparision purposes
+    image_ext = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # convert to rgb for other modules as opencv uses bgr by default but doesnt show it to the user
+    image_cp2= np.copy(image_ext) # copying the image for comparision purposes
 
-image_blank = np.zeros_like(image) # just a blank image
+    image_blank = np.zeros_like(image) # just a blank image
 
-'''
-Image processing variables:
-'''
-# Change Color Model
-image_gray1 = cv2.cvtColor(image_int, cv2.COLOR_BGR2GRAY) # turn rgb image into a grayed version
-image_gray2 = cv2.cvtColor(image_ext, cv2.COLOR_RGB2GRAY) # turn rgb image into a grayed version
+    '''
+    Image processing variables:
+    '''
+    # Change Color Model
+    image_gray1 = cv2.cvtColor(image_int, cv2.COLOR_BGR2GRAY) # turn rgb image into a grayed version
+    image_gray2 = cv2.cvtColor(image_ext, cv2.COLOR_RGB2GRAY) # turn rgb image into a grayed version
 
-image_HSV1 = cv2.cvtColor(image_int, cv2.COLOR_BGR2HSV) # create image in hsv model
-image_HSV2 = cv2.cvtColor(image_ext, cv2.COLOR_RGB2HSV) # create image in hsv model
+    image_HSV1 = cv2.cvtColor(image_int, cv2.COLOR_BGR2HSV) # create image in hsv model
+    image_HSV2 = cv2.cvtColor(image_ext, cv2.COLOR_RGB2HSV) # create image in hsv model
 
-# Blurring methods
-image_median1 = cv2.medianBlur(image_gray1, ksize = 7) # Blur image to reduce noise(7 indicates the level of blurring)
-image_median2 = cv2.medianBlur(image_gray2, ksize = 7) # Blur image to reduce noise(7 indicates the level of blurring)
+    # Blurring methods
+    image_median1 = cv2.medianBlur(image_gray1, ksize = 7) # Blur image to reduce noise(7 indicates the level of blurring)
+    image_median2 = cv2.medianBlur(image_gray2, ksize = 7) # Blur image to reduce noise(7 indicates the level of blurring)
 
-image_gaussian1 = cv2.GaussianBlur(image_gray1,(7,7),1) 
-image_gaussian2 = cv2.GaussianBlur(image_gray2,(7,7),1)
+    image_gaussian1 = cv2.GaussianBlur(image_gray1,(7,7),1) 
+    image_gaussian2 = cv2.GaussianBlur(image_gray2,(7,7),1)
 
-# Edge Detection
-image_canny1 = cv2.Canny(image_gaussian1, threshold1 = 40, threshold2 = 50) # uses Hough transform to make edges more visible
-image_canny2 = cv2.Canny(image_gaussian2, threshold1 = 40, threshold2 = 50) # uses Hough transform to make edges more visible
+    # Edge Detection
+    image_canny1 = cv2.Canny(image_gaussian1, threshold1 = 40, threshold2 = 50) # uses Hough transform to make edges more visible
+    image_canny2 = cv2.Canny(image_gaussian2, threshold1 = 40, threshold2 = 50) # uses Hough transform to make edges more visible
 
-'''
-Kernels: https://en.wikipedia.org/wiki/Kernel_(image_processing)
-'''
-# Basic Kernels
-kernel = np.ones((5,5), np.uint8) # 5x5 Einheitsmatrix mostly suffiecient
-kernel2 = np.ones((7,7), np.uint8) # 7x7 Einheitsmatrix go with this most of the time
+    '''
+    Kernels: https://en.wikipedia.org/wiki/Kernel_(image_processing)
+    '''
+    # Basic Kernels
+    kernel = np.ones((5,5), np.uint8) # 5x5 Einheitsmatrix mostly suffiecient
+    kernel2 = np.ones((7,7), np.uint8) # 7x7 Einheitsmatrix go with this most of the time
 
-# Custom kernels
-kernel3 = np.array(([0, 1, 0], [1, 1, 1], [0, 1, 0]),dtype='uint8') # Wikipedia Test Matrix
+    # Custom kernels
+    kernel3 = np.array(([0, 1, 0], [1, 1, 1], [0, 1, 0]),dtype='uint8') # Wikipedia Test Matrix
 
-kernel_sharp = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]]) 
+    kernel_sharp = np.array([[-1,-1,-1], [-1,9,-1], [-1,-1,-1]]) 
 
-#kernel_sobel_horizontal = np.array([[1, 2, 1],[0, 0, 0],[-1, -2, -1]]) 
-#kernel_sobel_vertical = np.array([[-1, 0, 1],[-2, 0, 2],[-1, 0, 1]])
+    #kernel_sobel_horizontal = np.array([[1, 2, 1],[0, 0, 0],[-1, -2, -1]]) 
+    #kernel_sobel_vertical = np.array([[-1, 0, 1],[-2, 0, 2],[-1, 0, 1]])
 
-kernel_laplacian = np.array([[1, 1, 1],[1, -8, 1],[1, 1, 1]]) # basically a merge of the previous two
+    kernel_laplacian = np.array([[1, 1, 1],[1, -8, 1],[1, 1, 1]]) # basically a merge of the previous two
 
 
-# Kernel test variables
-image_kerneled1 = cv2.filter2D(image_int, -1, kernel2) # alter image via kernels
-image_kerneled2 = cv2.filter2D(image_ext, -1, kernel2) # alter image via kernels
+    # Kernel test variables
+    image_kerneled1 = cv2.filter2D(image_int, -1, kernel2) # alter image via kernels
+    image_kerneled2 = cv2.filter2D(image_ext, -1, kernel2) # alter image via kernels
 
-'''
-Unused image processing variables:
-'''
-image_resized1 = cv2.resize(image_int, (600, 400)) # function to resize image
-image_resized2 = cv2.resize(image_ext, (600, 400)) # function to resize image
+    '''
+    Unused image processing variables:
+    '''
+    image_resized1 = cv2.resize(image_int, (600, 400)) # function to resize image
+    image_resized2 = cv2.resize(image_ext, (600, 400)) # function to resize image
 
 # =============================================================================
 #   General Functions
