@@ -157,12 +157,30 @@ visualize.display_instances(image,
 #   Load mask and output images
 # =============================================================================
 
-# output via splash
+mask = r['masks']
+mask = mask.astype(int)
+mask.shape
+
+for i in range(mask.shape[2]):
+    temp = skimage.io.imread(xct.path_image_abs)  # only use absolute path
+    for j in range(temp.shape[2]):
+        temp[:,:,j] = temp[:,:,j] * mask[:,:,i]
+    plt.figure(figsize=(8,8))
+    plt.imshow(temp)
+
+#   ---------------target folder-----"/"----image name for target folder--------index-------file format
+    image_name = xct.path_folder_res+"/"+xct.path_image_abs[xct.last_slash:-5]+"{}".format(i)+"B.jpeg" # image name for saving, defintely needs other name template
+    plt.savefig(image_name, bbox_inches='tight') # save images to new folder
+    #plt.show()
+
+'''
+# output via splash function
 splash = balloon.color_splash(image, r['masks'])
 display_images([splash], cols=1)
+'''
 
 # =================================
 #   Run colors_getHEX.py function
 # =================================
 import colors_getHEX as cgH
-# # analyzes whole images_rasp folder
+cgH.show_selected_images(cgH.images, cgH.COLORS['Cyan'], 55, 15) # analyzes whole images_rasp folder

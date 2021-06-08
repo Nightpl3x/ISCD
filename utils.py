@@ -20,14 +20,18 @@ Virtual Environment:
 '''
 Image selection:
 '''
-path_folder_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/_original' 
-path_folder = path_folder_abs[50 :]
-path_folder_res = 'images/images_rasp'
-
 path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/_original/44H_10000Z.jpeg'
-path_image = path_image_abs[50 :]
 
+last_slash = path_image_abs.rfind("/") # find the last occurring slash in the absolut image path
+second_last_slash = path_image_abs[:path_image_abs.rfind("/")].rfind("/") # find the second last occurring slash in the absolut image path
+third_last_slash = path_image_abs[:path_image_abs[:path_image_abs.rfind("/")].rfind("/")].rfind("/") # find the third last occurring slash in the absolut image path
 
+path_image = path_image_abs[third_last_slash+1:] # relative path to image
+
+path_folder_abs = path_image_abs[:last_slash] # absolute path to images folder
+path_folder = path_image_abs[third_last_slash+1:last_slash] # relative path to images folder
+
+path_folder_res = 'images/images_rasp' # relative path to ROI result images folder
 
 '''
 Fork Images:
