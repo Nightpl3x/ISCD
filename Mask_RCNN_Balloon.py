@@ -30,7 +30,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # =============================================================================
-# Import Mask RCNN
+# Import Mask_RCNN.mrcnn files, Balloon folder and Balloon Dataset
 # =============================================================================
 
 sys.path.append(ROOT_DIR)  # To find local version of the library
@@ -125,7 +125,7 @@ model.load_weights(weights_path, by_name=True)
 # Balloon dataset consists only of 2 classes --> Background + Balloon
 
 # =============================================================================
-#                           Run Object Detection
+#                           Run Single Object Detection
 # =============================================================================
 
 # Directory of images to run detection on
@@ -135,7 +135,7 @@ model.load_weights(weights_path, by_name=True)
 #file_names = next(os.walk(IMAGE_DIR))[2]
 #image = skimage.io.imread(os.path.join(IMAGE_DIR, random.choice(file_names)))
 
-# Read image
+# Read image file
 image = skimage.io.imread(xct.path_image_abs)
 
 # Run object detection
@@ -154,9 +154,15 @@ visualize.display_instances(image,
                             title="Predictions")
 
 # =============================================================================
-# Load mask and output images
+#   Load mask and output images
 # =============================================================================
 
 # output via splash
 splash = balloon.color_splash(image, r['masks'])
 display_images([splash], cols=1)
+
+# =================================
+#   Run colors_getHEX.py function
+# =================================
+import colors_getHEX as cgH
+# # analyzes whole images_rasp folder

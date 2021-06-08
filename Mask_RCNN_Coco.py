@@ -30,7 +30,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # =============================================================================
-# Import Mask RCNN
+# Import Mask_RCNN.mrcnn files, Coco folder and Coco Dataset
 # =============================================================================
 
 sys.path.append(ROOT_DIR)  # To find local version of the library
@@ -125,7 +125,7 @@ model.load_weights(weights_path, by_name=True)
 class_names = ['Object' for i in range(90)] # Balloon dataset consists of 89 classes + Background
 
 # =============================================================================
-#                           Run Object Detection
+#                           Run Single Object Detection
 # =============================================================================
 
 # Directory of images to run detection on
@@ -135,7 +135,7 @@ class_names = ['Object' for i in range(90)] # Balloon dataset consists of 89 cla
 #file_names = next(os.walk(IMAGE_DIR))[2]
 #image = skimage.io.imread(os.path.join(IMAGE_DIR, random.choice(file_names)))
 
-# Read Image
+# Read Image File
 image = skimage.io.imread(xct.path_image_abs)
 
 # Run object detection
@@ -176,4 +176,4 @@ for i in range(mask.shape[2]):
 #  Run colors_getHEX.py function
 # =================================
 import colors_getHEX as cgH
-cgH.show_selected_images(cgH.images, cgH.COLORS['Cyan'], 55, 15)
+cgH.show_selected_images(cgH.images, cgH.COLORS['Cyan'], 55, 15) # analyzes whole images_rasp folder
