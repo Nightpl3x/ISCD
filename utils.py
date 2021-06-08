@@ -20,10 +20,11 @@ Virtual Environment:
 '''
 Image selection:
 '''
-path_folder_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/testing2' 
+path_folder_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/_original' 
 path_folder = path_folder_abs[50 :]
+path_folder_res = 'images/images_rasp'
 
-path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/testing2/blue.jpeg'
+path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/_original/44H_10000Z.jpeg'
 path_image = path_image_abs[50 :]
 
 

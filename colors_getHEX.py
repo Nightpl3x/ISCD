@@ -2,7 +2,7 @@
 #                                                   colors_getHEX.py - file for analysing images for a certain color
 # ==========================================================================================================================================================#
 # State: working
-# TODO: need to check for optimal color for 'images' and code clean up
+# TODO: need to check for optimal color for 'images' and maybe code clean up
 
 # ==========================================================================
 #   Imports
@@ -42,7 +42,7 @@ COLORS = { # Source: http://www.workwithcolor.com/cyan-color-hue-range-01.htm
         'Dark Slate Gray': [47,79,79],					
          }
 
-e = xct.path_folder+"/*.jpeg" 
+e = xct.path_folder_res+"/*.jpeg" # check ROI result folder for images
 IMAGE_DIRECTORY = glob.glob(e) # create list based on image names --> strings
 IMAGE_DIRECTORY.sort()         # sort list
 images = [cv2.imread(img) for img in IMAGE_DIRECTORY] # create additional list for storing images --> ndarrays
@@ -127,4 +127,4 @@ def show_selected_images(images, color, threshold, colors_to_match):
 # ==========================================================================
 
 #get_colors(xct.image_ext, 6, False) # set True for pie chart
-show_selected_images(images, COLORS['Cyan'], 55, 15)
+#show_selected_images(images, COLORS['Cyan'], 55, 15)

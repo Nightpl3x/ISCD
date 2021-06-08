@@ -168,7 +168,12 @@ for i in range(mask.shape[2]):
     plt.figure(figsize=(8,8))
     plt.imshow(temp)
 
-    image_name = "D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/images_cropped_results/"+xct.path_image_abs[72 :] # image name for saving
-    #plt.savefig(image_name, bbox_inches='tight') # save images for testing, remove later
+    image_name = xct.path_folder_res+"/"+xct.path_image_abs[67:-5]+"{}".format(i)+".jpeg" # image name for saving, defintely needs other name template
+    plt.savefig(image_name, bbox_inches='tight') # save images to new folder
+    #plt.show()
 
-    plt.show()
+# =================================
+#  Run colors_getHEX.py function
+# =================================
+import colors_getHEX as cgH
+cgH.show_selected_images(cgH.images, cgH.COLORS['Cyan'], 55, 15)
