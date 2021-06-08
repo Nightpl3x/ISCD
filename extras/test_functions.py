@@ -61,7 +61,7 @@ def mask_black(image_HSV): # remove white space via HSV (variables: image_HSV, a
 
     mask_HSV = cv2.inRange(image_HSV, lower_Hue, high_Hue)
 
-    image_HSV = np.copy(v.image) # adjustable to other images variants
+    image_HSV = np.copy(xct.image) # adjustable to other images variants
 
     image_HSV[mask_HSV == 0] = [0,0,0]
 
@@ -95,7 +95,7 @@ def circle_detection(image_canny): # detect circles via Hough transform (variabl
         image_circles = np.uint16(np.around(image_circles))
         for i in image_circles[0, :]:
 
-            image_circled = np.copy(v.image) # adjustable to other images varaints
+            image_circled = np.copy(xct.image) # adjustable to other images varaints
             
             cv2.circle(image_circled, (i[0], i[1]), i[2], (0, 0, 255), 1) # Draw outer circle
         
