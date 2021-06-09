@@ -35,7 +35,7 @@ path_image = path_image_abs[third_last_slash+1:] # relative path to image
 path_folder_abs = path_image_abs[:last_slash] # absolute path to images folder
 path_folder = path_image_abs[third_last_slash+1:last_slash] # relative path to images folder
 
-path_folder_roi = "images/image_rois" # relative path to ROI result images folder
+path_folder_roi = "images/image_2_rois" # relative path to ROI result images folder
 
 # =============================================================================
 #   Variables Class Container
