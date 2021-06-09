@@ -1,5 +1,6 @@
 # ==========================================================================================================================================================#
-#                                                   colorExtraction.py - file for analysing images for a certain color
+#                                                   colorExtraction.py 
+#                             file for analysing images from the image_2_rois directory looking for a certain color
 # ==========================================================================================================================================================#
 # State: working
 # TODO: need to check for optimal color for 'images' and maybe code clean up
