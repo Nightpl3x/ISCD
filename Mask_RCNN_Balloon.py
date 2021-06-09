@@ -23,7 +23,7 @@ import matplotlib.patches as patches
 import utils as xct
 
 # Root directory of the project
-ROOT_DIR = os.path.abspath("../../")
+ROOT_DIR = os.path.abspath("../")
 
 # Block unnecessary warnings
 import warnings

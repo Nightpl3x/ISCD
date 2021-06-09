@@ -42,7 +42,7 @@ COLORS = { # Source: http://www.workwithcolor.com/cyan-color-hue-range-01.htm
         'Dark Slate Gray': [47,79,79],					
          }
 
-e = xct.path_folder_res+"/*.jpeg" # check ROI result folder for images
+e = xct.path_folder_roi+"/*.jpeg" # check ROI result folder for images
 
 IMAGE_DIRECTORY = glob.glob(e) # create list based on image names --> strings
 IMAGE_DIRECTORY.sort()         # sort list
