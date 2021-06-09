@@ -169,7 +169,7 @@ for i in range(mask.shape[2]):
     plt.imshow(temp)
 
 #   ---------------target folder-----"/"----image name for target folder--------index-------file format
-    image_name = xct.path_folder_res+"/"+xct.path_image_abs[xct.last_slash:-5]+"{}".format(i)+"B.jpeg" # image name for saving, defintely needs other name template
+    image_name = xct.path_folder_roi+"/"+xct.path_image_abs[xct.last_slash:-5]+"{}".format(i)+"B.jpeg" # image name for saving, defintely needs other name template
     plt.savefig(image_name, bbox_inches='tight') # save images to new folder
     #plt.show()
 

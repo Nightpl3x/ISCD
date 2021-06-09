@@ -23,7 +23,7 @@ def show_image(img): # show desired image (variables: all )
     plt.show()
 
 ROOT_DIR = os.path.abspath("../")
-print("\n"+ROOT_DIR)
+#print("\n"+ROOT_DIR)
 #show_image(vxct.image_ext)
 #test_functions.show_image(vxct.image_ext)
 
