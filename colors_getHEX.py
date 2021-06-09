@@ -112,8 +112,8 @@ def show_selected_images(images, color, threshold, colors_to_match):
             #   Output Exposed Image
             # ============================
             images[i] = cv2.cvtColor(images[i],cv2.COLOR_BGR2RGB) # convert again to RGB Color Model because OpenCV uses BGR as Default Model
-            cv2.imshow("Exposed Sample: ",images[i])
-            cv2.waitKey(0)
+            #cv2.imshow("Exposed Sample: ",images[i])
+            #cv2.waitKey(0)
 
         else:
             # ============================

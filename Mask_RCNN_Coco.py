@@ -30,7 +30,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # =============================================================================
-# Import Mask_RCNN.mrcnn files, Coco folder and Coco Dataset
+# Import Mask_RCNN.mrcnn files, Coco directory and Coco Dataset
 # =============================================================================
 
 sys.path.append(ROOT_DIR)  # To find local version of the library
@@ -61,7 +61,7 @@ if not os.path.exists(COCO_MODEL_PATH):
 # For inferencing, the configurations were modified a bit to fit the task. To do so, I sub-classed the ```CocoConfig``` class and overrode the attributes I needed to change.
 # =======================================================================================================================================================================================================
 config = coco.CocoConfig()
-COCO_DIR = os.path.join(ROOT_DIR, ROOT_DIR+"/ColiChecker/Mask_RCNN/samples/coco") # path inside Mask_RCNN folder
+COCO_DIR = os.path.join(ROOT_DIR, ROOT_DIR+"/ColiChecker/Mask_RCNN/samples/coco") # path inside Mask_RCNN directory
 
 # Override the training configurations with a few changes for inferencing.
 class InferenceConfig(coco.CocoConfig):
@@ -131,7 +131,7 @@ class_names = ['Object' for i in range(90)] # Balloon dataset consists of 89 cla
 # Directory of images to run detection on
 #IMAGE_DIR = os.path.join(ROOT_DIR, xct.path_folder_abs)
 
-# Load a random image from the images folder
+# Load a random image from the images directory
 #file_names = next(os.walk(IMAGE_DIR))[2]
 #image = skimage.io.imread(os.path.join(IMAGE_DIR, random.choice(file_names)))
 
@@ -168,13 +168,18 @@ for i in range(mask.shape[2]):
     plt.figure(figsize=(8,8))
     plt.imshow(temp)
 
-#   ---------------target folder-----"/"----image name in target folder--------index-------file format
+#   ---------------target directory-----"/"----image name in target directory--------index-------file format
     image_name = xct.path_folder_roi+"/"+xct.path_image_abs[xct.last_slash:-5]+"{}".format(i)+"A.jpeg" # image name for saving, defintely needs other name template
-    plt.savefig(image_name, bbox_inches='tight') # save images to new folder
+    plt.savefig(image_name, bbox_inches='tight') # save images to new directory
     #plt.show()
 
 # =================================
-#  Run colors_getHEX.py function
+#  Run external functions
 # =================================
+print("\n")
 import colors_getHEX as cgH
-cgH.show_selected_images(cgH.images, cgH.COLORS['Cyan'], 55, 15) # analyzes whole images_rasp folder
+cgH.show_selected_images(cgH.images, cgH.COLORS['Cyan'], 55, 15) # analyzes whole image_2_rois directory
+
+import directoryHandling as dH
+dH.createDir()
+dH.fillDir()
