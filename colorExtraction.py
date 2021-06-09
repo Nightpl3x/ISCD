@@ -1,5 +1,5 @@
 # ==========================================================================================================================================================#
-#                                                   colors_getHEX.py - file for analysing images for a certain color
+#                                                   colorExtraction.py - file for analysing images for a certain color
 # ==========================================================================================================================================================#
 # State: working
 # TODO: need to check for optimal color for 'images' and maybe code clean up
@@ -126,6 +126,5 @@ def show_selected_images(images, color, threshold, colors_to_match):
 # ==========================================================================
 #   Call Functions:
 # ==========================================================================
-
 #get_colors(xct.image_ext, 6, False) # set True for pie chart
 #show_selected_images(images, COLORS['Cyan'], 55, 15)

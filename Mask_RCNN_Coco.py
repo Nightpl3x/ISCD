@@ -177,8 +177,8 @@ for i in range(mask.shape[2]):
 #  Run external functions
 # =================================
 print("\n")
-import colors_getHEX as cgH
-cgH.show_selected_images(cgH.images, cgH.COLORS['Cyan'], 55, 15) # analyzes whole image_2_rois directory
+import colorExtraction as cE
+cE.show_selected_images(cE.images, cE.COLORS['Cyan'], 55, 15) # analyzes whole image_2_rois directory
 
 import directoryHandling as dH
 dH.createDir()

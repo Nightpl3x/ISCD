@@ -169,7 +169,7 @@ for i in range(mask.shape[2]):
     plt.imshow(temp)
 
 #   ---------------target directory-----"/"----image name for target directory--------index-------file format
-    image_name = xct.path_directory_roi+"/"+xct.path_image_abs[xct.last_slash:-5]+"{}".format(i)+"B.jpeg" # image name for saving, defintely needs other name template
+    image_name = xct.path_folder_roi+"/"+xct.path_image_abs[xct.last_slash:-5]+"{}".format(i)+"B.jpeg" # image name for saving, defintely needs other name template
     plt.savefig(image_name, bbox_inches='tight') # save images to new directory
     #plt.show()
 
@@ -183,8 +183,8 @@ display_images([splash], cols=1)
 #  Run external functions
 # =================================
 print("\n")
-import colors_getHEX as cgH
-cgH.show_selected_images(cgH.images, cgH.COLORS['Cyan'], 55, 15) # analyzes whole image_2_rois directory
+import colorExtraction as cE
+cE.show_selected_images(cE.images, cE.COLORS['Cyan'], 55, 15) # analyzes whole image_2_rois directory
 
 import directoryHandling as dH
 dH.createDir()
