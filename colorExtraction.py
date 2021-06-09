@@ -47,8 +47,8 @@ e = xct.path_folder_roi+"/*.jpeg" # check ROI result folder for images
 
 IMAGE_DIRECTORY = glob.glob(e) # create list based on image names --> strings
 IMAGE_DIRECTORY.sort()         # sort list
-images = [cv2.imread(img) for img in IMAGE_DIRECTORY] # create additional list for storing images --> ndarrays
-images = [cv2.cvtColor(img, cv2.COLOR_BGR2RGB) for img in images] # convert from bgr back to rgb
+images_roi = [cv2.imread(img) for img in IMAGE_DIRECTORY] # create additional list for storing images --> ndarrays
+images_roi = [cv2.cvtColor(img, cv2.COLOR_BGR2RGB) for img in images_roi] # convert from bgr back to rgb
 
 # ==========================================================================
 #   Main
@@ -106,13 +106,13 @@ def show_selected_images(images, color, threshold, colors_to_match):
             # ============================
             #   Get and Print Image Name
             # ============================
-            img = Image.open(IMAGE_DIRECTORY[i])
-            print("Sample: {}\n Result: EXPOSED\n" .format(img.filename))
+            with Image.open(IMAGE_DIRECTORY[i]) as img:
+                print("Sample: {}\n Result: EXPOSED\n" .format(img.filename))
 
             # ============================
             #   Output Exposed Image
             # ============================
-            images[i] = cv2.cvtColor(images[i],cv2.COLOR_BGR2RGB) # convert again to RGB Color Model because OpenCV uses BGR as Default Model
+            #images[i] = cv2.cvtColor(images[i],cv2.COLOR_BGR2RGB) # convert again to RGB Color Model because OpenCV uses BGR as Default Model
             #cv2.imshow("Exposed Sample: ",images[i])
             #cv2.waitKey(0)
 
@@ -120,8 +120,8 @@ def show_selected_images(images, color, threshold, colors_to_match):
             # ============================
             #   Get and Print Image Name
             # ============================
-            img = Image.open(IMAGE_DIRECTORY[i])
-            print("Sample: {}\n Result: CLEAN\n" .format(img.filename))
+            with Image.open(IMAGE_DIRECTORY[i]) as img:
+                print("Sample: {}\n Result: CLEAN\n" .format(img.filename))
 
             
 # ==========================================================================

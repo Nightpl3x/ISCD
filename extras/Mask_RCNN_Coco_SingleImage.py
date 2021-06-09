@@ -8,8 +8,6 @@
 # =============================================================================
 import os
 import sys
-import cv2
-import glob
 import random
 import math
 import re
@@ -21,7 +19,6 @@ import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
-from PIL import Image
 # Custom import
 import utils as xct
 
@@ -128,74 +125,61 @@ model.load_weights(weights_path, by_name=True)
 class_names = ['Object' for i in range(90)] # Balloon dataset consists of 89 classes + Background
 
 # =============================================================================
-#                           Run Object Detection
+#                           Run Single Object Detection
 # =============================================================================
 
 # Directory of images to run detection on
+#IMAGE_DIR = os.path.join(ROOT_DIR, xct.path_folder_abs)
 
-e = xct.path_folder_cam+"/*.jpeg" # check ROI result folder for images
+# Load a random image from the images directory
+#file_names = next(os.walk(IMAGE_DIR))[2]
+#image = skimage.io.imread(os.path.join(IMAGE_DIR, random.choice(file_names)))
 
-IMAGE_DIRECTORY = glob.glob(e) # create list based on image names --> strings
-IMAGE_DIRECTORY.sort()         # sort list
-images = [cv2.imread(img) for img in IMAGE_DIRECTORY] # create additional list for storing images --> ndarrays
-images = [cv2.cvtColor(img, cv2.COLOR_BGR2RGB) for img in images] # convert from bgr back to rgb
+# Read Image File
+image = skimage.io.imread(xct.path_image_abs)
 
-if len(images) == 0:
-    print("\n Sorry but there are no pictures in here...")
-    
-elif len(images) > 0:
-    for index in range(len(images)):
+# Run object detection
+results = model.detect([image], verbose=1)
 
-        # Run object detection
-        results = model.detect([images[index]], verbose=1)
+# Display/Visualize results
+ax = get_ax(1)
+r = results[0]
+visualize.display_instances(image,
+                            r['rois'], 
+                            r['masks'], 
+                            r['class_ids'], 
+                            class_names, 
+                            r['scores'],
+                            ax=ax,
+                            title="Predictions")
 
-        # Display/Visualize results
-        ax = get_ax(1)
-        r = results[0]
-        visualize.display_instances(images[index],
-                                    r['rois'], 
-                                    r['masks'], 
-                                    r['class_ids'], 
-                                    class_names, 
-                                    r['scores'],
-                                    ax=ax,
-                                    title="Predictions")
+# =============================================================================
+# Load mask and output images
+# =============================================================================
 
-        # =============================================================================
-        # Load mask and output images
-        # =============================================================================
+mask = r['masks']
+mask = mask.astype(int)
+mask.shape
 
-        mask = r['masks']
-        mask = mask.astype(int)
-        mask.shape
+for i in range(mask.shape[2]):
+    temp = skimage.io.imread(xct.path_image_abs)  # only use absolute path
+    for j in range(temp.shape[2]):
+        temp[:,:,j] = temp[:,:,j] * mask[:,:,i]
+    plt.figure(figsize=(8,8))
+    plt.imshow(temp)
 
-        for i in range(mask.shape[2]):
-            #temp = skimage.io.imread(xct.path_image_abs)  # only use absolute path when running on single image
-            temp = images[index]
-            for j in range(temp.shape[2]):
-                temp[:,:,j] = temp[:,:,j] * mask[:,:,i]
-            plt.figure(figsize=(8,8))
-            plt.imshow(temp)
+#   ---------------target directory-----"/"----image name in target directory--------index-------file format
+    image_name = xct.path_folder_roi+"/"+xct.path_image_abs[xct.last_slash:-5]+"{}".format(i)+"A.jpeg" # image name for saving, defintely needs other name template
+    plt.savefig(image_name, bbox_inches='tight') # save images to new directory
+    #plt.show()
 
-            with Image.open(IMAGE_DIRECTORY[index]) as cam_image:
-                cam_image_name = cam_image.filename
+# =================================
+#  Run external functions
+# =================================
+print("\n")
+import colorExtraction as cE
+cE.show_selected_images(cE.images, cE.COLORS['Cyan'], 55, 15) # analyzes whole image_2_rois directory
 
-            last_cam = cam_image_name.rfind("camera") # find the last occurring camera in the string of the image path
-
-        #---------------target directory-----"/"----image name in target directory--------index-------file format
-            image_name = xct.path_folder_roi+"/"+cam_image_name[last_cam+7:-5]+"{}".format(i)+"A.jpeg" # image name for saving, defintely needs other name template
-            plt.savefig(image_name, bbox_inches='tight') # save images to new directory
-            #plt.show()
-
-    # =================================
-    #  Run external functions
-    # =================================
-    
-    print("\n")
-    import colorExtraction as cE
-    cE.show_selected_images(cE.images_roi, cE.COLORS['Cyan'], 55, 15) # analyzes whole image_2_rois directory
-
-    import directoryHandling as dH
-    dH.createDir() # create directory with timestamp to move images to
-    dH.fillDirRoi() # move roi images into directory
-    dH.fillDirCam() # move camera image into directory
+import directoryHandling as dH
+dH.createDir()
+dH.fillDir()
