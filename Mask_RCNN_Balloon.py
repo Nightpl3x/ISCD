@@ -48,7 +48,7 @@ from Mask_RCNN.samples.balloon import balloon
 MODEL_DIR = os.path.join(ROOT_DIR, "logs")
 
 # Local path to Balloon trained weights file
-BALLON_WEIGHTS_PATH = os.path.join('', "D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/Mask_RCNN/samples/balloon/mask_rcnn_balloon.h5") 
+BALLON_WEIGHTS_PATH = os.path.join('', ROOT_DIR+"/ColiChecker/Mask_RCNN/samples/balloon/mask_rcnn_balloon.h5") 
 
 # Download Balloon trained weights from Releases if needed
 # Link for trained weights
@@ -61,7 +61,7 @@ BALLON_WEIGHTS_PATH = os.path.join('', "D:/Christian_Ohlhäuser/Bildauswertung/C
 # For inferencing, the configurations were modified a bit to fit the task. To do so, I sub-classed the ```BalloonConfig``` class and overrode the attributes I needed to change.
 # ==========================================================================================================================================================
 config = balloon.BalloonConfig()
-BALLOON_DIR = os.path.join(ROOT_DIR, "D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/Mask_RCNN/samples/balloon") # path inside Mask_RCNN folder
+BALLOON_DIR = os.path.join(ROOT_DIR, ROOT_DIR+"/ColiChecker/Mask_RCNN/samples/balloon") # path inside Mask_RCNN folder
 
 # Override the training configurations with a few changes for inferencing.
 class InferenceConfig(config.__class__):
@@ -116,7 +116,7 @@ dataset.prepare()
 with tf.device(DEVICE):
     model = modellib.MaskRCNN(mode="inference", model_dir=MODEL_DIR, config=config)
 
-weights_path = "D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/Mask_RCNN/samples/balloon/mask_rcnn_balloon.h5"
+weights_path = ROOT_DIR+"/ColiChecker/Mask_RCNN/samples/balloon/mask_rcnn_balloon.h5"
 
 # Load weights trained on Balloon
 model.load_weights(weights_path, by_name=True)

@@ -5,14 +5,18 @@
 # =============================================================================
 #   Imports + Env
 # =============================================================================
+import os
 import cv2
-from skimage import io
 import numpy as np
+
+from skimage import io
 '''
 Virtual Environment:
 '''
 #   .\env\Scripts\activate
 #   deactivate
+
+ROOT_DIR = os.path.abspath("../") # get parent directory
 
 # =============================================================================
 #   Images
@@ -20,7 +24,7 @@ Virtual Environment:
 '''
 Image selection:
 '''
-path_image_abs = 'D:/Christian_Ohlhäuser/Bildauswertung/ColiChecker/images/_original/44H_10000Z.jpeg'
+path_image_abs = ROOT_DIR+"/ColiChecker/images/_original/44H_10000Z.jpeg"
 
 last_slash = path_image_abs.rfind("/") # find the last occurring slash in the absolut image path
 second_last_slash = path_image_abs[:path_image_abs.rfind("/")].rfind("/") # find the second last occurring slash in the absolut image path
@@ -31,10 +35,10 @@ path_image = path_image_abs[third_last_slash+1:] # relative path to image
 path_folder_abs = path_image_abs[:last_slash] # absolute path to images folder
 path_folder = path_image_abs[third_last_slash+1:last_slash] # relative path to images folder
 
-path_folder_res = 'images/images_rasp' # relative path to ROI result images folder
+path_folder_res = "images/images_rasp" # relative path to ROI result images folder
 
 # =============================================================================
-#   General Variables
+#   Variables Class Container
 # =============================================================================
 class VariableConfig(object):
     """

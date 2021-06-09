@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 
 from PIL import Image
 
+import os
 import utils as xct
 from utils import VariableConfig as vxct
 
@@ -21,6 +22,8 @@ def show_image(img): # show desired image (variables: all )
     plt.imshow(img)
     plt.show()
 
+ROOT_DIR = os.path.abspath("../")
+print("\n"+ROOT_DIR)
 #show_image(vxct.image_ext)
 #test_functions.show_image(vxct.image_ext)
 
