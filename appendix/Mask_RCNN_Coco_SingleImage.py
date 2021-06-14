@@ -178,8 +178,9 @@ for i in range(mask.shape[2]):
 # =================================
 print("\n")
 import colorExtraction as cE
-cE.show_selected_images(cE.images, cE.COLORS['Cyan'], 55, 15) # analyzes whole image_2_rois directory
+cE.show_selected_images(cE.images_roi, cE.COLORS['Cyan'], 55, 15) # analyzes whole image_2_rois directory
 
 import directoryHandling as dH
 dH.createDir()
-dH.fillDir()
+dH.fillDirRoi() # move roi images into directory
+dH.fillDirCam() # move camera image into directory

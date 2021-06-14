@@ -143,3 +143,8 @@ def stackImages(scale,imgArray):
         hor= np.hstack(imgArray)
         ver = hor
     return ver
+
+if __name__ == '__main__':
+    print ("\nRunning utils.py ...")
+else:
+    print ("\nImporting utils.py ...")

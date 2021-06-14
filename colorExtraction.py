@@ -9,15 +9,12 @@
 #   Imports
 # ==========================================================================
 import cv2
+import glob
 import numpy as np
 import matplotlib.pyplot as plt
+
 import utils as xct
 
-'''
-Additional Imports:
-'''
-import os
-import glob
 from PIL import Image
 from collections import Counter
 from sklearn.cluster import KMeans
@@ -43,11 +40,9 @@ COLORS = { # Source: http://www.workwithcolor.com/cyan-color-hue-range-01.htm
         'Dark Slate Gray': [47,79,79],					
          }
 
-e = xct.path_folder_roi+"/*.jpeg" # check ROI result folder for images
-
-IMAGE_DIRECTORY = glob.glob(e) # create list based on image names --> strings
-IMAGE_DIRECTORY.sort()         # sort list
-images_roi = [cv2.imread(img) for img in IMAGE_DIRECTORY] # create additional list for storing images --> ndarrays
+IMAGE_DIRECTORY_ROI = glob.glob(xct.path_folder_roi+"/*.jpeg") # create list based on image names --> strings
+IMAGE_DIRECTORY_ROI.sort()         # sort list
+images_roi = [cv2.imread(img) for img in IMAGE_DIRECTORY_ROI] # create additional list for storing images --> ndarrays
 images_roi = [cv2.cvtColor(img, cv2.COLOR_BGR2RGB) for img in images_roi] # convert from bgr back to rgb
 
 # ==========================================================================
@@ -95,7 +90,7 @@ def match_image_by_color(image, color, threshold, number_of_colors ):
     
     return select_image
 
-def show_selected_images(images, color, threshold, colors_to_match):
+def show_selected_images(images, color, threshold, colors_to_match, IMAGE_DIRECTORY_ROI):
     
     for i in range(len(images)):
         selected = match_image_by_color(images[i],
@@ -106,7 +101,7 @@ def show_selected_images(images, color, threshold, colors_to_match):
             # ============================
             #   Get and Print Image Name
             # ============================
-            with Image.open(IMAGE_DIRECTORY[i]) as img:
+            with Image.open(IMAGE_DIRECTORY_ROI) as img:
                 print("Sample: {}\n Result: EXPOSED\n" .format(img.filename))
 
             # ============================
@@ -120,12 +115,11 @@ def show_selected_images(images, color, threshold, colors_to_match):
             # ============================
             #   Get and Print Image Name
             # ============================
-            with Image.open(IMAGE_DIRECTORY[i]) as img:
+            with Image.open(IMAGE_DIRECTORY_ROI) as img:
                 print("Sample: {}\n Result: CLEAN\n" .format(img.filename))
 
             
-# ==========================================================================
-#   Call Functions:
-# ==========================================================================
-#get_colors(xct.image_ext, 6, False) # set True for pie chart
-#show_selected_images(images, COLORS['Cyan'], 55, 15)
+if __name__ == '__main__':
+    print ("\nRunning colorExraction.py ...")
+else:
+    print ("\nImporting colorExraction.py ...")

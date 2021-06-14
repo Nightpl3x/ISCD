@@ -3,29 +3,13 @@
 #                          Code and visualizations to test, debug, and evaluate the Mask R-CNN model on the Coco Dataset
 # ==========================================================================================================================================================#
 
-# =============================================================================
-# Basic Imports + Setup for image_1_camera check
-# =============================================================================
-import cv2
-import glob
-import utils as xct
-
-# Directory of images to run detection on
-
-e = xct.path_folder_cam+"/*.jpeg" # search camera directory for images
-
-IMAGE_DIRECTORY = glob.glob(e) # create list based on image names --> strings
-IMAGE_DIRECTORY.sort()         # sort list
-images_cam = [cv2.imread(img) for img in IMAGE_DIRECTORY] # create additional list for storing images --> ndarrays
-images_cam = [cv2.cvtColor(img, cv2.COLOR_BGR2RGB) for img in images_cam] # convert from bgr back to rgb
-
-# =============================================================================
-# Check image_1_camera directory for images
-# =============================================================================
-if len(images_cam) == 0:
-    print("\n Sorry but there are no pictures in here...")
-
-elif len(images_cam) > 0:
+def MRCNN_Coco(IMAGE_DIRECTORY,images_cam):
+    # =============================================================================
+    # Basic Imports + Setup for image_1_camera check
+    # =============================================================================
+    import cv2
+    import glob
+    import utils as xct
 
     # =============================================================================
     # Imports
@@ -55,7 +39,6 @@ elif len(images_cam) > 0:
     # =============================================================================
     # Import Mask_RCNN.mrcnn files, Coco directory and Coco Dataset
     # =============================================================================
-
     sys.path.append(ROOT_DIR)  # find local version of the library
     from mrcnn import utils
     from mrcnn import visualize
@@ -134,7 +117,6 @@ elif len(images_cam) > 0:
     # =============================================================================
     #                     Create Model and Load Trained Weights
     # =============================================================================
-
     # Create model object in inference mode.
     with tf.device(DEVICE):
         model = modellib.MaskRCNN(mode="inference", model_dir='mask_rcnn_coco.hy', config=config) 
@@ -145,62 +127,54 @@ elif len(images_cam) > 0:
     model.load_weights(weights_path, by_name=True)
 
     # Class names
-    class_names = ['Object' for _ in range(90)] # Balloon dataset consists of 89 classes + Background
+    class_names = ['Object' for _ in range(90)] # Coco dataset consists of 89 classes + Background
 
     # =============================================================================
     #                           Run Object Detection
     # =============================================================================
-    for index in range(len(images_cam)):
+    results = model.detect([images_cam], verbose=1)
 
-        # Run object detection
-        results = model.detect([images_cam[index]], verbose=1)
+    # Display/Visualize results
+    ax = get_ax(1)
+    r = results[0]
+    visualize.display_instances(images_cam,
+                                r['rois'], 
+                                r['masks'], 
+                                r['class_ids'], 
+                                class_names, 
+                                r['scores'],
+                                ax=ax,
+                                title="Predictions")
 
-        # Display/Visualize results
-        ax = get_ax(1)
-        r = results[0]
-        visualize.display_instances(images_cam[index],
-                                    r['rois'], 
-                                    r['masks'], 
-                                    r['class_ids'], 
-                                    class_names, 
-                                    r['scores'],
-                                    ax=ax,
-                                    title="Predictions")
+    # =============================================================================
+    # Load mask and output images
+    # =============================================================================
+    mask = r['masks']
+    mask = mask.astype(int)
+    mask.shape
 
-        # =============================================================================
-        # Load mask and output images
-        # =============================================================================
+    for i in range(mask.shape[2]):
+        temp = skimage.io.imread(IMAGE_DIRECTORY)
+        for j in range(temp.shape[2]):
+            temp[:,:,j] = temp[:,:,j] * mask[:,:,i]
+        plt.figure(figsize=(8,8))
+        plt.imshow(temp)
 
-        mask = r['masks']
-        mask = mask.astype(int)
-        mask.shape
 
-        for i in range(mask.shape[2]):
-            temp = images_cam[index]
-            for j in range(temp.shape[2]):
-                temp[:,:,j] = temp[:,:,j] * mask[:,:,i]
-            plt.figure(figsize=(8,8))
-            plt.imshow(temp)
+        with Image.open(IMAGE_DIRECTORY) as cam_image:
+            cam_image_name = cam_image.filename
+        last_cam = cam_image_name.rfind("camera") # find last occurring "camera" in string of image path
 
-            with Image.open(IMAGE_DIRECTORY[index]) as cam_image:
-                cam_image_name = cam_image.filename
 
-            last_cam = cam_image_name.rfind("camera") # find last occurring "camera" in string of image path
+        #-----------target directory-----"/"-image name in target directory------index----file format
+        image_name = xct.path_folder_roi+"/"+cam_image_name[last_cam+7:-5]+"_{}".format(i)+"A.jpeg" # image name for saving, could use other name template
+        plt.savefig(image_name, bbox_inches='tight') # save images to new directory
+        #plt.show()
 
-        #---------------target directory-----"/"----image name in target directory--------index-------file format
-            image_name = xct.path_folder_roi+"/"+cam_image_name[last_cam+7:-5]+"_{}".format(i)+"A.jpeg" # image name for saving, could use other name template
-            plt.savefig(image_name, bbox_inches='tight') # save images to new directory
-            #plt.show()
 
-    # =================================
-    #  Run external functions
-    # =================================
+if __name__ == '__main__':
+    print ("\nRunning Mask_RCNN_Coco.py by itself won't work ...")
+else:
+    print ("\nImporting Mask_RCNN_Coco.py ...")
+
     
-    print("\n")
-    import colorExtraction as cE
-    cE.show_selected_images(cE.images_roi, cE.COLORS['Cyan'], 55, 15) # analyzes whole image_2_rois directory
-
-    import directoryHandling as dH
-    dH.createDir() # create directory with timestamp to move images to
-    dH.fillDirRoi() # move roi images into directory
-    dH.fillDirCam() # move camera image into directory
