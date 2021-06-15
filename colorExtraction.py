@@ -9,41 +9,16 @@
 #   Imports
 # ==========================================================================
 import cv2
-import glob
 import numpy as np
 import matplotlib.pyplot as plt
 
 import utils as xct
+import directoryHandling as dH
 
 from PIL import Image
 from collections import Counter
 from sklearn.cluster import KMeans
 from skimage.color import rgb2lab, deltaE_cie76
-
-# ==========================================================================
-#   Setup
-# ==========================================================================
-COLORS = { # Source: http://www.workwithcolor.com/cyan-color-hue-range-01.htm
-        'Test': [200,213,48],
-        'Bubbles': [231,254,255],
-        'Cyan': [0,255,255],
-        'Columbia Blue': [155,221,255],
-        'Bright Turquoise': [8,232,222],
-        'Baby Blue': [137,207,240],
-        'Sky Blue': [135,206,235],
-        'Pastel Blue': [174,198,207],
-        'Turquoise': [48,213,200],
-        'Dark Cyan': [0,139,139],
-        'Cerulean': [0,123,167],
-        'Teal': [0,128,128],
-        'Pine Green': [1,121,111],
-        'Dark Slate Gray': [47,79,79],					
-         }
-
-IMAGE_DIRECTORY_ROI = glob.glob(xct.path_folder_roi+"/*.jpeg") # create list based on image names --> strings
-IMAGE_DIRECTORY_ROI.sort()         # sort list
-images_roi = [cv2.imread(img) for img in IMAGE_DIRECTORY_ROI] # create additional list for storing images --> ndarrays
-images_roi = [cv2.cvtColor(img, cv2.COLOR_BGR2RGB) for img in images_roi] # convert from bgr back to rgb
 
 # ==========================================================================
 #   Main
@@ -90,9 +65,12 @@ def match_image_by_color(image, color, threshold, number_of_colors ):
     
     return select_image
 
-def show_selected_images(images, color, threshold, colors_to_match, IMAGE_DIRECTORY_ROI):
+def show_selected_images(images, color, threshold, colors_to_match):
+    IMAGE_DIRECTORY_ROI_PREP = xct.DirROI(dir)
+    IMAGE_DIRECTORY_ROI = IMAGE_DIRECTORY_ROI_PREP[0]
     
     for i in range(len(images)):
+
         selected = match_image_by_color(images[i],
                                         color,
                                         threshold,
@@ -101,8 +79,11 @@ def show_selected_images(images, color, threshold, colors_to_match, IMAGE_DIRECT
             # ============================
             #   Get and Print Image Name
             # ============================
-            with Image.open(IMAGE_DIRECTORY_ROI) as img:
+            with Image.open(IMAGE_DIRECTORY_ROI[i]) as img:
                 print("Sample: {}\n Result: EXPOSED\n" .format(img.filename))
+            
+            # append text to txt file
+            dH.appendText("\nSample: {}\n Result: EXPOSED\n" .format(img.filename))
 
             # ============================
             #   Output Exposed Image
@@ -115,8 +96,11 @@ def show_selected_images(images, color, threshold, colors_to_match, IMAGE_DIRECT
             # ============================
             #   Get and Print Image Name
             # ============================
-            with Image.open(IMAGE_DIRECTORY_ROI) as img:
+            with Image.open(IMAGE_DIRECTORY_ROI[i]) as img:
                 print("Sample: {}\n Result: CLEAN\n" .format(img.filename))
+
+            # append text to txt file
+            dH.appendText("\nSample: {}\n Result: CLEAR\n" .format(img.filename))
 
             
 if __name__ == '__main__':

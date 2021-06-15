@@ -3,7 +3,7 @@
 #                          Code and visualizations to test, debug, and evaluate the Mask R-CNN model on the balloon Dataset
 # ==========================================================================================================================================================#
 
-def MRCNN_Balloon(IMAGE_DIRECTORY,images_cam):
+def MRCNN_Balloon(IMAGE_DIRECTORY_CAM, images_cam):
     # =============================================================================
     # Basic Imports + Setup for image_1_camera check
     # =============================================================================
@@ -154,26 +154,26 @@ def MRCNN_Balloon(IMAGE_DIRECTORY,images_cam):
     mask.shape
 
     for i in range(mask.shape[2]):
-        temp = skimage.io.imread(IMAGE_DIRECTORY)
+        temp = skimage.io.imread(IMAGE_DIRECTORY_CAM)
         for j in range(temp.shape[2]):
             temp[:,:,j] = temp[:,:,j] * mask[:,:,i]
         plt.figure(figsize=(8,8))
         plt.imshow(temp)
 
 
-        with Image.open(IMAGE_DIRECTORY) as cam_image:
-            cam_image_name = cam_image.filename
-        last_cam = cam_image_name.rfind("camera") # find last occurring "camera" in string of image path
+        with Image.open(IMAGE_DIRECTORY_CAM) as cam_image_title:
+            cam_image_name = cam_image_title.filename
+        last_cam_in_str = cam_image_name.rfind("camera") # find last occurring "camera" in string of image path
 
 
         #-----------target directory-----"/"-image name in target directory--------index----file format
-        image_name = xct.path_folder_roi+"/"+cam_image_name[last_cam+7:-5]+"_{}".format(i)+"B.jpeg" # image name for saving, could use other name template
+        image_name = xct.path_folder_roi+"/"+cam_image_name[last_cam_in_str+7:-5]+"_by_Balloon_{}".format(i)+".jpeg" # image name for saving, could use other name template
         plt.savefig(image_name, bbox_inches='tight') # save images to new directory
         #plt.show()
 
 
 if __name__ == '__main__':
-    print ("\nRunning Mask_RCNN_Balloon.py by itself won't work ...")
+    print ("\nRunning Mask_RCNN_Balloon.py by itself won't work on this edition ...")
 else:
     print ("\nImporting Mask_RCNN_Baloon.py ...")
 

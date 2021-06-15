@@ -11,25 +11,12 @@ import shutil
 
 import utils as xct
 
-from datetime import datetime
-
 # =============================================================================
-#   Creating Variables
-# =============================================================================
-ROOT_DIR = os.path.abspath("../") # get parent directory
-
-folderame = datetime.now().strftime("%Y(Y)__%m(M)__%d(D)__%H.%M(H).%S(s)")
-
-newpath = ROOT_DIR+"/ColiChecker/images/image_3_storage/"+folderame
-
-target_dir = newpath
-    
-# =============================================================================
-#   Functions
+# Main
 # =============================================================================
 def createDir():
-    if not os.path.exists(newpath):
-        os.makedirs(newpath)
+    if not os.path.exists(xct.DirTxt.newpath):
+        os.makedirs(xct.DirTxt.newpath)
 
 def fillDirRoi():
 
@@ -37,19 +24,33 @@ def fillDirRoi():
     file_names_roi = os.listdir(source_dir_roi)
     
     for file_name in file_names_roi:
-        shutil.move(os.path.join(source_dir_roi, file_name), target_dir)
+        shutil.move(os.path.join(source_dir_roi, file_name), xct.DirTxt.target_dir)
 
 def fillDirCam(IMAGE_DIRECTORY_CAM):    
 
     source_dir_cam = IMAGE_DIRECTORY_CAM[:21]
     file_name_cam = IMAGE_DIRECTORY_CAM[22:]
 
-    shutil.move(os.path.join(source_dir_cam, file_name_cam), target_dir)
+    shutil.move(os.path.join(source_dir_cam, file_name_cam), xct.DirTxt.target_dir)
+
+def createText(text_header):
+
+    DirTxt = xct.DirTxt
+    # create text file
+    f = open(DirTxt.text_file_location, "w")
+    f.write(text_header)
+    f.close
+
+def appendText(text):
+    DirTxt = xct.DirTxt
+    # append text to txt file
+    f = open(DirTxt.text_file_location, "a")
+    f.write(text)
+    f.close()
 
 if __name__ == '__main__':
     print ("\nRunning directoryHandling.py ...")
 else:
     print ("\nImporting directoryHandling.py ...")
 
-    #"images/image_1_camera\\18H_1000Z.jpeg"
     

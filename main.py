@@ -4,30 +4,22 @@
 
 if __name__ == '__main__':
 
-    print ("\nRunning startup.py ...")
-
-    # =============================================================================
-    # Global Imports
-    # =============================================================================
-    import glob
-    import cv2
-    import utils as xct
-    
-    # =============================================================================
-    # Directory of images to run detection on
-    # =============================================================================
-    IMAGE_DIRECTORY_CAM = glob.glob(xct.path_folder_cam+"/*.jpeg") # create list based on image names --> strings
-    IMAGE_DIRECTORY_CAM.sort()         # sort list
-    images_cam = [cv2.imread(img) for img in IMAGE_DIRECTORY_CAM] # create additional list for storing images --> ndarrays
-    images_cam = [cv2.cvtColor(img, cv2.COLOR_BGR2RGB) for img in images_cam] # convert from bgr back to rgb
+    print ("\nRunning main.py ...")
 
     # =============================================================================
     # Check image_1_camera directory for images
     # =============================================================================
-    if len(images_cam) == 0:
+    import utils as xct
+
+    IMAGE_DIRECTORY_CAM_PREP = xct.DirCAM(dir)
+    IMAGE_DIRECTORY_CAM = IMAGE_DIRECTORY_CAM_PREP[0]
+    images_cam_prep = xct.DirCAM(dir)
+    images_cam = images_cam_prep[1]
+
+    if len(IMAGE_DIRECTORY_CAM) == 0:
         print("\nSorry but there are no pictures in here...")
 
-    elif len(images_cam) > 0:
+    elif len(IMAGE_DIRECTORY_CAM) > 0:
         print("\nStarting process...\n")
 
         # =============================================================================
@@ -37,37 +29,39 @@ if __name__ == '__main__':
         import Mask_RCNN_Balloon as mrb
 
         # =============================================================================
+        # Create directory with timestamp to move images into
+        # =============================================================================
+        import directoryHandling as dH
+        dH.createDir()
+        dH.createText("RESULTS:\n")
+
+        # =============================================================================
         # Analyze one image at the time from camera dictionary
         # =============================================================================
-        for index in range(len(images_cam)):
-
-            # =============================================================================
-            # Create directory with timestamp to move images into
-            # =============================================================================
-            import directoryHandling as dH
-            dH.createDir() 
+        for index in range(len(IMAGE_DIRECTORY_CAM)):
 
             # =================================
             #  Run first Dataset
             # =================================
             mrb.MRCNN_Balloon(IMAGE_DIRECTORY_CAM[index], images_cam[index])
-            #mrc.MRCNN_Coco(IMAGE_DIRECTORY_CAM[index], images_cam[index]) # Test
 
             # ========================================
             #  Check if first dataset was successfull
             # ========================================
-            IMAGE_DIRECTORY_ROI = glob.glob(xct.path_folder_roi+"/*.jpeg") # create list based on image names --> strings
+            IMAGE_DIRECTORY_ROI_PREP = xct.DirROI(dir)
+            IMAGE_DIRECTORY_ROI = IMAGE_DIRECTORY_ROI_PREP[0]
+            images_roi_prep = xct.DirROI(dir)
+            images_roi = images_roi_prep[1]
 
             if len(IMAGE_DIRECTORY_ROI) == 0:
                 mrc.MRCNN_Coco(IMAGE_DIRECTORY_CAM[index], images_cam[index])
-                #mrb.MRCNN_Balloon(IMAGE_DIRECTORY_CAM[index], images_cam[index]) # Test
 
             # =================================
             #  Analyze ROIs
             # =================================
             print("\n")          
             import colorExtraction as cE 
-            cE.show_selected_images(cE.images_roi, cE.COLORS['Cyan'], 55, 15, IMAGE_DIRECTORY_ROI[index]) # analyzes whole image_2_rois directory
+            cE.show_selected_images(images_roi, xct.COLORS['Cyan'], 55, 15) # analyzes whole image_2_rois directory
 
             # =================================
             #  Move ROIs and Camera Image into timestamp folder
@@ -79,6 +73,6 @@ if __name__ == '__main__':
 
 
 else:
-    print ('\nImporting startup.py ...')
+    print ('\nImporting main.py ...')
     
     

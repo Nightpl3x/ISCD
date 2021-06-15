@@ -5,10 +5,4 @@ env
 
 Mask_RCNN
 
-xcode/test_functions.py
-xcode/utils.py
-
 ~index.py
-
-images/18H_1000Z.jpeg
-images/44H_10000Z.jpeg

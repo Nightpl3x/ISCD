@@ -3,45 +3,99 @@
 # ==========================================================================================================================================================#
 
 # =============================================================================
-#   Imports + Env
+# Imports
 # =============================================================================
 import os
 import cv2
+import glob
 import numpy as np
 
-from skimage import io
-'''
-Virtual Environment:
-'''
+from datetime import datetime
+
+# =============================================================================
+# Virtual Env + Root directory
+# =============================================================================
 #   .\env\Scripts\activate
 #   deactivate
 
 ROOT_DIR = os.path.abspath("../") # get parent directory
 
 # =============================================================================
-#   Images
+# CAM Directory
 # =============================================================================
-'''
-Image selection:
-'''
-path_image_abs = ROOT_DIR+"/ColiChecker/images/_original/44H_10000Z.jpeg"
-
-last_slash = path_image_abs.rfind("/") # find the last occurring slash in the absolut image path
-second_last_slash = path_image_abs[:path_image_abs.rfind("/")].rfind("/") # find the second last occurring slash in the absolut image path
-third_last_slash = path_image_abs[:path_image_abs[:path_image_abs.rfind("/")].rfind("/")].rfind("/") # find the third last occurring slash in the absolut image path
-
-path_image = path_image_abs[third_last_slash+1:] # relative path to image
-
-path_folder_abs = path_image_abs[:last_slash] # absolute path to images folder
-path_folder = path_image_abs[third_last_slash+1:last_slash] # relative path to images folder
-
 path_folder_cam = "images/image_1_camera" # relative path to camera images folder
+
+def DirCAM(dir):
+    
+    IMAGE_DIRECTORY_CAM = glob.glob(path_folder_cam+"/*.jpeg") # create list based on image names --> strings
+    IMAGE_DIRECTORY_CAM.sort() # sort list
+    images_cam = [cv2.imread(img) for img in IMAGE_DIRECTORY_CAM] # create additional list for storing images --> ndarrays
+    images_cam = [cv2.cvtColor(img, cv2.COLOR_BGR2RGB) for img in images_cam] # convert from bgr back to rgb
+
+    return [IMAGE_DIRECTORY_CAM, images_cam]
+
+# =============================================================================
+# ROI Directory
+# =============================================================================
 path_folder_roi = "images/image_2_rois" # relative path to ROI result images folder
+
+def DirROI(dir):
+
+    IMAGE_DIRECTORY_ROI = glob.glob(path_folder_roi+"/*.jpeg") # create list based on image names --> strings
+    IMAGE_DIRECTORY_ROI.sort() # sort list
+    images_roi = [cv2.imread(img) for img in IMAGE_DIRECTORY_ROI] # create additional list for storing images --> ndarrays
+    images_roi = [cv2.cvtColor(img, cv2.COLOR_BGR2RGB) for img in images_roi] # convert from bgr back to rgb
+
+    return [IMAGE_DIRECTORY_ROI, images_roi]
+
+# =============================================================================
+# Text file
+# =============================================================================
+class DirTxt(object):
+    folderame = datetime.now().strftime("%Y(Y)__%m(M)__%d(D)__%H.%M(H).%S(s)")
+    newpath = ROOT_DIR+"/ColiChecker/images/image_3_storage/"+folderame
+    target_dir = newpath
+    text_file_location = newpath+"/Results.txt"
+
+# =============================================================================
+# RGB Color Codes
+# =============================================================================
+COLORS = { # Source: http://www.workwithcolor.com/cyan-color-hue-range-01.htm
+        'Test': [200,213,48],
+        'Bubbles': [231,254,255],
+        'Cyan': [0,255,255],
+        'Columbia Blue': [155,221,255],
+        'Bright Turquoise': [8,232,222],
+        'Baby Blue': [137,207,240],
+        'Sky Blue': [135,206,235],
+        'Pastel Blue': [174,198,207],
+        'Turquoise': [48,213,200],
+        'Dark Cyan': [0,139,139],
+        'Cerulean': [0,123,167],
+        'Teal': [0,128,128],
+        'Pine Green': [1,121,111],
+        'Dark Slate Gray': [47,79,79],					
+         }
+
+# =============================================================================
+# For single Images
+# =============================================================================
+class DirIMG(object):
+    path_image_abs = ROOT_DIR+"/ColiChecker/images/_original/44H_10000Z.jpeg"
+
+    last_slash = path_image_abs.rfind("/") # find the last occurring slash in the absolut image path
+    second_last_slash = path_image_abs[:path_image_abs.rfind("/")].rfind("/") # find the second last occurring slash in the absolut image path
+    third_last_slash = path_image_abs[:path_image_abs[:path_image_abs.rfind("/")].rfind("/")].rfind("/") # find the third last occurring slash in the absolut image path
+
+    path_image = path_image_abs[third_last_slash+1:] # relative path to image
+
+    path_folder_abs = path_image_abs[:last_slash] # absolute path to images folder
+    path_folder = path_image_abs[third_last_slash+1:last_slash] # relative path to images folder
 
 # =============================================================================
 #   Variables Class Container
 # =============================================================================
-class VariableConfig(object):
+class VariableConfig(DirIMG):
     """
     Base variables class. For more customized variables, create a
     sub-class that inherits from this one and override properties
@@ -51,7 +105,7 @@ class VariableConfig(object):
     Fork Images:
     '''
     #image = io.imread(path_image_abs)
-    image = cv2.imread(path_image, cv2.IMREAD_COLOR) # doesnt work amymore, maybe will have to change the ext and int image names
+    image = cv2.imread(DirIMG.path_image, cv2.IMREAD_COLOR) # doesnt work amymore, maybe will have to change the ext and int image names
 
     image_int = np.copy(image) # copying the image so we dont alter the original
     image_cp1 = np.copy(image_int) # copying the image for comparision purposes
@@ -143,6 +197,7 @@ def stackImages(scale,imgArray):
         hor= np.hstack(imgArray)
         ver = hor
     return ver
+
 
 if __name__ == '__main__':
     print ("\nRunning utils.py ...")
