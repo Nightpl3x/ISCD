@@ -66,6 +66,7 @@ def match_image_by_color(image, color, threshold, number_of_colors ):
     return select_image
 
 def show_selected_images(images, color, threshold, colors_to_match):
+    
     IMAGE_DIRECTORY_ROI_PREP = xct.DirROI(dir)
     IMAGE_DIRECTORY_ROI = IMAGE_DIRECTORY_ROI_PREP[0]
     
@@ -80,10 +81,10 @@ def show_selected_images(images, color, threshold, colors_to_match):
             #   Get and Print Image Name
             # ============================
             with Image.open(IMAGE_DIRECTORY_ROI[i]) as img:
-                print("Sample: {}\n Result: EXPOSED\n" .format(img.filename))
+                print("Sample: {}\n Result: POSITIVE\n" .format(img.filename))
             
             # append text to txt file
-            dH.appendText("\nSample: {}\n Result: EXPOSED\n" .format(img.filename))
+            dH.appendText("\nSample: {}\n Result: POSITIVE\n" .format(img.filename))
 
             # ============================
             #   Output Exposed Image
@@ -97,10 +98,10 @@ def show_selected_images(images, color, threshold, colors_to_match):
             #   Get and Print Image Name
             # ============================
             with Image.open(IMAGE_DIRECTORY_ROI[i]) as img:
-                print("Sample: {}\n Result: CLEAN\n" .format(img.filename))
+                print("Sample: {}\n Result: NEGATIVE\n" .format(img.filename))
 
             # append text to txt file
-            dH.appendText("\nSample: {}\n Result: CLEAR\n" .format(img.filename))
+            dH.appendText("\nSample: {}\n Result: NEGATIVE\n" .format(img.filename))
 
             
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 # ==========================================================================================================================================================#
-#                                                                       startup.py 
+#                                                                   main.py 
 # ==========================================================================================================================================================#
 
 if __name__ == '__main__':
@@ -69,7 +69,7 @@ if __name__ == '__main__':
             dH.fillDirRoi() # move roi images into directory
             dH.fillDirCam(IMAGE_DIRECTORY_CAM[index]) # move camera image into directory
 
-            print("\nExited task successfully...")
+            print("\nTask complete...")
 
 
 else:
