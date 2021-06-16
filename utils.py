@@ -15,7 +15,8 @@ from datetime import datetime
 # =============================================================================
 # Virtual Env + Root directory
 # =============================================================================
-#   .\env\Scripts\activate
+#   .\env\Scripts\activate for Windows
+#   source env/bin/activate for Linux
 #   deactivate
 
 ROOT_DIR = os.path.abspath("../") # get parent directory
