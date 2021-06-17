@@ -1,10 +1,11 @@
-# ################################################# #
-# Mask R-CNN for Object Detection and Segmentation  #
-# ################################################# #
+# PROJECT: *empty*  
 
-# ##############
-# Installation #
-# ##############
+## Introduction
+
+## Usage
+
+## Installation 
+
 
 1) Extract ColiChecker.zip to /home/pi
 
@@ -23,13 +24,11 @@
    [IMPORTANT: for the image analysis part there have to be images in /ColiChecker/images/images_1_camera]
 
 5) Enjoy or build upon the project (as long as you dont change the directory names and/or structure of course)
-# ############################################################################################################################################################################
-# KNOWN ISSUES:
-# ############################################################################################################################################################################
 
-# #############################################################
-# keras.engine has no attribute layers #
-# #############################################################
+## KNOWN ISSUES:
+
+### keras.engine has no attribute layers #
+
 1) change line 23 from
 
     import keras.engine as KE
@@ -51,9 +50,9 @@ E) Changelog:
             § Line 8 ff. (not so sure here but I wrote it down)
 
 
-# #############################################################
-# If you are facing issues regarding modules do the following #
-# #############################################################
+
+### If you are facing issues regarding modules do the following #
+
 
 1) delete the virtual environment (It has to be deactivated):
 
@@ -61,15 +60,15 @@ E) Changelog:
 
 2) create a new virtual environment with Python 3.7.3:
 
-#   upgrade pip version
+####   upgrade pip version
     $ python3 -m pip install --user --upgrade pip
-#   install venv module
+####   install venv module
     $ python3 -m pip install --user virtualenv
-#   create virtual env
+####  create virtual env
     $ python3 -m venv env
-#   activate env:
+####   activate env:
     $ source env//bin/activate 
-#   upgrade pip inside the venv
+####   upgrade pip inside the venv
     $ python3 -m pip install --user --upgrade pip
 
 3) download the modules via requirements_PI_Py3.7.3.txt file (IMPORTANT: Change the name to requirements.txt prior)
@@ -80,9 +79,9 @@ E) Changelog:
 
 5) run main.py
 
-# #################################################################################
-# If the previous steps did not fix the problem you will have to do the following #
-# #################################################################################
+
+### If the previous steps did not fix the problem you will have to do the following #
+
 
 1) delete the virtual environment (It has to be deactivated):
 
@@ -90,15 +89,15 @@ E) Changelog:
 
 2) create a new virtual environment with Python 3.7.3:
 
-#   upgrade pip version
+####   upgrade pip version
     $ python3 -m pip install --user --upgrade pip
-#   install venv module
+####   install venv module
     $ python3 -m pip install --user virtualenv
-#   create virtual env
+####   create virtual env
     $ python3 -m venv env
-#   activate env:
+####   activate env:
     $ source env//bin/activate 
-#   upgrade pip inside the venv
+####   upgrade pip inside the venv
     $ python3 -m pip install --user --upgrade pip
 
 3) Manually install needed modules
@@ -138,10 +137,10 @@ E) Changelog:
 
     【Required】 Restart the terminal.
 
-#   you may need to get a newer numpy version but run main.py prior to verify, if so:
+#####   you may need to get a newer numpy version but run main.py prior to verify, if so:
     $ pip3 install -U numpy
 
-# Resources:
+##### Resources:
     https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
 
     https://github.com/matterport/Mask_RCNN/blob/master/requirements.txt
@@ -151,11 +150,11 @@ E) Changelog:
     https://www.pyimagesearch.com/2015/02/23/install-opencv-and-python-on-your-raspberry-pi-2-and-b/ (until Step 5 (Step 5 included))
 
 
-# ####################################################################################################################
-# Epilogue #
-# ####################################################################################################################
 
-# Regarding the mrcnn folder
+## Appendix
+
+
+#### Regarding the mrcnn folder
 The mrcnn folder builds the base the project stands on and is crucial for all image processes going on in the parent directory. I made many changes to fit it to the task however you can always find the original directory here:
 
 https://github.com/matterport/Mask_RCNN/releases

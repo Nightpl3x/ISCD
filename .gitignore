@@ -3,6 +3,8 @@ __pycache__
 .vscode
 env
 
-Mask_RCNN
+Mask_RCNN/assets
+Mask_RCNN/images
+*.h5
 
 ~index.py

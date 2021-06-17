@@ -1,0 +1,16 @@
+RESULTS:
+
+Sample: images/image_2_rois\18H_1000Z_by_Balloon_0.jpeg
+ Result: POSITIVE
+
+Sample: images/image_2_rois\18H_1000Z_by_Balloon_1.jpeg
+ Result: POSITIVE
+
+Sample: images/image_2_rois\44H_10000Z_by_Balloon_0.jpeg
+ Result: POSITIVE
+
+Sample: images/image_2_rois\44H_10000Z_by_Balloon_1.jpeg
+ Result: POSITIVE
+
+Sample: images/image_2_rois\44H_10000Z_by_Balloon_2.jpeg
+ Result: POSITIVE
