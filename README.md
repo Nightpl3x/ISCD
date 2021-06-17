@@ -1,7 +1,7 @@
 # PROJECT: *empty*  
 
 ## Introduction
-This Project is building upon Mask_RCNN and enhancing/altering some parts to make it avaiable for a improved color detecion on a Raspberri Pi 3
+This Project is building upon Mask R-CNN (by Matterport, Inc.) for object detection and instance segmentation on Keras and TensorFlow while enhancing/altering parts to create a reliable color detecion method for Windows and Raspberri Pi 3.
 
 ## Installation 
 
