@@ -94,9 +94,6 @@ class DirIMG(object):
     else:
         path_image = path_image_abs[third_last_slash+1:] # relative path to image
 
-    print(path_image_abs)
-    print(path_image)
-
     path_folder_abs = path_image_abs[:last_slash] # absolute path to images folder
     path_folder = path_image_abs[third_last_slash+1:last_slash] # relative path to images folder
 
