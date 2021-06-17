@@ -3,10 +3,10 @@ __pycache__
 .vscode
 env
 
-Mask_RCNN
-
-xcode/test_functions.py
-xcode/utils.py
+Mask_RCNN/assets
+Mask_RCNN/images
+Mask_RCNN/samples/coco/mask_rcnn_coco.h5
+Mask_RCNN/samples/balloon/mask_rcnn_balloon.h5
 
 ~index.py
 
