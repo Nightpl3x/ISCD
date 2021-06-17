@@ -87,9 +87,15 @@ class DirIMG(object):
     last_slash = path_image_abs.rfind("/") # find the last occurring slash in the absolut image path
     second_last_slash = path_image_abs[:path_image_abs.rfind("/")].rfind("/") # find the second last occurring slash in the absolut image path
     third_last_slash = path_image_abs[:path_image_abs[:path_image_abs.rfind("/")].rfind("/")].rfind("/") # find the third last occurring slash in the absolut image path
+    fourth_last_slash = path_image_abs[:path_image_abs[:path_image_abs[:path_image_abs.rfind("/")].rfind("/")].rfind("/")].rfind("/") # find the fourth last occurring slash in the absolut image path
 
-    path_image = path_image_abs[third_last_slash+1:] # relative path to image
-    path_image = "images/assets/_original/44H_10000Z.jpeg"
+    if path_image_abs.rfind("assets"):
+        path_image = path_image_abs[fourth_last_slash+1:] # relative path to image inside assets directory
+    else:
+        path_image = path_image_abs[third_last_slash+1:] # relative path to image
+
+    print(path_image_abs)
+    print(path_image)
 
     path_folder_abs = path_image_abs[:last_slash] # absolute path to images folder
     path_folder = path_image_abs[third_last_slash+1:last_slash] # relative path to images folder
@@ -200,8 +206,11 @@ def stackImages(scale,imgArray):
         ver = hor
     return ver
 
+def main():
+    pass
 
 if __name__ == '__main__':
     print ("\nRunning utils.py ...")
+    main()
 else:
     print ("\nImporting utils.py ...")
