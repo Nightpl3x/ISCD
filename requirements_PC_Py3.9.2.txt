@@ -65,7 +65,7 @@ pandas==1.2.3
 pandocfilters==1.4.3
 parso==0.8.2
 pickleshare==0.7.5
-Pillow==8.1.2
+Pillow==8.2.0
 pluggy==0.13.1
 prometheus-client==0.10.1
 prompt-toolkit==3.0.18
@@ -110,7 +110,7 @@ toml==0.10.2
 tornado==6.1
 traitlets==5.0.5
 typing-extensions==3.7.4.3
-urllib3==1.26.4
+urllib3==1.26.5
 wcwidth==0.2.5
 webencodings==0.5.1
 Werkzeug==1.0.1

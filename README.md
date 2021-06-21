@@ -5,14 +5,14 @@ This Project is building upon Mask R-CNN (by Matterport, Inc.) for object detect
 
 ## Installation 
 
-1) Download and extract ColiChecker.zip pr just clone the repo
+1) Download and extract ColiChecker.zip or just clone the repo
 
 2) Open terminal and go to the directory:
-
+#####
     $ cd ./ColiChecker
 
 3) install venv module
-
+#####
     $ python3 -m pip install --user virtualenv
 
 4) activate a virtual environment
@@ -43,12 +43,12 @@ This Project is building upon Mask R-CNN (by Matterport, Inc.) for object detect
 ### 'keras.engine has no attribute layers' 
 
 1) change line 23 in Mask_RCNN/mrcnn/model.py from
-
-    import keras.engine as KE
+#####
+    $ import keras.engine as KE
 
     to
-
-    import keras.engine.topology as KE
+#####
+    $ import keras.engine.topology as KE
 
 E) Changelog:
 
@@ -61,7 +61,7 @@ Before using the MS Coco Training Weights I had to manually alter the following 
 ### If you are facing issues regarding modules do the following #
 
 1) delete the virtual environment (It has to be deactivated):
-#
+#####
     $ sudo rm -rf env
 
 2) create a new virtual environment with Python 3.7.3:
@@ -157,12 +157,11 @@ into
     https://www.pyimagesearch.com/2015/02/23/install-opencv-and-python-on-your-raspberry-pi-2-and-b/ (until Step 5 (Step 5 included))
 
 
-
 ## Appendix
 
 #### Regarding the mrcnn folder
 You may have to create a mrcnn copy and put it into 
-
+#####
 "\ColiChecker\env\Lib\site-packages\"
 
 to resolve import issues, so whenver making changes to one of these folders you need to update the other one as well.
