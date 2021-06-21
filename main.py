@@ -73,6 +73,8 @@ if __name__ == '__main__':
 
 
 else:
-    print ('\nImporting main.py ...')
+    print ('\nImporting main.py will not yield any results ...')
+
+    
     
     
