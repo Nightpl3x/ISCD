@@ -25,8 +25,8 @@ if __name__ == '__main__':
         # =============================================================================
         # Import Datasets
         # =============================================================================        
-        import Mask_RCNN_Coco as mrc
-        import Mask_RCNN_Balloon as mrb
+        import MRCNN_Coco as mrc
+        import MRCNN_Balloon as mrb
 
         # =============================================================================
         # Create directory with timestamp to move images into
