@@ -161,7 +161,7 @@ def MRCNN_Coco(IMAGE_DIRECTORY_CAM,images_cam):
         plt.figure(figsize=(8,8))
         plt.imshow(temp)
 
-        dH.saveIMG(IMAGE_DIRECTORY_CAM, i, "Coco")
+        dH.saveIMG(IMAGE_DIRECTORY_CAM, i, "Coco", ".jpeg")
 
         #plt.show()
 

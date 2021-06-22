@@ -3,9 +3,14 @@ __pycache__
 .vscode
 env
 
-Mask_RCNN/assets
-Mask_RCNN/images
+appendix_jupyter
+appendix_python
+
 Mask_RCNN/samples/coco/mask_rcnn_coco.h5
 Mask_RCNN/samples/balloon/mask_rcnn_balloon.h5
+
+Mask_RCNN/samples/demo.ipynb
+Mask_RCNN/samples/nucleus
+Mask_RCNN/samples/shaped
 
 ~index.py

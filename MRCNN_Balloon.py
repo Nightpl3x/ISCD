@@ -161,7 +161,7 @@ def MRCNN_Balloon(IMAGE_DIRECTORY_CAM, images_cam):
         plt.figure(figsize=(8,8))
         plt.imshow(temp)
 
-        dH.saveIMG(IMAGE_DIRECTORY_CAM, i, "Balloon")
+        dH.saveIMG(IMAGE_DIRECTORY_CAM, i, "Balloon", ".jpeg")
 
         #plt.show()
 

@@ -7,7 +7,7 @@ def run():
     # =============================================================================
     import directoryHandling as dH
 
-    IMAGE_DIRECTORY_CAM, images_cam = dH.DirCAM() # reread directory state
+    IMAGE_DIRECTORY_CAM, images_cam = dH.DirCAM("/*.jpeg") # read directory state
 
     if len(IMAGE_DIRECTORY_CAM) == 0:
         print("\nSorry but there are no pictures in here...")
@@ -19,6 +19,7 @@ def run():
         # Create results file into timestamp directory
         # =============================================================================        
         dH.createDir() # directory with current time
+        #folderame, target_dir, text_file_location = dH.createDir()
         dH.createText("RESULTS:\n")
 
         # =================================
@@ -30,7 +31,7 @@ def run():
         # ========================================
         #  Check if first dataset was successfull
         # ========================================
-        IMAGE_DIRECTORY_ROI, images_roi = dH.DirROI()
+        IMAGE_DIRECTORY_ROI, images_roi = dH.DirROI("/*.jpeg")
         '''
         if len(IMAGE_DIRECTORY_ROI) == 0:
             import MRCNN_Coco as mrc
@@ -42,7 +43,7 @@ def run():
         print("\n")          
         import utils as xct
         import colorExtraction as cE 
-        cE.show_selected_images(images_roi, xct.COLORS['Cyan'], 55, 15) # analyzes whole image_2_rois directory
+        cE.show_selected_images(images_roi, xct.COLORS['Cyan'], 55, 15) # analyzes whole image_2_rois directory and write results
 
         # =================================
         #  Move ROIs and Camera Image into timestamp folder
