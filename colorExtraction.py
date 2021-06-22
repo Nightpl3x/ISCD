@@ -66,7 +66,7 @@ def match_image_by_color(image, color, threshold, number_of_colors ):
 
 def show_selected_images(images, color, threshold, colors_to_match):
     
-    IMAGE_DIRECTORY_ROI, images_roi = dH.DirROI()
+    IMAGE_DIRECTORY_ROI, images_roi = dH.DirROI("/*.jpeg")
     
     for i in range(len(images)):
 

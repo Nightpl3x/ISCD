@@ -17,10 +17,9 @@ def run():
 
         # =============================================================================
         # Create results file into timestamp directory
-        # =============================================================================        
+        # =============================================================================      
         dH.createDir() # directory with current time
-        #folderame, target_dir, text_file_location = dH.createDir()
-        dH.createText("RESULTS:\n")
+        dH.appendText("\nRESULT:\n")
 
         # =================================
         #  Run first Dataset

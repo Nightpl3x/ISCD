@@ -22,18 +22,20 @@ ROOT_DIR = os.path.abspath("../") # get parent directory
 # =============================================================================
 # Create Timestamp Directory
 # =============================================================================
-def createDir():
+def setupDir():
 
     folderame = datetime.now().strftime("%Y(Y)__%m(M)__%d(D)__%H.%M(H).%S(s)")
     target_dir = ROOT_DIR+"/ColiChecker/images/image_3_storage/"+folderame
     text_file_location = target_dir+"/Results.txt"
-
-    if not os.path.exists(target_dir):
-        os.makedirs(target_dir)
     
     return folderame, target_dir, text_file_location
 
-folderame, target_dir, text_file_location = createDir()
+folderame, target_dir, text_file_location = setupDir()
+
+def createDir():
+    
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir)
 
 # =============================================================================
 # ROI Directory
