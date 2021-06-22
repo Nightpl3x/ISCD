@@ -7,10 +7,9 @@
 # =============================================================================
 import os
 import cv2
-import glob
 import numpy as np
 
-from datetime import datetime
+ROOT_DIR = os.path.abspath("../") # get parent directory
 
 # =============================================================================
 # Virtual Env + Root directory
@@ -18,45 +17,6 @@ from datetime import datetime
 #   .\env\Scripts\activate for Windows
 #   source env/bin/activate for Linux
 #   deactivate
-
-ROOT_DIR = os.path.abspath("../") # get parent directory
-
-# =============================================================================
-# CAM Directory
-# =============================================================================
-path_folder_cam = "images/image_1_camera" # relative path to camera images folder
-
-def DirCAM(dir):
-    
-    IMAGE_DIRECTORY_CAM = glob.glob(path_folder_cam+"/*.jpeg") # create list based on image names --> strings
-    IMAGE_DIRECTORY_CAM.sort() # sort list
-    images_cam = [cv2.imread(img) for img in IMAGE_DIRECTORY_CAM] # create additional list for storing images --> ndarrays
-    images_cam = [cv2.cvtColor(img, cv2.COLOR_BGR2RGB) for img in images_cam] # convert from bgr back to rgb
-
-    return [IMAGE_DIRECTORY_CAM, images_cam]
-
-# =============================================================================
-# ROI Directory
-# =============================================================================
-path_folder_roi = "images/image_2_rois" # relative path to ROI result images folder
-
-def DirROI(dir):
-
-    IMAGE_DIRECTORY_ROI = glob.glob(path_folder_roi+"/*.jpeg") # create list based on image names --> strings
-    IMAGE_DIRECTORY_ROI.sort() # sort list
-    images_roi = [cv2.imread(img) for img in IMAGE_DIRECTORY_ROI] # create additional list for storing images --> ndarrays
-    images_roi = [cv2.cvtColor(img, cv2.COLOR_BGR2RGB) for img in images_roi] # convert from bgr back to rgb
-
-    return [IMAGE_DIRECTORY_ROI, images_roi]
-
-# =============================================================================
-# Text file
-# =============================================================================
-class DirTxt(object):
-    folderame = datetime.now().strftime("%Y(Y)__%m(M)__%d(D)__%H.%M(H).%S(s)")
-    newpath = ROOT_DIR+"/ColiChecker/images/image_3_storage/"+folderame
-    target_dir = newpath
-    text_file_location = newpath+"/Results.txt"
 
 # =============================================================================
 # RGB Color Codes
@@ -203,11 +163,8 @@ def stackImages(scale,imgArray):
         ver = hor
     return ver
 
-def main():
-    pass
 
 if __name__ == '__main__':
     print ("\nRunning utils.py ...")
-    main()
 else:
     print ("\nImporting utils.py ...")

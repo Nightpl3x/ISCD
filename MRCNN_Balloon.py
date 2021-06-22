@@ -10,6 +10,7 @@ def MRCNN_Balloon(IMAGE_DIRECTORY_CAM, images_cam):
     import cv2
     import glob
     import utils as xct
+    import directoryHandling as dH
 
     # =============================================================================
     # Imports
@@ -160,21 +161,14 @@ def MRCNN_Balloon(IMAGE_DIRECTORY_CAM, images_cam):
         plt.figure(figsize=(8,8))
         plt.imshow(temp)
 
+        dH.saveIMG(IMAGE_DIRECTORY_CAM, i, "Balloon")
 
-        with Image.open(IMAGE_DIRECTORY_CAM) as cam_image_title:
-            cam_image_name = cam_image_title.filename
-        last_cam_in_str = cam_image_name.rfind("camera") # find last occurring "camera" in string of image path
-
-
-        #-----------target directory-----"/"-image name in target directory--------index----file format
-        image_name = xct.path_folder_roi+"/"+cam_image_name[last_cam_in_str+7:-5]+"_by_Balloon_{}".format(i)+".jpeg" # image name for saving, could use other name template
-        plt.savefig(image_name, bbox_inches='tight') # save images to new directory
         #plt.show()
 
 
 if __name__ == '__main__':
-    print ("\nRunning Mask_RCNN_Balloon.py by itself won't work on this edition ...")
+    print ("\nRunning MRCNN_Balloon.py by itself won't work on this version ...")
 else:
-    print ("\nImporting Mask_RCNN_Baloon.py ...")
+    print ("\nImporting MRCNN_Balloon.py ...")
 
     
