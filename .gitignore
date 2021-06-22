@@ -6,11 +6,28 @@ env
 appendix_jupyter
 appendix_python
 
-Mask_RCNN/samples/coco/mask_rcnn_coco.h5
-Mask_RCNN/samples/balloon/mask_rcnn_balloon.h5
-
+# Mask_RCNN/samples
 Mask_RCNN/samples/demo.ipynb
 Mask_RCNN/samples/nucleus
-Mask_RCNN/samples/shaped
+Mask_RCNN/samples/shapes
+
+# Mask_RCNN/samples/balloon
+Mask_RCNN/samples/balloon/inspect_balloon_data.ipynb
+Mask_RCNN/samples/balloon/inspect_balloon_model.ipynb
+Mask_RCNN/samples/balloon/mask_rcnn_balloon.h5
+Mask_RCNN/samples/balloon/README.md
+
+
+# Mask_RCNN/samples/coco
+Mask_RCNN/samples/coco/common
+Mask_RCNN/samples/coco/LuaAPI
+Mask_RCNN/samples/coco/MatlabAPI
+Mask_RCNN/samples/coco/PythonAPI
+Mask_RCNN/samples/coco/inspect_data.ipynb
+Mask_RCNN/samples/coco/inspect_model.ipynb
+Mask_RCNN/samples/coco/inspect_weights.ipynb
+Mask_RCNN/samples/coco/mask_rcnn_coco.h5
+Mask_RCNN/samples/coco/README.txt
+
 
 ~index.py
