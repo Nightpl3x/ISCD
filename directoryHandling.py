@@ -67,7 +67,6 @@ def saveIMG(index, dataset_name, image_type):
 # =============================================================================
 def DirROI(image_type):
     
-    print(path_dir_roi+image_type)
     IMAGE_DIRECTORY_ROI = glob.glob(path_dir_roi+"/*"+image_type) # create list based on image names --> strings
     IMAGE_DIRECTORY_ROI.sort() # sort list
     images_roi = [io.imread(img) for img in IMAGE_DIRECTORY_ROI] # create additional list for storing images --> ndarrays
