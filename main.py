@@ -1,31 +1,16 @@
-# ==========================================================================================================================================================#
-#                                                                   main.py 
-# ==========================================================================================================================================================#
-
 def run():
     # =============================================================================
     # Check image_1_camera directory for images
     # =============================================================================
-    import os 
-    import skimage.io as io
-
     import directoryHandling as dH
 
-    
-    IMAGE_DIRECTORY_CAM, _ = dH.DirCAM("/*.jpeg") # read directory state
+    IMAGE_DIRECTORY_CAM, images_cam = dH.DirCAM("/*.jpeg") # read directory state
 
     if len(IMAGE_DIRECTORY_CAM) == 0:
         print("\nSorry but there are no pictures in here...")
 
     elif len(IMAGE_DIRECTORY_CAM) > 0:
         print("\nStarting process...\n")
-
-        # =============================================================================
-        # Get latest image
-        # =============================================================================
-        import test
-        image_cam_dir = test.DirCAM_PATH()
-        image_cam = test.DirCAM_IMG()
 
         # =============================================================================
         # Create results file into timestamp directory
@@ -37,7 +22,8 @@ def run():
         #  Run first Dataset
         # =================================
         import MRCNN_Balloon as mrb
-        mrb.MRCNN_Balloon(image_cam_dir, image_cam)
+        
+        mrb.MRCNN_Balloon(IMAGE_DIRECTORY_CAM[0], images_cam[0])
 
         # ========================================
         #  Check if first dataset was successfull
@@ -60,7 +46,7 @@ def run():
         #  Move ROIs and Camera Image into timestamp folder
         # =================================
         dH.fillDirRoi() # move roi images into directory
-        dH.fillDirCam(image_cam_dir) # move camera image into directory
+        dH.fillDirCam(IMAGE_DIRECTORY_CAM[0]) # move camera image into directory
         
         print("\nTask completed...")
 
@@ -69,5 +55,4 @@ if __name__ == '__main__':
     run()
  
 else:
-    print("\nImporting main.py...")    
-    
+    print("\nImporting main.py...")   

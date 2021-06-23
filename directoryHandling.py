@@ -76,9 +76,6 @@ def DirCAM(image_type):
 
 def fillDirCam(IMAGE_DIRECTORY_CAM):    
 
-    #source_dir_cam = IMAGE_DIRECTORY_CAM[:21]
-    #file_name_cam = IMAGE_DIRECTORY_CAM[22:]
-
     shutil.move(os.path.join(IMAGE_DIRECTORY_CAM), target_dir)
 
 # =============================================================================
