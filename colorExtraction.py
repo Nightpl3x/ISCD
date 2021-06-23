@@ -37,9 +37,9 @@ def get_colors(image, number_of_colors, show_chart):
     
     center_colors = clf.cluster_centers_
     # get ordered colors by iterating through the keys
-    ordered_colors = [center_colors[i] for i in counts.keys()]
-    hex_colors = [RGB2HEX(ordered_colors[i]) for i in counts.keys()]
-    rgb_colors = [ordered_colors[i] for i in counts.keys()]
+    ordered_colors = (center_colors[i] for i in counts.keys())
+    hex_colors = (RGB2HEX(ordered_colors[i]) for i in counts.keys())
+    rgb_colors = (ordered_colors[i] for i in counts.keys())
 
     if (show_chart):
         plt.figure(figsize = (8, 6))
