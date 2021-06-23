@@ -82,7 +82,7 @@ def MRCNN_Balloon(IMAGE_DIRECTORY_CAM, images_cam):
 
         STEPS_PER_EPOCH = 1000
         DETECTION_MIN_CONFIDENCE = 0.7
-
+        
     config = InferenceConfig()
     config.display()
 
@@ -105,7 +105,8 @@ def MRCNN_Balloon(IMAGE_DIRECTORY_CAM, images_cam):
         
         Adjust the size attribute to control how big to render images
         """
-        _, ax = plt.subplots(rows, cols, figsize=(size*cols, size*rows))
+        fig, ax = plt.subplots(rows, cols, figsize=(size*cols, size*rows))
+        plt.close(fig)
         return ax
 
     # Load validation dataset
