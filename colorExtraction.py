@@ -21,7 +21,7 @@ from skimage.color import rgb2lab, deltaE_cie76
 # Main
 # ==========================================================================
 def RGB2HEX(color):
-    return "#{:02x}{:02x}{:02x}".format(int(color[0]), int(color[1]), int(color[2]))
+    yield "#{:02x}{:02x}{:02x}".format(int(color[0]), int(color[1]), int(color[2]))
 
 def get_colors(image, number_of_colors, show_chart):
     
@@ -46,7 +46,7 @@ def get_colors(image, number_of_colors, show_chart):
         plt.pie(counts.values(), labels = hex_colors, colors = hex_colors)
         plt.show()
 
-    return rgb_colors
+    yield rgb_colors
 
 def match_image_by_color(image, color, threshold, number_of_colors ): 
     
@@ -60,7 +60,7 @@ def match_image_by_color(image, color, threshold, number_of_colors ):
         if (diff < threshold):
             select_image = True
     
-    return select_image
+    yield select_image
 
 def show_selected_images(images, color, threshold, colors_to_match):
 
