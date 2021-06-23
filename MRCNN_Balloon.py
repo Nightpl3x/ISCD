@@ -162,7 +162,8 @@ def MRCNN_Balloon(IMAGE_DIRECTORY_CAM, images_cam):
         plt.figure(figsize=(8,8))
         plt.imshow(temp)
 
-        dH.saveIMG(IMAGE_DIRECTORY_CAM, i, "Balloon", ".jpeg")
+        image_type = ".jpeg"
+        dH.saveIMG(i, "Balloon", image_type)
 
         #plt.show()
 
@@ -171,5 +172,5 @@ if __name__ == '__main__':
     print ("\nRunning MRCNN_Balloon.py by itself won't work on this version ...")
 else:
     print ("\nImporting MRCNN_Balloon.py ...")
-
+    image_type = ".jpeg"
     

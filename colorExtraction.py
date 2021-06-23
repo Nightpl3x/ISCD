@@ -6,13 +6,11 @@
 # TODO: need to check for optimal color for 'images' and maybe code clean up
 
 # ==========================================================================
-#   Imports
+# Imports
 # ==========================================================================
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-
-import directoryHandling as dH
 
 from PIL import Image
 from collections import Counter
@@ -20,7 +18,7 @@ from sklearn.cluster import KMeans
 from skimage.color import rgb2lab, deltaE_cie76
 
 # ==========================================================================
-#   Main
+# Main
 # ==========================================================================
 def RGB2HEX(color):
     return "#{:02x}{:02x}{:02x}".format(int(color[0]), int(color[1]), int(color[2]))
@@ -65,18 +63,20 @@ def match_image_by_color(image, color, threshold, number_of_colors ):
     return select_image
 
 def show_selected_images(images, color, threshold, colors_to_match):
-    
-    IMAGE_DIRECTORY_ROI, images_roi = dH.DirROI("/*.jpeg")
-    
-    for i in range(len(images)):
 
+    import directoryHandling as dH
+    from MRCNN_Balloon import image_type
+    IMAGE_DIRECTORY_ROI, images_roi = dH.DirROI(image_type)
+
+    for i in range(len(images)):
+        
         selected = match_image_by_color(images[i],
                                         color,
                                         threshold,
                                         colors_to_match)
         if (selected):
             # ============================
-            #   Get and Print Image Name
+            # Get and Print Image Name
             # ============================
             with Image.open(IMAGE_DIRECTORY_ROI[i]) as img:
                 print("Sample: {}\n Result: POSITIVE\n" .format(img.filename))
@@ -85,7 +85,7 @@ def show_selected_images(images, color, threshold, colors_to_match):
             dH.appendText("\nSample: {}\n Result: POSITIVE\n" .format(img.filename))
 
             # ============================
-            #   Output Exposed Image
+            # Output Exposed Image
             # ============================
             #images[i] = cv2.cvtColor(images[i],cv2.COLOR_BGR2RGB) # convert again to RGB Color Model because OpenCV uses BGR as Default Model
             #cv2.imshow("Exposed Sample: ",images[i])
@@ -93,7 +93,7 @@ def show_selected_images(images, color, threshold, colors_to_match):
 
         else:
             # ============================
-            #   Get and Print Image Name
+            # Get and Print Image Name
             # ============================
             with Image.open(IMAGE_DIRECTORY_ROI[i]) as img:
                 print("Sample: {}\n Result: NEGATIVE\n" .format(img.filename))

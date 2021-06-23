@@ -161,7 +161,8 @@ def MRCNN_Coco(IMAGE_DIRECTORY_CAM,images_cam):
         plt.figure(figsize=(8,8))
         plt.imshow(temp)
 
-        dH.saveIMG(IMAGE_DIRECTORY_CAM, i, "Coco", ".jpeg")
+        image_type = ".jpeg"
+        dH.saveIMG(i, "Coco", image_type)
 
         #plt.show()
 
@@ -170,5 +171,5 @@ if __name__ == '__main__':
     print ("\nRunning MRCNN_Coco.py by itself won't work on this version ...")
 else:
     print ("\nImporting MRCNN_Coco.py ...")
-
+    image_type = ".jpeg"
     
