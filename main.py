@@ -12,7 +12,7 @@ def run():
     import directoryHandling as dH
 
     
-    IMAGE_DIRECTORY_CAM, images_cam = dH.DirCAM("/*.jpeg") # read directory state
+    IMAGE_DIRECTORY_CAM, _ = dH.DirCAM("/*.jpeg") # read directory state
 
     if len(IMAGE_DIRECTORY_CAM) == 0:
         print("\nSorry but there are no pictures in here...")
@@ -23,10 +23,9 @@ def run():
         # =============================================================================
         # Get latest image
         # =============================================================================
-        ROOT_DIR = os.path.abspath("../") # get parent directory
-        path_folder_cam = os.listdir(ROOT_DIR+"/ColiChecker/images/image_1_camera")[0]
-        image_cam_dir = ROOT_DIR+"/ColiChecker/images/image_1_camera/"+path_folder_cam
-        image_cam = io.imread(ROOT_DIR+"/ColiChecker/images/image_1_camera/"+path_folder_cam)
+        import test
+        image_cam_dir = test.DirCAM_PATH()
+        image_cam = test.DirCAM_IMG()
 
         # =============================================================================
         # Create results file into timestamp directory
