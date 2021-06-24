@@ -11,11 +11,11 @@ This Project is building upon Mask R-CNN (by Matterport, Inc.) for object detect
 #####
     $ cd ./ColiChecker
 
-3) install venv module
+3) Install venv module
 #####
     $ python3 -m pip install --user virtualenv
 
-4) activate a virtual environment
+4) Activate a virtual environment
 
 #### On Windows
     $ ./env/Scripts/activate 
@@ -28,12 +28,12 @@ This Project is building upon Mask R-CNN (by Matterport, Inc.) for object detect
 #### If you are on Raspberri Pi 3/Linux
     $ python3 -m pip install -r requirements_PC_Py3.7.3.txt
 #### If there are any problems 
-    install from the requiremnts.txt inside Mask_RCNN or the requirements directory
+    Install from the requiremnts.txt inside Mask_RCNN or the requirements directory
     $ python3 -m pip install -r requirements.txt
 
-6) you should now be able to run the project:
+6) You should now be able to run the project:
 ####
-    $ python main.py
+    $ python run.py
 
    [IMPORTANT: for the image analysis part there have to be images in /ColiChecker/images/images_1_camera]
 
@@ -42,7 +42,7 @@ This Project is building upon Mask R-CNN (by Matterport, Inc.) for object detect
 
 ### 'keras.engine has no attribute layers' 
 
-1) change line 23 in Mask_RCNN/mrcnn/model.py from
+1) Change line 23 in Mask_RCNN/mrcnn/model.py from
 #####
     $ import keras.engine as KE
 
@@ -69,11 +69,11 @@ Prior to using Training Weights I had to manually alter the following lines in M
 
 ### If you are facing issues regarding modules do the following #
 
-1) delete the virtual environment (It has to be deactivated):
+1) Delete the virtual environment (It has to be deactivated):
 #####
     $ sudo rm -rf env
 
-2) create a new virtual environment with Python 3.7.3:
+2) Create a new virtual environment with Python 3.7.3:
 
 ####   upgrade pip version
     $ python3 -m pip install --user --upgrade pip
@@ -86,7 +86,7 @@ Prior to using Training Weights I had to manually alter the following lines in M
 ####   upgrade pip inside the venv
     $ python3 -m pip install --user --upgrade pip
 
-3) download the modules via requirements_PI_Py3.7.3.txt file 
+3) Download the modules via requirements_PI_Py3.7.3.txt file 
     [IMPORTANT: You may have to change the name to requirements.txt prior]
 ####
     $ python3 -m pip install -r requirements.txt
@@ -98,27 +98,27 @@ into
 ####
     /ColiChecker/env/lib/python3.7/site-packages/
 
-5) run run.py
+5) Run run.py
 
 
 ### If the previous steps did not fix the problem you will have to do the following #
 #### (May also apply to PC)
 
-1) delete the virtual environment (It has to be deactivated):
+1) Delete the virtual environment (It has to be deactivated):
 ####
     $ sudo rm -rf env
 
-2) create a new virtual environment with Python 3.7.3:
+2) Create a new virtual environment with Python 3.7.3:
 
-####   upgrade pip version
+####   Upgrade pip version
     $ python3 -m pip install --user --upgrade pip
-####   install venv module
+####   Install venv module
     $ python3 -m pip install --user virtualenv
-####   create virtual env
+####   Create virtual env
     $ python3 -m venv env
-####   activate env:
+####   Activate env:
     $ source env//bin/activate 
-####   upgrade pip inside the venv
+####   Upgrade pip inside the venv
     $ python3 -m pip install --user --upgrade pip
 
 3) Install needed modules from one of the following requirements.txt:
@@ -136,7 +136,7 @@ into
                             libatlas3-base libatlas-base-dev libopenblas-dev libopenblas-base libblas-dev \
                             liblapack-dev cython3 libatlas-base-dev openmpi-bin libopenmpi-dev python3-dev
 
-##### newer pip versions activate warnings when encountering sudo pips inside of virtual environments so remove everything infront of pip3
+##### Newer pip versions activate warnings when encountering sudo pips inside of virtual environments so remove everything infront of pip3
 ####
     $ sudo pip3 install pip --upgrade            
     $ sudo pip3 install keras_applications==1.0.8 --no-deps
@@ -154,7 +154,7 @@ into
 
     【Required】 Restart the terminal.
 
-#####   you may need to get a newer numpy version but run main.py prior to verify, if so:
+##### You may need to get a newer numpy version but run main.py prior to verify, if so:
     $ pip3 install -U numpy
 
 ##### Resources:
