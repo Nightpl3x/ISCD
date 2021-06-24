@@ -15,9 +15,11 @@ import main
 # =============================================================================
 # Create error class to force restart
 # =============================================================================
-class Restart(LookupError):
-    """Restart class Error to prevent the script from using to much memory after first run"""
+class Pause(LookupError):
+    """Pause Error to prevent the script from using to much memory during run"""
 
+class Restart(LookupError):
+    """Restart Error to prevent the script from using to much memory after first run"""
 # =============================================================================
 # main
 # =============================================================================           
@@ -53,12 +55,17 @@ if __name__ == '__main__':
         # =============================================================================
         except IndexError:
             print("\nSorry but there are no pictures in here...\nTrying again in 30s ...")
-            time.sleep(30)
+            time.sleep(20)
             os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run 
+
+        except Pause:
+            print("\nContinuing in 15s ...")
+            time.sleep(5)
+            os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run
 
         except Restart:
             print("\nRestarting in 15s ...")
-            time.sleep(15)
+            time.sleep(5)
             os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run               
 
         except KeyboardInterrupt:
@@ -67,5 +74,4 @@ if __name__ == '__main__':
         else:
             print("Something happend....")
             break
-
 

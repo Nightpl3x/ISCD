@@ -135,10 +135,10 @@ def MRCNN_Balloon(IMAGE_DIRECTORY_CAM, images_cam):
     #                           Run Object Detection
     # =============================================================================
     results = model.detect([images_cam], verbose=1)
+    r = results[0]
 
     # Display/Visualize results
     ax = get_ax(1)
-    r = results[0]
     visualize.display_instances(images_cam,
                                 r['rois'], 
                                 r['masks'], 

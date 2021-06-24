@@ -28,7 +28,7 @@ This Project is building upon Mask R-CNN (by Matterport, Inc.) for object detect
 #### If you are on Raspberri Pi 3/Linux
     $ python3 -m pip install -r requirements_PC_Py3.7.3.txt
 #### If there are any problems 
-    install from the requiremnts.txt inside Mask_RCNN 
+    install from the requiremnts.txt inside Mask_RCNN or the requirements directory
     $ python3 -m pip install -r requirements.txt
 
 6) you should now be able to run the project:
@@ -52,7 +52,7 @@ This Project is building upon Mask R-CNN (by Matterport, Inc.) for object detect
 
 E) Changelog:
 
-Before using the MS Coco Training Weights I had to manually alter the following mrcnn lines in the following order:
+Before using the MS Coco Training Weights I had to manually alter the following mrcnn.model lines in this order (changes are included in the file of this project):
     •  Line 951
     •  Line 702
     •  Line 27

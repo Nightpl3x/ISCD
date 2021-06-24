@@ -46,13 +46,12 @@ def DirCAM():
 
     return image_cam_name, IMAGE_DIRECTORY_CAM, image_cam
 
-def fillDirCam(IMAGE_DIRECTORY_CAM):    
+def fillDirCam(IMAGE_DIRECTORY_CAM, target_dir):    
 
     shutil.move(os.path.join(IMAGE_DIRECTORY_CAM), target_dir)
 
 def saveIMG(index, dataset_name, image_type):
 
-    global path_dir_roi
     path_dir_roi = "images/image_2_rois" # relative path to ROI result images folder
     image_cam_name, _, _ = DirCAM()
     save_location = path_dir_roi+"/"
@@ -67,14 +66,16 @@ def saveIMG(index, dataset_name, image_type):
 # =============================================================================
 def DirROI(image_type):
     
+    path_dir_roi = "images/image_2_rois" # relative path to ROI result images folder
     IMAGE_DIRECTORY_ROI = glob.glob(path_dir_roi+"/*"+image_type) # create list based on image names --> strings
     IMAGE_DIRECTORY_ROI.sort() # sort list
     images_roi = [io.imread(img) for img in IMAGE_DIRECTORY_ROI] # create additional list for storing images --> ndarrays
 
     return IMAGE_DIRECTORY_ROI, images_roi
 
-def fillDirRoi():
+def fillDirRoi(target_dir):
 
+    path_dir_roi = "images/image_2_rois" # relative path to ROI result images folder
     source_dir_roi = path_dir_roi
     file_names_roi = os.listdir(source_dir_roi)
     
@@ -91,7 +92,7 @@ def createText(text_header):
     f.write(text_header)
     f.close
 
-def appendText(text):
+def appendText(text, text_file_location):
     # append text to txt file
     f = open(text_file_location, "a")
     f.write(text)
