@@ -31,6 +31,12 @@ from distutils.version import LooseVersion
 assert LooseVersion(tf.__version__) >= LooseVersion("1.3")
 assert LooseVersion(keras.__version__) >= LooseVersion('2.0.8')
 
+#########################################################################
+#  Reduce CPU threads (added by Chris)[only needed when on Rapsberry Pi]
+#########################################################################
+#tf.config.threading.set_intra_op_parallelism_threads(1)
+#tf.config.threading.set_inter_op_parallelism_threads(1)
+#tf.executing_eagerly()
 
 ############################################################
 #  Utility Functions
