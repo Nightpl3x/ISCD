@@ -1,0 +1,5 @@
+
+RESULT:
+
+Sample: images/image_2_rois\20H_10000Z2.jpeg_by_Balloon_0.jpeg
+ Result: POSITIVE

@@ -165,6 +165,6 @@ def stackImages(scale,imgArray):
 
 
 if __name__ == '__main__':
-    print ("\nRunning utils.py ...")
+    print ("\n  >Running utils.py...\n")
 else:
-    print ("\nImporting utils.py ...")
+    print ("\n  >Importing utils.py...\n")

@@ -20,19 +20,19 @@ import tensorflow as tf
 import keras
 import keras.backend as K
 import keras.layers as KL
-import keras.engine as KE # on the raspberry pi: $ import keras.engine.topology as KE
+import keras.engine as KE # on the raspberry pi: $ import keras.engine.topology as KE <-=====================================================================================
 import keras.models as KM
 
 from mrcnn import utils
-from tensorflow.python.keras import saving # added by Chris
+from tensorflow.python.keras import saving # added by Chris <-=====================================================================================
 
 # Requires TensorFlow 1.3+ and Keras 2.0.8+.
 from distutils.version import LooseVersion
 assert LooseVersion(tf.__version__) >= LooseVersion("1.3")
 assert LooseVersion(keras.__version__) >= LooseVersion('2.0.8')
 
-#########################################################################
-#  Reduce CPU threads (added by Chris)[only needed when on Rapsberry Pi]
+######################################################################### <-=====================================================================================
+# Reduce CPU threads (added by Chris)[only needed when on Rapsberry Pi]
 #########################################################################
 #tf.config.threading.set_intra_op_parallelism_threads(1)
 #tf.config.threading.set_inter_op_parallelism_threads(1)
@@ -706,7 +706,7 @@ def refine_detections_graph(rois, probs, deltas, window, config):
     # Class IDs per ROI
     class_ids = tf.argmax(input=probs, axis=1, output_type=tf.int32)
     # Class probability of the top class of each ROI
-    indices = tf.stack([tf.range(tf.shape(input=probs)[0]), class_ids], axis = 1) # before indices = tf.stack([tf.range(probs.shape[0]), class_ids], axis=1) 
+    indices = tf.stack([tf.range(tf.shape(input=probs)[0]), class_ids], axis = 1) # before: indices = tf.stack([tf.range(probs.shape[0]), class_ids], axis=1) <-=====================================================================================
     class_scores = tf.gather_nd(probs, indices)
     # Class-specific bounding box deltas
     deltas_specific = tf.gather_nd(deltas, indices)
@@ -955,11 +955,11 @@ def fpn_classifier_graph(rois, feature_maps, image_meta,
                            name='mrcnn_bbox_fc')(shared)
     # Reshape to [batch, num_rois, NUM_CLASSES, (dy, dx, log(dh), log(dw))]
     s = K.int_shape(x)
-    # line 952 to 957 was this before: mrcnn_bbox = KL.Reshape((s[1], num_classes, 4), name="mrcnn_bbox")(x)
+    # the below if... was solely this before: mrcnn_bbox = KL.Reshape((s[1], num_classes, 4), name="mrcnn_bbox")(x) <-=====================================================================================
     if s[1]==None:
-        mrcnn_bbox = KL.Reshape((-1, num_classes, 4), name="mrcnn_bbox")(x)
+        mrcnn_bbox = KL.Reshape((-1, num_classes, 4), name="mrcnn_bbox")(x) # <-=====================================================================================
     else:
-        mrcnn_bbox = KL.Reshape((s[1], num_classes, 4), name="mrcnn_bbox")(x)
+        mrcnn_bbox = KL.Reshape((s[1], num_classes, 4), name="mrcnn_bbox")(x) # <-=====================================================================================
 
     return mrcnn_class_logits, mrcnn_probs, mrcnn_bbox
 
@@ -2138,9 +2138,9 @@ class MaskRCNN():
             layers = filter(lambda l: l.name not in exclude, layers)
 
         if by_name:
-            saving.hdf5_format.load_weights_from_hdf5_group_by_name(f, layers) # was before: saving.load_weights_from_hdf5_group_by_name(f, layers)
+            saving.hdf5_format.load_weights_from_hdf5_group_by_name(f, layers) # before: saving.load_weights_from_hdf5_group_by_name(f, layers) <-=====================================================================================
         else:
-            saving.hdf5_format.load_weights_from_hdf5_group(f, layers) # was before: saving.load_weights_from_hdf5_group(f, layers) 
+            saving.hdf5_format.load_weights_from_hdf5_group(f, layers) # before: saving.load_weights_from_hdf5_group(f, layers) <-=====================================================================================
           
         if hasattr(f, 'close'):
             f.close()

@@ -16,12 +16,12 @@ import main
 # Create error class to force restart
 # =============================================================================
 class Pause(LookupError):
-    """Pause Error to prevent the script from using to much memory during run"""
+    """Pause Error to prevent the script from using to much memory during runtime"""
 
 class Restart(LookupError):
     """Restart Error to prevent the script from using to much memory after first run"""
 # =============================================================================
-# main
+# Script may be stopped pressing 'Ctrl+C' two times
 # =============================================================================           
 if __name__ == '__main__':
 
@@ -48,30 +48,41 @@ if __name__ == '__main__':
             # =======================================================================================           
             # raise error class to force restart
             # =======================================================================================           
-            raise Restart("Restarting script to save memory ...")
+            raise Restart
         
-        # =============================================================================
-        # handle exceptions and completly restart script
-        # =============================================================================
+        # ===================================================================================================================
+        # handle exceptions and completly restart script (t-10s on time.sleep() as we already have 10s inside the main.py)
+        # ===================================================================================================================
         except IndexError:
-            print("\nSorry but there are no pictures in here...\nTrying again in 30s ...")
-            time.sleep(20)
+            print("---------------------------------------------")
+            print("\nSorry but there are no pictures in here...\nTrying again in 60s ...")
+            print("---------------------------------------------")
+            time.sleep(50)
             os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run 
 
         except Pause:
-            print("\nContinuing in 15s ...")
+            print("---------------------------------------------")
+            print("\nInitializing next Phase...\nReady in 15s...")
+            print("---------------------------------------------")
             time.sleep(5)
             os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run
 
         except Restart:
+            print("---------------------------------------------")
             print("\nRestarting in 15s ...")
+            print("---------------------------------------------")
             time.sleep(5)
             os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run               
 
         except KeyboardInterrupt:
+            print("---------------------------------------------")
             print("\nTask stopped by user...")
+            print("---------------------------------------------")
 
         else:
+            print("---------------------------------------------")
             print("Something happend....")
+            print("---------------------------------------------")
             break
+
 

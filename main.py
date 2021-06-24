@@ -21,7 +21,9 @@ def run():
 
     try:
 
-        print("Starting in 10s...")
+        print("\n=================================================")
+        print("\nReading current Phase State\nPlease wait 10s...")
+        print("\n=================================================")
         time.sleep(10)
         with open("runtime.txt") as f:
             lines = f.readlines()
@@ -32,8 +34,9 @@ def run():
         # Creating Directory
         # =================================
         if lines[0] == "Phase: 0\n":
-
-            print("\nInitializing script...\n")
+            print("__________________________________")
+            print("\nInitializing script...")
+            print("__________________________________")
             # =============================================================================
             # Check image_1_camera directory for images
             # =============================================================================
@@ -42,8 +45,10 @@ def run():
 
             # =============================================================================
             # Create results file into timestamp directory
-            # =============================================================================      
-            print("Creating directory...")
+            # ============================================================================= 
+            print("__________________________________")   
+            print("\nCreating directory...")
+            print("__________________________________")
             dH.createDir() # directory with current time
 
             # =============================================================================
@@ -60,15 +65,16 @@ def run():
             with open("runtime.txt", "w") as f:
                 f.writelines(lines)    
 
-            raise Pause("Preparing next step...")
+            raise Pause
 
         # =================================
         # PHASE 1:
         # Object Detection
         # =================================            
         elif lines[0] == "Phase: 1\n":
-            
-            print("\nInitializing Object Detection...\n")
+            print("__________________________________")
+            print("\nInitializing Object Detection...")
+            print("__________________________________")
             # =============================================================================
             # Get first image in image_1_camera directory for the object detection
             # =============================================================================
@@ -90,15 +96,16 @@ def run():
             with open("runtime.txt", "w") as f:
                 f.writelines(lines)    
 
-            raise Pause("Preparing next step...")
+            raise Pause
 
         # =================================
         # PHASE 2:
         # Color Extraction
         # =================================            
         elif lines[0] == "Phase: 2\n":
-
-            print("\nInitializing Color Analysis...\n")
+            print("__________________________________")
+            print("\nInitializing Color Analysis...")
+            print("__________________________________")
             # =================================
             #  Analyze ROIs
             # =================================
@@ -119,15 +126,16 @@ def run():
             with open("runtime.txt", "w") as f:
                 f.writelines(lines)    
 
-            raise Pause("Preparing next step...")
+            raise Pause
         
         # =================================
         # PHASE 3:
         # Image Moving
         # =================================
         elif lines[0] == "Phase: 3\n":
-
-            print("\nMoving Images...\n")
+            print("__________________________________")
+            print("\nMoving Images...")
+            print("__________________________________")
             # ===================================================
             #  Move ROIs and Camera Image into timestamp folder
             # ===================================================
@@ -142,7 +150,9 @@ def run():
             fillDirRoi(target_dir) # move roi images into directory
             fillDirCam(IMAGE_DIRECTORY_CAM, target_dir) # move camera image into directory
             
+            print("\n=================================================")
             print("\nTask completed...")
+            print("\n=================================================")
 
             # =============================================================================
             # Create new runtime.txt with next Phase and Timestamp Directory name and raise Pause
@@ -158,12 +168,16 @@ def run():
             print("Oh no... something happend concerning the runtime.txt file")
     
     except Pause:
-        print("\nContinuing in 15s ...")
+        print("---------------------------------------------")
+        print("\nInitializing next Phase...\nReady in 15s...")
+        print("---------------------------------------------")
         time.sleep(5)
         os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run
     
     except KeyboardInterrupt:
+        print("---------------------------------------------")
         print("\nTask stopped by user...")
+        print("---------------------------------------------")
 
         
 
@@ -176,7 +190,9 @@ if __name__ == '__main__':
 
         try:
             
-            print("Starting in 10s...")
+            print("\n=================================================")
+            print("\nReading current Phase State\nPlease wait 10s...")
+            print("\n=================================================")
             time.sleep(10)
             with open("runtime.txt") as f:
                 lines = f.readlines()
@@ -188,7 +204,9 @@ if __name__ == '__main__':
         # =================================
             if lines[0] == "Phase: 0\n":
 
-                print("\nInitializing script...\n")
+                print("__________________________________")
+                print("\nInitializing script...")
+                print("__________________________________")
                 # =============================================================================
                 # Check image_1_camera directory for images
                 # =============================================================================
@@ -198,7 +216,9 @@ if __name__ == '__main__':
                 # =============================================================================
                 # Create results file into timestamp directory
                 # =============================================================================      
-                print("Creating directory...")
+                print("__________________________________")     
+                print("\nCreating directory...")
+                print("__________________________________")
                 dH.createDir() # directory with current time
 
                 # =============================================================================
@@ -215,15 +235,17 @@ if __name__ == '__main__':
                 with open("runtime.txt", "w") as f:
                     f.writelines(lines)    
 
-                raise Pause("Preparing next step...")
+                raise Pause
 
         # =================================
         # PHASE 1:
         # Object Detection
         # =================================            
             elif lines[0] == "Phase: 1\n":
-                
-                print("\nInitializing Object Detection...\n")
+
+                print("__________________________________")
+                print("\nInitializing Object Detection...")
+                print("__________________________________")
                 # =============================================================================
                 # Get first image in image_1_camera directory for the object detection
                 # =============================================================================
@@ -245,7 +267,7 @@ if __name__ == '__main__':
                 with open("runtime.txt", "w") as f:
                     f.writelines(lines)    
 
-                raise Pause("Preparing next step...")
+                raise Pause
 
         # =================================
         # PHASE 2:
@@ -253,7 +275,9 @@ if __name__ == '__main__':
         # =================================            
             elif lines[0] == "Phase: 2\n":
 
-                print("\nInitializing Color Analysis...\n")
+                print("__________________________________")
+                print("\nInitializing Color Analysis...")
+                print("__________________________________")       
                 # =================================
                 #  Analyze ROIs
                 # =================================
@@ -274,7 +298,7 @@ if __name__ == '__main__':
                 with open("runtime.txt", "w") as f:
                     f.writelines(lines)    
 
-                raise Pause("Preparing next step...")
+                raise Pause
             
 
         # =================================
@@ -283,7 +307,9 @@ if __name__ == '__main__':
         # =================================
             elif lines[0] == "Phase: 3\n":
 
-                print("\nMoving Images...\n")
+                print("__________________________________")
+                print("\nMoving Images...")
+                print("__________________________________")
                 # ===================================================
                 #  Move ROIs and Camera Image into timestamp folder
                 # ===================================================
@@ -298,7 +324,9 @@ if __name__ == '__main__':
                 fillDirRoi(target_dir) # move roi images into directory
                 fillDirCam(IMAGE_DIRECTORY_CAM, target_dir) # move camera image into directory
                 
+                print("\n=================================================")
                 print("\nTask completed...")
+                print("\n=================================================")
 
                 # =============================================================================
                 # Create new runtime.txt with next Phase and Timestamp Directory name and raise Pause
@@ -313,30 +341,42 @@ if __name__ == '__main__':
                 raise Restart
 
             else:
+                print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
                 print("Oh no... something happend concerning the runtime.txt file")
+                print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
         
         # =============================================================================
         # handle exceptions and completly restart script
         # =============================================================================
         except IndexError:
+            print("---------------------------------------------")
             print("\nSorry but there are no pictures in here...\nTrying again in 30s ...")
+            print("---------------------------------------------")
             time.sleep(20)
             os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run 
 
         except Pause:
+            print("---------------------------------------------")
             print("\nContinuing in 15s ...")
+            print("---------------------------------------------")
             time.sleep(5)
             os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run
 
         except Restart:
+            print("---------------------------------------------")
             print("\nRestarting in 15s ...")
+            print("---------------------------------------------")
             time.sleep(5)
             os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run               
 
         except KeyboardInterrupt:
+            print("---------------------------------------------")
             print("\nTask stopped by user...")
+            print("---------------------------------------------")
 
         else:
+            print("---------------------------------------------")
             print("Something happend....")
+            print("---------------------------------------------")
             break
 

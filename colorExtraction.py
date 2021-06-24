@@ -102,6 +102,6 @@ def show_selected_images(images, color, threshold, colors_to_match):
 
             
 if __name__ == '__main__':
-    print ("\nRunning colorExraction.py ...")
+    print ("\n  >Running colorExraction.py...\n")
 else:
-    print ("\nImporting colorExraction.py ...")
+    print ("\n  >Importing colorExraction.py...\n")

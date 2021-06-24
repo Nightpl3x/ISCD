@@ -46,17 +46,26 @@ This Project is building upon Mask R-CNN (by Matterport, Inc.) for object detect
 #####
     $ import keras.engine as KE
 
-    to
+to
 #####
     $ import keras.engine.topology as KE
 
+### When receiving 'what() std::bad_alloc' as output
+1) Reduce the thread usage on the raspberry pi's cpu by uncommenting the following lines
+
+    $ tf.config.threading.set_intra_op_parallelism_threads(1)
+    $ tf.config.threading.set_inter_op_parallelism_threads(1)
+    $ tf.executing_eagerly()
+
+located right after the imports in the Mask_RCNN/mrcnn/model.py
+
 E) Changelog:
 
-Before using the MS Coco Training Weights I had to manually alter the following mrcnn.model lines in this order (changes are included in the file of this project):
-    •  Line 951
-    •  Line 702
+Prior to using Training Weights I had to manually alter the following lines in Mask_RCNN/mrcnn/model.py in this order (changes are included in said file of this project hoewever):
+    •  Line 958 ff.
+    •  Line 709
     •  Line 27
-    •  Line 2135 ff
+    •  Line 2141 ff.
 
 ### If you are facing issues regarding modules do the following #
 

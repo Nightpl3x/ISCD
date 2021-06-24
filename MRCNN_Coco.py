@@ -105,7 +105,8 @@ def MRCNN_Coco(IMAGE_DIRECTORY_CAM,images_cam):
         
         Adjust the size attribute to control how big to render images
         """
-        _, ax = plt.subplots(rows, cols, figsize=(size*cols, size*rows))
+        fig, ax = plt.subplots(rows, cols, figsize=(size*cols, size*rows))
+        plt.close(fig)
         return ax
 
     # Load validation dataset
@@ -134,10 +135,10 @@ def MRCNN_Coco(IMAGE_DIRECTORY_CAM,images_cam):
     #                           Run Object Detection
     # =============================================================================
     results = model.detect([images_cam], verbose=1)
+    r = results[0]
 
     # Display/Visualize results
     ax = get_ax(1)
-    r = results[0]
     visualize.display_instances(images_cam,
                                 r['rois'], 
                                 r['masks'], 
@@ -168,8 +169,8 @@ def MRCNN_Coco(IMAGE_DIRECTORY_CAM,images_cam):
 
 
 if __name__ == '__main__':
-    print ("\nRunning MRCNN_Coco.py by itself won't work on this version ...")
+    print ("\n  >Running MRCNN_Coco.py by itself won't work on this version...\n")
 else:
-    print ("\nImporting MRCNN_Coco.py ...")
+    print ("\n  >Importing MRCNN_Coco.py...\n")
     image_type = ".jpeg"
     

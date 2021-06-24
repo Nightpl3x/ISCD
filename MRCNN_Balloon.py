@@ -169,8 +169,8 @@ def MRCNN_Balloon(IMAGE_DIRECTORY_CAM, images_cam):
 
 
 if __name__ == '__main__':
-    print ("\nRunning MRCNN_Balloon.py by itself won't work on this version ...")
+    print ("\n  >Running MRCNN_Balloon.py by itself won't work on this version...\n")
 else:
-    print ("\nImporting MRCNN_Balloon.py ...")
+    print ("\n  >Importing MRCNN_Balloon.py...\n")
     image_type = ".jpeg"
     

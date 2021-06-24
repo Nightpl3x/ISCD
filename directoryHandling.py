@@ -100,8 +100,8 @@ def appendText(text, text_file_location):
 
 
 if __name__ == '__main__':
-    print ("\nRunning directoryHandling.py ...")
+    print ("\n  >Running directoryHandling.py...\n")
 else:
-    print ("\nImporting directoryHandling.py ...")
+    print ("\n  >Importing directoryHandling.py...\n")
 
     
