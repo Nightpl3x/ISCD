@@ -98,7 +98,7 @@ into
 ####
     /ColiChecker/env/lib/python3.7/site-packages/
 
-5) run main.py
+5) run run.py
 
 
 ### If the previous steps did not fix the problem you will have to do the following #
