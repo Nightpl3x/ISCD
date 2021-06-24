@@ -52,7 +52,7 @@ to
 
 ### When receiving 'what() std::bad_alloc' as output
 1) Reduce the thread usage on the raspberry pi's cpu by uncommenting the following lines
-
+####
     $ tf.config.threading.set_intra_op_parallelism_threads(1)
     $ tf.config.threading.set_inter_op_parallelism_threads(1)
     $ tf.executing_eagerly()
@@ -61,7 +61,7 @@ located right after the imports in the Mask_RCNN/mrcnn/model.py
 
 E) Changelog:
 
-Prior to using Training Weights I had to manually alter the following lines in Mask_RCNN/mrcnn/model.py in this order (changes are included in said file of this project hoewever):
+Prior to using Training Weights I had to manually alter the following lines in Mask_RCNN/mrcnn/model.py in this order (changes are included in said file of this project however...):
     •  Line 958 ff.
     •  Line 709
     •  Line 27
@@ -86,7 +86,8 @@ Prior to using Training Weights I had to manually alter the following lines in M
 ####   upgrade pip inside the venv
     $ python3 -m pip install --user --upgrade pip
 
-3) download the modules via requirements_PI_Py3.7.3.txt file (IMPORTANT: You may have to change the name to requirements.txt prior)
+3) download the modules via requirements_PI_Py3.7.3.txt file 
+(IMPORTANT: You may have to change the name to requirements.txt prior)
 ####
     $ python3 -m pip install -r requirements.txt
 
@@ -173,4 +174,5 @@ You may have to create a mrcnn copy and put it into
 #####
 "\ColiChecker\env\Lib\site-packages\"
 
-to resolve import issues, so whenver making changes to one of these folders you need to update the other one as well.
+to resolve import issues, so whenever making changes to one of these folders you need to update the other one as well.
+Alternatively you may change the import structure inside the MRCNN_Balloon.py and MRCNN_Coco.py files so they may directly import from inside the Mask_RCNN directory.
