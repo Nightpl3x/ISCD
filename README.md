@@ -87,7 +87,7 @@ Prior to using Training Weights I had to manually alter the following lines in M
     $ python3 -m pip install --user --upgrade pip
 
 3) download the modules via requirements_PI_Py3.7.3.txt file 
-(IMPORTANT: You may have to change the name to requirements.txt prior)
+    [IMPORTANT: You may have to change the name to requirements.txt prior]
 ####
     $ python3 -m pip install -r requirements.txt
 
