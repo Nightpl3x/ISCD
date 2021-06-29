@@ -15,9 +15,6 @@ import main
 # =============================================================================
 # Create error class to force restart
 # =============================================================================
-class Pause(LookupError):
-    """Pause Error to prevent the script from using to much memory during runtime"""
-
 class Restart(LookupError):
     """Restart Error to prevent the script from using to much memory after first run"""
 # =============================================================================
@@ -59,13 +56,6 @@ if __name__ == '__main__':
             print("---------------------------------------------")
             time.sleep(50)
             os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run 
-
-        except Pause:
-            print("---------------------------------------------")
-            print("\nInitializing next Phase...\nReady in 15s...")
-            print("---------------------------------------------")
-            time.sleep(5)
-            os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run
 
         except Restart:
             print("---------------------------------------------")

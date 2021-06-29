@@ -9,12 +9,12 @@ import os
 import sys
 import time
 import random
-from numpy.lib.type_check import imag
-
 import skimage.io as io
-from run import Pause, Restart
 
 ROOT_DIR = os.path.abspath("../") # get parent directory
+
+class Pause(LookupError):
+    """Pause Error to prevent the script from using to much memory during runtime"""
 
 # =============================================================================
 # run()
@@ -180,8 +180,6 @@ def run():
         print("---------------------------------------------")
         print("\nTask stopped by user...")
         print("---------------------------------------------")
-
-        
 
 # =============================================================================
 # main
