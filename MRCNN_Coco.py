@@ -5,30 +5,22 @@
 
 def MRCNN_Coco(IMAGE_DIRECTORY_CAM,images_cam):
     # =============================================================================
-    # Basic Imports + Setup for image_1_camera check
-    # =============================================================================
-    import cv2
-    import glob
-    import utils as xct
-    import directoryHandling as dH
-
-    # =============================================================================
     # Imports
     # =============================================================================
+    import re
     import os
     import sys
-    import random
     import math
-    import re
     import time
+    import random
     import skimage.io
     import numpy as np
     import tensorflow as tf
-    import matplotlib
     import matplotlib.pyplot as plt
     import matplotlib.patches as patches
 
-    from PIL import Image
+    import directoryHandling as dH
+
 
     # Root directory of the project
     ROOT_DIR = os.path.abspath("../")
@@ -42,6 +34,7 @@ def MRCNN_Coco(IMAGE_DIRECTORY_CAM,images_cam):
     # =============================================================================
     sys.path.append(ROOT_DIR)  # find local version of the library
     from mrcnn import utils
+    from mrcnn.config import Config
     from mrcnn import visualize
     from mrcnn.visualize import display_images
     import mrcnn.model as modellib
@@ -70,19 +63,62 @@ def MRCNN_Coco(IMAGE_DIRECTORY_CAM,images_cam):
     config = coco.CocoConfig()
     COCO_DIR = os.path.join(ROOT_DIR, ROOT_DIR+"/ColiChecker/Mask_RCNN/samples/coco") # path inside Mask_RCNN directory
 
-    # Override the training configurations with a few changes for inferencing.
-    class InferenceConfig(coco.CocoConfig):
+# Override the inference configurations
+    class InferenceConfig(Config):
+
+        # Override and sub-classes the config.py class
+
+        # Name of the configurations
+        NAME = "Coco_Dataset"
 
         # Set batch size to 1 since we'll be running inference on one image at a time. 
         # Batch size = GPU_COUNT * IMAGES_PER_GPU
-        # Run detection on one image at a time
 
+        # NUMBER OF GPUs to use. When using only a CPU, this needs to be set to 1.
         GPU_COUNT = 1
+        # Run detection on one image at a time
         IMAGES_PER_GPU = 1
 
+        # Number of steps per epoch
         STEPS_PER_EPOCH = 1000
+
+        # Number of validation steps to run at the end of every epoch.
+        # A bigger number improves accuracy of validation stats, but slows down
+        VALIDATION_STEPS = 50
+
+        # Backbone network architecture
+        BACKBONE = "resnet101"
+
+        # Number of classification classes (including background)
+        NUM_CLASSES = 1+80  # For the Coco Dataset this equals Background + 80 Object Classes
+
+        POST_NMS_ROIS_INFERENCE = 1000
+
+        # If enabled, resizes instance masks to a smaller size to reduce memory load. Recommended when using high-resolution images.
+        USE_MINI_MASK = True
+        MINI_MASK_SHAPE = (56, 56)  # (height, width) of the mini-mask
+
+        # Input image resizing
+        IMAGE_RESIZE_MODE = "square"
+        IMAGE_MIN_DIM = 800
+        IMAGE_MAX_DIM = 1024
+
+        # Number of color channels per image. RGB = 3, grayscale = 1, RGB-D = 4
+        IMAGE_CHANNEL_COUNT = 3
+
+        # Maximum number of ground truth instances to use in one image
+        MAX_GT_INSTANCES = 100
+
+        # Max number of final detections
+        DETECTION_MAX_INSTANCES = 100
+
+        # Minimum probability value to accept a detected instance
+        # ROIs below this threshold are skipped
         DETECTION_MIN_CONFIDENCE = 0.7
 
+        # Non-maximum suppression threshold for detection
+        DETECTION_NMS_THRESHOLD = 0.3
+        
     config = InferenceConfig()
     config.display()
 

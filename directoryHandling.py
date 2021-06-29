@@ -40,11 +40,18 @@ def createDir():
 def DirCAM():
 
     path_dir_cam = ROOT_DIR+"/ColiChecker/images/image_1_camera"
+
+    CHECK_FOLDER = os.path.isdir(path_dir_cam)
+
+    # create directory if it doesn't exist
+    if not CHECK_FOLDER:
+        os.makedirs(path_dir_cam)
+
     image_cam_name = os.listdir(path_dir_cam)[0]
     IMAGE_DIRECTORY_CAM = path_dir_cam+"/"+image_cam_name 
     image_cam = io.imread(path_dir_cam+"/"+image_cam_name)
 
-    return image_cam_name, IMAGE_DIRECTORY_CAM, image_cam
+    return path_dir_cam, image_cam_name, IMAGE_DIRECTORY_CAM, image_cam
 
 def fillDirCam(IMAGE_DIRECTORY_CAM, target_dir):    
 
@@ -53,7 +60,14 @@ def fillDirCam(IMAGE_DIRECTORY_CAM, target_dir):
 def saveIMG(index, dataset_name, image_type):
 
     path_dir_roi = "images/image_2_rois" # relative path to ROI result images folder
-    image_cam_name, _, _ = DirCAM()
+
+    CHECK_FOLDER = os.path.isdir(path_dir_roi)
+
+    # create directory if it doesn't exist
+    if not CHECK_FOLDER:
+        os.makedirs(path_dir_roi)
+
+    _, image_cam_name, _, _ = DirCAM()
     save_location = path_dir_roi+"/"
     image_appendix = "_by_"+dataset_name+"_{}".format(index)
     
@@ -97,6 +111,15 @@ def appendText(text, text_file_location):
     f = open(text_file_location, "a")
     f.write(text)
     f.close()
+
+def resetRuntimeTxt():
+    print("Resetting runtime.txt...")
+    with open("runtime.txt") as f:
+        lines = f.readlines()
+        lines[0] = "Phase: 0\n"
+        lines[1] = "Directory Path: "
+    with open("runtime.txt", "w") as f:
+        f.writelines(lines)  
 
 
 if __name__ == '__main__':

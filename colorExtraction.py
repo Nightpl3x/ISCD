@@ -66,7 +66,7 @@ def show_selected_images(images, color, threshold, colors_to_match):
 
     import directoryHandling as dH
     from MRCNN_Balloon import image_type
-    IMAGE_DIRECTORY_ROI, images_roi = dH.DirROI(image_type)
+    IMAGE_DIRECTORY_ROI, _ = dH.DirROI(image_type)
 
     for i in range(len(images)):
         
