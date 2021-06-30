@@ -14,13 +14,6 @@ if system() == "Windows":
     subp.run("virtualenv env")
     subp.run("pip install --target=env/Lib/site-packages -r requirements/Windows_on_Python3.9.2/requirements.txt")
 
-    choice = input("Shall the script be run right now?[y/n]\n")
-    if choice == "y":
-
-        python_bin = "env/Scripts/python" # Path to a Python interpreter inside the virtualenv
-        script_file = "run.py" # Path to the script that must run under the virtualenv
-        subp.Popen([python_bin, script_file])
-
 # =============================================================================
 # Setup on Linux
 # =============================================================================
@@ -57,13 +50,6 @@ elif system() == "Linux":
     subp.run("sudo -H pip3 install tensorflow-2.5.0-cp37-none-linux_armv7l.whl")
 
     subp.run("sudo reboot")
-
-    choice = input("Shall the script be run right now?[y/n]\n")
-    if choice == "y":
-
-        python_bin = ROOT_DIR+"ColiChecker/"+"env/bin/python" # Path to a Python interpreter inside the virtualenv
-        script_file = ROOT_DIR+"ColiChecker/"+"run.py" # Path to the script that must run under the virtualenv
-        subp.Popen([python_bin, script_file])
 
 
 # =============================================================================

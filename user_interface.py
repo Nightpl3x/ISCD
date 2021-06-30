@@ -40,10 +40,12 @@ class Interface(tk.Tk):
 
         self.geometry('250x400')
         self.title('ColiChecker')
+        self['background']='#50A6C2'
+        
 
-        first_label = tk.Label(self, text = "\nColiChecker Interface\n", font=14)
+        first_label = tk.Label(self, text = "\n ColiChecker GUI \n", font='Helvetica 14 bold', relief = "groove")
         first_label.pack(pady = 5, padx = 5)
-    # =============================================================================
+# =============================================================================
 # Buttons
 # =============================================================================
         y, x = 10, 15
