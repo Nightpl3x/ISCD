@@ -24,15 +24,22 @@ def setupDir():
     folderame = datetime.now().strftime("%Y(Y)__%m(M)__%d(D)__%H.%M(H).%S(s)")
     target_dir = ROOT_DIR+"/ColiChecker/images/image_3_storage/"+folderame
     text_file_location = target_dir+"/Results.txt"
-    
-    return folderame, target_dir, text_file_location
 
-folderame, target_dir, text_file_location = setupDir()
+    with open("runtime.txt") as f:
+        lines = f.readlines()
+        lines[1] = "Directory Path: "+target_dir
+    with open("runtime.txt", "w") as f:
+        f.writelines(lines)   
 
-def createDir():
-    
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
+    
+    # append text to txt file
+    f = open(text_file_location, "a")
+    f.write("RESULT:\n")
+    f.close()
+    
+    return folderame, target_dir, text_file_location
 
 # =============================================================================
 # CAM Directory
@@ -100,12 +107,6 @@ def fillDirRoi(target_dir):
 # =============================================================================
 # Text file handling
 # =============================================================================
-def createText(text_header):
-    # create text file
-    f = open(text_file_location, "w")
-    f.write(text_header)
-    f.close
-
 def appendText(text, text_file_location):
     # append text to txt file
     f = open(text_file_location, "a")
@@ -119,7 +120,7 @@ def resetRuntimeTxt():
         lines[0] = "Phase: 0\n"
         lines[1] = "Directory Path: "
     with open("runtime.txt", "w") as f:
-        f.writelines(lines)  
+        f.writelines(lines) 
 
 
 if __name__ == '__main__':

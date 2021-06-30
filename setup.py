@@ -1,69 +1,77 @@
 import os
+import subprocess as subp
 from platform import system
 
 ROOT_DIR = os.path.abspath("../")
 
-try:
 # =============================================================================
 # Setup on Windows
 # =============================================================================
-    if system() == "Windows":
+if system() == "Windows":
 
-        #os.system("pip install virtualenv")
+    subp.run("pip install virtualenv")
+    subp.run("pip install --user --upgrade pip")
+    subp.run("virtualenv env")
+    subp.run("pip install --target=env/Lib/site-packages -r requirements/Windows_on_Python3.9.2/requirements.txt")
 
-        activate_this_file = "./env/bin/activate_this.py"
-        exec(activate_this_file, dict(__file__=activate_this_file))
+    choice = input("Shall the script be run right now?[y/n]\n")
+    if choice == "y":
 
-        #os.system("pip install -r requirements/Windows_on_Python3.9.2/requirements.txt")
+        python_bin = "env/Scripts/python" # Path to a Python interpreter inside the virtualenv
+        script_file = "run.py" # Path to the script that must run under the virtualenv
+        subp.Popen([python_bin, script_file])
 
 # =============================================================================
 # Setup on Linux
 # =============================================================================
-    elif system() == "Linux":
+elif system() == "Linux":
+    
+    subp.run("sudo apt-get install -y libhdf5-dev libc-ares-dev libeigen3-dev gcc gfortran libgfortran5 \
+                    libatlas3-base libatlas-base-dev libopenblas-dev libopenblas-base libblas-dev \
+                    liblapack-dev cython3 libatlas-base-dev openmpi-bin libopenmpi-dev python3-dev") # install system dependencies
 
-        os.system("python3 -m pip install --user virtualenv") # install venv module
+    subp.run("pip3 install --user --upgrade pip") # upgrade pip
+    subp.run("python3 -m pip install --user virtualenv") # install venv module
+    subp.run("virtualenv env") # create virtual environment
 
+    subp.run("python3 -m pip3 install --target=env/lib/python3.7/site-packages -r requirements/Linux_on_Python3.7.3/requirements.txt")
+    
+    subp.run("python3 -m pip3 install --target=env/lib/python3.7/site-packages keras_applications==1.0.8 --no-deps")
 
-        os.system("source env/bin/activate")
+    subp.run("python3 -m pip3 install --target=env/lib/python3.7/site-packages keras_preprocessing==1.1.0 --no-deps")
 
-        os.system("pip3 install pip --upgrade")
+    subp.run("python3 -m pip3 install --target=env/lib/python3.7/site-packages numpy==1.20.3")
 
-        os.system("python3 -m pip install -r requirements/Linux_on_Python3.7.3/requirements.txt") # install dependencies
+    subp.run("python3 -m pip3 install --target=env/lib/python3.7/site-packages h5py==3.1.0")
 
-        os.system("sudo apt-get install -y libhdf5-dev libc-ares-dev libeigen3-dev gcc gfortran libgfortran5 \
-                        libatlas3-base libatlas-base-dev libopenblas-dev libopenblas-base libblas-dev \
-                        liblapack-dev cython3 libatlas-base-dev openmpi-bin libopenmpi-dev python3-dev")
-        
-        os.system("pip3 install keras_applications==1.0.8 --no-deps")
+    subp.run("python3 -m pip3 install --target=env/lib/python3.7/site-packages pybind11")
 
-        os.system("pip3 install keras_preprocessing==1.1.0 --no-deps")
+    subp.run("python3 -m pip3 install -U --user --target=env/lib/python3.7/site-packages six wheel mock")
 
-        os.system("pip3 install numpy==1.20.3")
+    subp.run('wget "https://raw.githubusercontent.com/PINTO0309/Tensorflow-bin/master/tensorflow-2.5.0-cp37-none-linux_armv7l_download.sh"')
 
-        os.system("pip3 install h5py==3.1.0")
+    subp.run("source tensorflow-2.5.0-cp37-none-linux_armv7l_download.sh")
 
-        os.system("pip3 install pybind11")
+    subp.run("sudo pip3 uninstall tensorflow")
 
-        os.system("pip3 install -U --user six wheel mock")
+    subp.run("sudo -H pip3 install tensorflow-2.5.0-cp37-none-linux_armv7l.whl")
 
-        os.system('wget "https://raw.githubusercontent.com/PINTO0309/Tensorflow-bin/master/tensorflow-2.5.0-cp37-none-linux_armv7l_download.sh"')
+    subp.run("sudo reboot")
 
-        os.system("source tensorflow-2.5.0-cp37-none-linux_armv7l_download.sh")
+    choice = input("Shall the script be run right now?[y/n]\n")
+    if choice == "y":
 
-        os.system("sudo pip3 uninstall tensorflow")
-
-        os.system("sudo -H pip3 install tensorflow-2.5.0-cp37-none-linux_armv7l.whl")
-
-        os.system("sudo reboot")
+        python_bin = ROOT_DIR+"ColiChecker/"+"env/bin/python" # Path to a Python interpreter inside the virtualenv
+        script_file = ROOT_DIR+"ColiChecker/"+"run.py" # Path to the script that must run under the virtualenv
+        subp.Popen([python_bin, script_file])
 
 
 # =============================================================================
 # Else-Statement
 # =============================================================================
-    else:
-        print("Sorry but this script is only designed to work on Windows or Linux")
+else:
+    print("Sorry but this script is only designed to work on Windows or Linux")
 
-except:
-    pass
+
 
 

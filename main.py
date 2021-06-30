@@ -25,9 +25,8 @@ def run():
     try:
 
         print("\n=================================================")
-        print("\nReading current Phase State\nPlease wait 10s...")
+        print("\nReading current Phase State\n...")
         print("\n=================================================")
-        time.sleep(10)
         with open("runtime.txt") as f:
             lines = f.readlines()
 
@@ -54,19 +53,15 @@ def run():
             print("__________________________________")   
             print("\nCreating directory...")
             print("__________________________________")
-            dH.createDir() # directory with current time
+            
+            dH.setupDir() # directory with current time
 
             # =============================================================================
             # Overwrite runtime.txt with next Phase and Timestamp Directory name and raise Pause
             # =============================================================================      
-            _, target_dir, text_file_location = dH.setupDir()
-
-            dH.appendText("\nRESULT:\n", text_file_location)
-
             with open("runtime.txt") as f:
                 lines = f.readlines()
                 lines[0] = "Phase: 1\n"
-                lines[1] = "Directory Path: "+target_dir
             with open("runtime.txt", "w") as f:
                 f.writelines(lines)    
 
@@ -175,11 +170,6 @@ def run():
         print("---------------------------------------------")
         time.sleep(5)
         os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run
-    
-    except KeyboardInterrupt:
-        print("---------------------------------------------")
-        print("\nTask stopped by user...")
-        print("---------------------------------------------")
 
 # =============================================================================
 # main
