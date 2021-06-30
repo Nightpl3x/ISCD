@@ -1,4 +1,5 @@
 import os
+from run import master
 import sys
 import tkinter as tk
 import subprocess as subp
@@ -20,7 +21,7 @@ class Interface(tk.Tk):
 # Class-Functions
 # =============================================================================
         def stop():
-            raise KeyboardInterrupt       
+            raise SystemExit(0)       
             
         def help_txt():
             if system() == "Windows":
@@ -37,12 +38,12 @@ class Interface(tk.Tk):
 # Header
 # =============================================================================
 
-        self.geometry('400x400')
-        self.title('ColiChecker Interface')
+        self.geometry('250x400')
+        self.title('ColiChecker')
 
-        first_label = tk.Label(self, text = "ColiChecker\n", font=14)
+        first_label = tk.Label(self, text = "\nColiChecker Interface\n", font=14)
         first_label.pack(pady = 5, padx = 5)
-# =============================================================================
+    # =============================================================================
 # Buttons
 # =============================================================================
         y, x = 10, 15
@@ -50,7 +51,7 @@ class Interface(tk.Tk):
         z = tk.Button(self, text="  Start ", command=lambda: subp.call([sys.executable, "run.py"]), activeforeground="black", activebackground="cyan", pady = y, padx = x)
         z.pack(pady=5, padx=5) # distance to next button
 
-        a = tk.Button(self, text="Continue", command=lambda: subp.call([sys.executable, "run.py"]), activeforeground="black", activebackground="cyan", pady = y, padx = x)
+        a = tk.Button(self, text="Continue", command=lambda: subp.call([sys.executable, "run.py"]), activeforeground="black", activebackground="cyan", pady = y, padx = 10)
         a.pack(pady=5, padx=5)
 
         b = tk.Button(self, text="  Stop  ", command=stop, activeforeground="blue", activebackground="orange", pady = y, padx = x)

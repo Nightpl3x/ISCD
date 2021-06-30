@@ -22,8 +22,8 @@ class Restart(LookupError):
     """Restart Error to prevent the script from using to much memory after first run"""
 # =============================================================================
 # Script may be stopped pressing 'Ctrl+C' two times
-# =============================================================================           
-if __name__ == '__main__':
+# =============================================================================  
+def master():
 
     while True:
 
@@ -62,7 +62,7 @@ if __name__ == '__main__':
             print(f"\nIt took {time_diff} Secs and {mem_diff} Mb to execute this method")
             # =======================================================================================           
             # raise error class to force restart
-            # =======================================================================================           
+            # =======================================================================================        
             raise Restart
         
         # ===================================================================================================================
@@ -71,7 +71,7 @@ if __name__ == '__main__':
         except IndexError:
             print("---------------------------------------------")
             print("\nSorry but there are no pictures in here...\nTrying again in 60s ...")
-            print("---------------------------------------------")
+            print("---------------------------------------------") 
             time.sleep(60)
             os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run 
 
@@ -81,7 +81,7 @@ if __name__ == '__main__':
             print("---------------------------------------------")
             time.sleep(15)
             os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run               
-
+    
         except KeyboardInterrupt:
             print("---------------------------------------------")
             print("\nTask stopped by user...")
@@ -93,4 +93,7 @@ if __name__ == '__main__':
             print("---------------------------------------------")
             break
 
+
+if __name__ == '__main__':
+    master()
 
