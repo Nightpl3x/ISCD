@@ -8,7 +8,7 @@
 import os
 import sys
 import time
-import memory_profiler # (comment out when running on raspberry pi)
+import memory_profiler
 
 import subprocess as subp
 from platform import system
@@ -28,7 +28,7 @@ def master():
     while True:
 
         try:
-            # =======================================================================================           
+             # =======================================================================================           
             # get time and memory usage pre running (comment out when running on raspberry pi)
             # =======================================================================================           
             m1 = memory_profiler.memory_usage()
@@ -41,7 +41,6 @@ def master():
                 python_bin = ROOT_DIR+"ColiChecker/"+"env/Scripts/python" # Path to a Python interpreter inside the virtualenv
                 script_file = ROOT_DIR+"ColiChecker/"+"run.py" # Path to the script that must run under the virtualenv
                 subp.Popen([python_bin, script_file])   
-
             elif system() == "Linux":    
                 python_bin = ROOT_DIR+"ColiChecker/"+"env/bin/python" # Path to a Python interpreter inside the virtualenv
                 script_file = ROOT_DIR+"ColiChecker/"+"run.py" # Path to the script that must run under the virtualenv
@@ -51,7 +50,7 @@ def master():
                 print("Sorry but this script is only designed to work on Windows or Linux")
             '''
             import main
-            cubes = main.run()
+            cubes = main.cycle()
             # =======================================================================================           
             # get time and memory usage after running (comment out when running on raspberry pi)
             # =======================================================================================                      
@@ -62,30 +61,20 @@ def master():
             print(f"\nIt took {time_diff} Secs and {mem_diff} Mb to execute this method")
             # =======================================================================================           
             # raise error class to force restart
-            # =======================================================================================        
+            # =======================================================================================           
             raise Restart
         
         # ===================================================================================================================
-        # handle exceptions and completly restart script
+        # handle exceptions and restart script loop
         # ===================================================================================================================
-        except IndexError:
-            print("---------------------------------------------")
-            print("\nSorry but there are no pictures in here...\nTrying again in 60s ...")
-            print("---------------------------------------------") 
-            time.sleep(60)
-            os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run 
 
         except Restart:
             print("---------------------------------------------")
-            print("\nRestarting in 15s ...")
+            print("\nContiniung in 15s ...")
             print("---------------------------------------------")
             time.sleep(15)
-            os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run               
-    
-        except KeyboardInterrupt:
-            print("---------------------------------------------")
-            print("\nTask stopped by user...")
-            print("---------------------------------------------")
+            #os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run    
+            master()           
 
         else:
             print("---------------------------------------------")
@@ -96,4 +85,5 @@ def master():
 
 if __name__ == '__main__':
     master()
+    pass
 
