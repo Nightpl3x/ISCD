@@ -50,10 +50,7 @@ class Interface(tk.Tk):
 # =============================================================================
         y, x = 10, 15
 
-        z = tk.Button(self, text="  Start ", command=lambda: subp.call([sys.executable, "run.py"]), activeforeground="black", activebackground="cyan", pady = y, padx = x)
-        z.pack(pady=5, padx=5) # distance to next button
-
-        a = tk.Button(self, text="Continue", command=lambda: subp.call([sys.executable, "run.py"]), activeforeground="black", activebackground="cyan", pady = y, padx = 10)
+        a = tk.Button(self, text="  Start \n[Continue]", command=lambda: subp.call([sys.executable, "run.py"]), activeforeground="black", activebackground="cyan", pady = y, padx = 10)
         a.pack(pady=5, padx=5)
 
         b = tk.Button(self, text="  Stop  ", command=stop, activeforeground="blue", activebackground="orange", pady = y, padx = x)

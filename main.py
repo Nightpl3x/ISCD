@@ -6,7 +6,6 @@
 # Imports
 # =============================================================================
 import os
-import sys
 import time
 import random
 import skimage.io as io
@@ -160,8 +159,7 @@ def cycle():
         print("\nSorry but there are no pictures in here...\nTrying again in 60s ...")
         print("---------------------------------------------") 
         time.sleep(60)
-        #os.execv(sys.executable, ['python'] + sys.argv) # restart program with exact the same command line arguments as it was originally run 
-        cycle()
+        cycle() # is is safer to just call the funtion again as the script already gets restarted in run.py
 
     except KeyboardInterrupt:
         print("---------------------------------------------")
