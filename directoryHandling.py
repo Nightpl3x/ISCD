@@ -27,7 +27,7 @@ def setupDir():
 
     with open("runtime.txt") as f:
         lines = f.readlines()
-        lines[1] = "Directory Path: "+target_dir
+        lines[2] = "Directory Path: "+target_dir
     with open("runtime.txt", "w") as f:
         f.writelines(lines)   
 
@@ -114,11 +114,14 @@ def appendText(text, text_file_location):
     f.close()
 
 def resetRuntimeTxt():
-    print("Resetting runtime.txt...")
+
+    print("Runtime was reset...")
     with open("runtime.txt") as f:
         lines = f.readlines()
         lines[0] = "Phase: 0\n"
-        lines[1] = "Directory Path: "
+        lines[1] = "Stop: False\n"
+        lines[2] = "Directory Path: "
+        
     with open("runtime.txt", "w") as f:
         f.writelines(lines) 
 

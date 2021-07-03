@@ -10,7 +10,9 @@ import time
 import random
 import skimage.io as io
 
-ROOT_DIR = os.path.abspath("../") # get parent directory
+import signal
+import subprocess as subp
+from platform import system
 
 # =============================================================================
 # run()
@@ -135,7 +137,7 @@ def cycle():
 
             with open("runtime.txt") as f:
                 lines = f.readlines()
-            target_dir = lines[1][16:]
+            target_dir = lines[2][16:]
 
             fillDirRoi(target_dir) # move roi images into directory
             fillDirCam(IMAGE_DIRECTORY_CAM, target_dir) # move camera image into directory
@@ -154,19 +156,28 @@ def cycle():
             print("Oh no... something happend concerning the runtime.txt file")
             print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
+        if lines[1] == "Stop: True\n":
+            pid = os.getpid()
+            if system() == "Windows":
+                subp.Popen('taskkill /F /PID {0}'.format(pid))
+            
+            elif system() == "Linux":
+                os.kill(pid, signal.SIGKILL)
+
     except IndexError:
         print("---------------------------------------------")
         print("\nSorry but there are no pictures in here...\nTrying again in 60s ...")
         print("---------------------------------------------") 
-        time.sleep(60)
+        time.sleep(30)
         cycle() # is is safer to just call the funtion again as the script already gets restarted in run.py
 
     except KeyboardInterrupt:
         print("---------------------------------------------")
         print("\nTask stopped by user...")
         print("---------------------------------------------")
-          
+
+
 if __name__ == '__main__':
-    cycle()
+    #cycle()
     pass
 
