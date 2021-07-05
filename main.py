@@ -160,11 +160,18 @@ def cycle():
             pid = os.getpid()
             if system() == "Windows":
                 subp.Popen('taskkill /F /PID {0}'.format(pid))
-            
             elif system() == "Linux":
                 os.kill(pid, signal.SIGKILL)
 
     except IndexError:
+
+        if lines[1] == "Stop: True\n":
+            pid = os.getpid()
+            if system() == "Windows":
+                subp.Popen('taskkill /F /PID {0}'.format(pid))
+            elif system() == "Linux":
+                os.kill(pid, signal.SIGKILL)
+                
         print("---------------------------------------------")
         print("\nSorry but there are no pictures in here...\nTrying again in 60s ...")
         print("---------------------------------------------") 

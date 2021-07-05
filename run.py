@@ -8,7 +8,6 @@
 import os
 import sys
 import time
-import memory_profiler
 
 from platform import system
 
@@ -36,6 +35,7 @@ def master():
     if system() == "Windows":     
 
         try:
+            import memory_profiler
             # =======================================================================================           
             # get time and memory usage pre running (not supported on raspberry pi)
             # =======================================================================================           

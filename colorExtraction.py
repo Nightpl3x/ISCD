@@ -79,26 +79,26 @@ def show_selected_images(images, color, threshold, colors_to_match):
             # Get and Print Image Name
             # ============================
             with Image.open(IMAGE_DIRECTORY_ROI[i]) as img:
-                print("Sample: {}\n Result: POSITIVE\n" .format(img.filename))
+                print("Sample: {}\n State: POSITIVE\n" .format(img.filename))
             
             # append text to txt file
             with open("runtime.txt") as f:
                 lines = f.readlines()
-                text_file_location = lines[1][16:]+"/Results.txt"
-            dH.appendText("\nSample: {}\n Result: POSITIVE\n" .format(img.filename), text_file_location)
+                text_file_location = lines[2][16:]+"/Results.txt"
+            dH.appendText("\nSample: {}\n State: POSITIVE\n" .format(img.filename), text_file_location)
 
         else:
             # ============================
             # Get and Print Image Name
             # ============================
             with Image.open(IMAGE_DIRECTORY_ROI[i]) as img:
-                print("Sample: {}\n Result: NEGATIVE\n" .format(img.filename))
+                print("Sample: {}\n State: NEGATIVE\n" .format(img.filename))
 
             # append text to txt file
             with open("runtime.txt") as f:
                 lines = f.readlines()
-                text_file_location = lines[1][16:]+"/Results.txt"
-            dH.appendText("\nSample: {}\n Result: POSITIVE\n" .format(img.filename), text_file_location)
+                text_file_location = lines[2][16:]+"/Results.txt"
+            dH.appendText("\nSample: {}\n State: NEGATIVE\n" .format(img.filename), text_file_location)
 
             
 if __name__ == '__main__':

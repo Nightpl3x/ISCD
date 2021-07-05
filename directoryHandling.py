@@ -25,14 +25,14 @@ def setupDir():
     target_dir = ROOT_DIR+"/ColiChecker/images/image_3_storage/"+folderame
     text_file_location = target_dir+"/Results.txt"
 
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir)
+    
     with open("runtime.txt") as f:
         lines = f.readlines()
         lines[2] = "Directory Path: "+target_dir
     with open("runtime.txt", "w") as f:
         f.writelines(lines)   
-
-    if not os.path.exists(target_dir):
-        os.makedirs(target_dir)
     
     # append text to txt file
     f = open(text_file_location, "a")
@@ -108,10 +108,9 @@ def fillDirRoi(target_dir):
 # Text file handling
 # =============================================================================
 def appendText(text, text_file_location):
-    # append text to txt file
-    f = open(text_file_location, "a")
-    f.write(text)
-    f.close()
+
+    with open(text_file_location, 'a') as f:
+        f.write(text)
 
 def resetRuntimeTxt():
 

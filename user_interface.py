@@ -1,6 +1,5 @@
 import os
 import sys
-import signal
 import tkinter as tk
 import subprocess as subp
 
@@ -19,6 +18,18 @@ class Interface(tk.Tk):
 # =============================================================================
 # Class-Functions
 # =============================================================================
+        def start():
+            import glob
+            import shutil
+            import os
+
+            src_dir = "images/assets"
+            dst_dir = "images/image_1_camera"
+            for jpegfile in glob.iglob(os.path.join(src_dir, "*.jpeg")):
+                shutil.copy(jpegfile, dst_dir)
+            
+            subp.call([sys.executable, "run.py"])
+        
         def stop():
 
             with open("runtime.txt") as f:
@@ -26,30 +37,6 @@ class Interface(tk.Tk):
                 lines[1] = "Stop: True\n"
             with open("runtime.txt", "w") as f:
                 f.writelines(lines)   
-            '''
-            pid = os.getpid()
-
-            from run import master
-            pid_run = master
-
-            from main import cycle
-            pid_main = cycle
-
-            if system() == "Windows":
-
-                subp.Popen('taskkill /F /PID {0}'.format(pid))
-                subp.Popen('taskkill /F /PID {0}'.format(pid_run))
-                subp.Popen('taskkill /F /PID {0}'.format(pid_main))
-
-
-            elif system() == "Linux":
-                os.kill(pid, signal.SIGKILL)
-                os.kill(pid_run, signal.SIGKILL)
-                os.kill(pid_main, signal.SIGKILL)
-            
-            else:
-                print("Task only executable on Windows and Linux")
-            '''
 
         def help_txt():
             if system() == "Windows":
@@ -79,7 +66,7 @@ class Interface(tk.Tk):
 # =============================================================================
         y, x = 10, 15
 
-        a = tk.Button(self, text="  Start \n[Continue]", command=lambda: subp.call([sys.executable, "run.py"]), activeforeground="black", activebackground="cyan", pady = y, padx = 10)
+        a = tk.Button(self, text="  Start \n[Continue]", command=start, activeforeground="black", activebackground="cyan", pady = y, padx = 10)
         a.pack(pady=5, padx=5)
 
         b = tk.Button(self, text="  Stop  ", command=stop, activeforeground="black", activebackground="orange", pady = y, padx = x)

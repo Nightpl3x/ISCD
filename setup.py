@@ -24,10 +24,14 @@ elif system() == "Linux":
     subp.run("sudo apt-get install -y libhdf5-dev libc-ares-dev libeigen3-dev gcc gfortran libgfortran5 \
                     libatlas3-base libatlas-base-dev libopenblas-dev libopenblas-base libblas-dev \
                     liblapack-dev cython3 libatlas-base-dev openmpi-bin libopenmpi-dev python3-dev") # install system dependencies
+    
+    subp.run("python3 -m pip install --user virtualenv") # install venv module
+
+    subp.run("virtualenv env") # create virtual environment
+
+    subp.run("source env/bin/activate")
 
     subp.run("pip3 install --user --upgrade pip") # upgrade pip
-    subp.run("python3 -m pip install --user virtualenv") # install venv module
-    subp.run("virtualenv env") # create virtual environment
 
     subp.run("python3 -m pip3 install --target=env/lib/python3.7/site-packages -r requirements/Linux_on_Python3.7.3/requirements.txt")
     
