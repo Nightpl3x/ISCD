@@ -23,7 +23,7 @@
 
 5) Copy mrcnn directory to
 ####
-   $ /ColiChecker/env/Lib/site-packages/
+    $ ColiChecker/env/Lib/site-packages/
 
 6) Run script
 #####
