@@ -40,10 +40,10 @@ class Interface(tk.Tk):
 
         def help_txt():
             if system() == "Windows":
-                os.system('README.md')
+                os.system("README.txt")
             else:
                 try:
-                    subp.call([os.environ["EDITOR"], "README.md"])
+                    subp.call([os.environ["EDITOR"], "README.txt"])
                 except:
                     try:
                         subp.call(["gedit", "README.md"])
