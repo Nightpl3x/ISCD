@@ -22,7 +22,7 @@ ROOT_DIR = os.path.abspath("../") # get parent directory
 def setupDir():
 
     folderame = datetime.now().strftime("%Y(Y)__%m(M)__%d(D)__%H.%M(H).%S(s)")
-    target_dir = ROOT_DIR+"/ColiChecker/images/image_3_storage/"+folderame
+    target_dir = ROOT_DIR+"/ISCD/images/image_3_storage/"+folderame
     text_file_location = target_dir+"/Results.txt"
 
     if not os.path.exists(target_dir):
@@ -46,7 +46,7 @@ def setupDir():
 # =============================================================================
 def DirCAM():
 
-    path_dir_cam = ROOT_DIR+"/ColiChecker/images/image_1_camera"
+    path_dir_cam = ROOT_DIR+"/ISCD/images/image_1_camera"
 
     CHECK_FOLDER = os.path.isdir(path_dir_cam)
 

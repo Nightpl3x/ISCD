@@ -48,7 +48,7 @@ def MRCNN_Coco(IMAGE_DIRECTORY_CAM,images_cam):
     MODEL_DIR = os.path.join(ROOT_DIR, "logs")
 
     # Local path to Coco trained weights file
-    COCO_MODEL_PATH = os.path.join('', ROOT_DIR+"/ColiChecker/Mask_RCNN/samples/coco/mask_rcnn_coco.h5")
+    COCO_MODEL_PATH = os.path.join('', ROOT_DIR+"/ISCD/Mask_RCNN/samples/coco/mask_rcnn_coco.h5")
 
     # Download COCO trained weights from Releases if needed
     if not os.path.exists(COCO_MODEL_PATH):
@@ -61,7 +61,7 @@ def MRCNN_Coco(IMAGE_DIRECTORY_CAM,images_cam):
     # For inferencing, the configurations were modified a bit to fit the task. To do so, I sub-classed the ```CocoConfig``` class and overrode the attributes I needed to change.
     # =======================================================================================================================================================================================================
     config = coco.CocoConfig()
-    COCO_DIR = os.path.join(ROOT_DIR, ROOT_DIR+"/ColiChecker/Mask_RCNN/samples/coco") # path inside Mask_RCNN directory
+    COCO_DIR = os.path.join(ROOT_DIR, ROOT_DIR+"/ISCD/Mask_RCNN/samples/coco") # path inside Mask_RCNN directory
 
 # Override the inference configurations
     class InferenceConfig(Config):
@@ -159,7 +159,7 @@ def MRCNN_Coco(IMAGE_DIRECTORY_CAM,images_cam):
     with tf.device(DEVICE):
         model = modellib.MaskRCNN(mode="inference", model_dir='mask_rcnn_coco.hy', config=config) 
 
-    weights_path = ROOT_DIR+"/ColiChecker/Mask_RCNN/samples/coco/mask_rcnn_coco.h5"
+    weights_path = ROOT_DIR+"/ISCD/Mask_RCNN/samples/coco/mask_rcnn_coco.h5"
 
     # Load weights trained on MS-COCO
     model.load_weights(weights_path, by_name=True)

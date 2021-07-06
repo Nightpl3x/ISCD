@@ -48,7 +48,7 @@ def MRCNN_Balloon(IMAGE_DIRECTORY_CAM, images_cam):
     MODEL_DIR = os.path.join(ROOT_DIR, "logs")
 
     # Local path to balloon trained weights file
-    BALLOON_MODEL_PATH = os.path.join('', ROOT_DIR+"/ColiChecker/Mask_RCNN/samples/balloon/mask_rcnn_balloon.h5")
+    BALLOON_MODEL_PATH = os.path.join('', ROOT_DIR+"/ISCD/Mask_RCNN/samples/balloon/mask_rcnn_balloon.h5")
 
     # Download Balloon trained weights from Releases if needed
     # Link for trained weights
@@ -61,7 +61,7 @@ def MRCNN_Balloon(IMAGE_DIRECTORY_CAM, images_cam):
     # For inferencing, the configurations were modified a bit to fit the task. To do so, I sub-classed the ```balloonConfig``` class and overrode the attributes I needed to change.
     # =======================================================================================================================================================================================================
     config = balloon.BalloonConfig()
-    BALLOON_DIR = os.path.join(ROOT_DIR, ROOT_DIR+"/ColiChecker/Mask_RCNN/samples/balloon") # path inside Mask_RCNN directory
+    BALLOON_DIR = os.path.join(ROOT_DIR, ROOT_DIR+"/ISCD/Mask_RCNN/samples/balloon") # path inside Mask_RCNN directory
 
     # Override the inference configurations
     class InferenceConfig(Config):
@@ -159,7 +159,7 @@ def MRCNN_Balloon(IMAGE_DIRECTORY_CAM, images_cam):
     with tf.device(DEVICE):
         model = modellib.MaskRCNN(mode="inference", model_dir='mask_rcnn_balloon.hy', config=config) 
 
-    weights_path = ROOT_DIR+"/ColiChecker/Mask_RCNN/samples/balloon/mask_rcnn_balloon.h5"
+    weights_path = ROOT_DIR+"/ISCD/Mask_RCNN/samples/balloon/mask_rcnn_balloon.h5"
 
     # Load weights trained on Balloon
     model.load_weights(weights_path, by_name=True)

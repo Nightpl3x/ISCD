@@ -42,7 +42,7 @@ COLORS = { # Source: http://www.workwithcolor.com/cyan-color-hue-range-01.htm
 # For single Images
 # =============================================================================
 class DirIMG(object):
-    path_image_abs = ROOT_DIR+"/ColiChecker/images/assets/_original/44H_10000Z.jpeg"
+    path_image_abs = ROOT_DIR+"/ISCD/images/assets/_original/44H_10000Z.jpeg"
 
     last_slash = path_image_abs.rfind("/") # find the last occurring slash in the absolut image path
     second_last_slash = path_image_abs[:path_image_abs.rfind("/")].rfind("/") # find the second last occurring slash in the absolut image path

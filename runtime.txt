@@ -1,3 +1,3 @@
-Phase: 0
+Phase: 1
 Stop: False
-Directory Path: 
+Directory Path: D:\Python Projects/ISCD/images/image_3_storage/2021(Y)__07(M)__06(D)__16.11(H).55(s)

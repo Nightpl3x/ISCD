@@ -55,11 +55,11 @@ class Interface(tk.Tk):
 # =============================================================================
 
         self.geometry('250x400')
-        self.title('ColiChecker')
+        self.title('ISCD')
         self['background']='#50A6C2'
         
 
-        first_label = tk.Label(self, text = "\n ColiChecker GUI \n", font='Helvetica 14 bold', relief = "groove")
+        first_label = tk.Label(self, text = "\n ISCD GUI \n", font='Helvetica 14 bold', relief = "groove")
         first_label.pack(pady = 5, padx = 5)
 # =============================================================================
 # GUI Buttons

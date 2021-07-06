@@ -5,14 +5,19 @@ from platform import system
 
 ROOT_DIR = os.path.abspath("../")
 
+#   .\env\Scripts\activate for Windows
+#   source env/bin/activate for Linux
+#   deactivate
+
 # =============================================================================
 # Setup on Windows
 # =============================================================================
 if system() == "Windows":
 
     subp.run("pip install virtualenv")
-    subp.run("pip install --user --upgrade pip")
     subp.run("virtualenv env")
+    subp.run("pip install --user --upgrade pip")
+    
 
     subp.run("pip install --target=env/Lib/site-packages -r requirements/Windows_on_Python3.9.2/requirements.txt")
 

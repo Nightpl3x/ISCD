@@ -4,11 +4,11 @@
 
 ### On Windows
 
-1) Download and extract ColiChecker.zip 
+1) Download and extract ISCD.zip 
 
 2) Open terminal and go to the install directory:
 #####
-    $ cd ./ColiChecker
+    $ cd ./ISCD
 
 3) Install, initialise, activate and update venv module
 #####
@@ -23,7 +23,7 @@
 
 5) Copy mrcnn directory to
 ####
-    $ ColiChecker/env/Lib/site-packages/
+    $ ISCD/env/Lib/site-packages/
 
 6) Run script
 #####
@@ -35,11 +35,11 @@
 ####
     $ sudo apt-get install -y libhdf5-dev libc-ares-dev libeigen3-dev gcc gfortra libgfortran5 \ libatlas3-base libatlas-base-dev libopenblas-dev libopenblas-base libblas-dev \ liblapack-dev cython3 libatlas-base-dev openmpi-bin libopenmpi-dev python3-dev
 
-2) Download and extract ColiChecker.zip 
+2) Download and extract ISCD.zip 
 
 3) Open terminal and go to the install directory:
 #####
-    $ cd ./ColiChecker
+    $ cd ./ISCD
 
 4) Install, initialise, activate and update venv module
 ####
@@ -69,7 +69,7 @@
 
 6) Copy mrcnn directory to
 ####
-   $ /ColiChecker/env/Lib/site-packages/
+   $ /ISCD/env/Lib/site-packages/
 
 
 6) Run script
@@ -134,10 +134,10 @@ Prior to using Training Weights I had to manually alter the following lines in M
 
 4) Copy the mrcnn directory from 
 ####
-    /ColiChecker/Mask_RCNN/ 
+    /ISCD/Mask_RCNN/ 
 into 
 ####
-    /ColiChecker/env/lib/python3.7/site-packages/
+    /ISCD/env/lib/python3.7/site-packages/
 
 5) Run startup.py
 
